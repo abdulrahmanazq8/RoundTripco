@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>جدول حسابات صفقة بيت التمويل</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    h2 { margin: 0 0 12px; }
+    table { border-collapse: collapse; width: 100%; max-width: 900px; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: right; }
+    th { background: #f5f5f5; }
+    .num { font-variant-numeric: tabular-nums; }
+    .note { margin-top: 10px; color: #444; font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+
+<h2>حسابات صفقة بيت التمويل (KFH)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>البند</th>
+      <th>القيمة</th>
+      <th>المعادلة</th>
+      <th>النتيجة (د.ك)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>الكمية</td>
+      <td class="num">13,619 سهم</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+
+    <tr>
+      <td>سعر البيع</td>
+      <td class="num">0.821</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+
+    <tr>
+      <td>قيمة البيع الإجمالية</td>
+      <td class="num">—</td>
+      <td class="num">13,619 × 0.821</td>
+      <td class="num">11,182.199</td>
+    </tr>
+
+    <tr>
+      <td>عمولة البيع (تقريبًا)</td>
+      <td class="num">11</td>
+      <td class="num">—</td>
+      <td class="num">11.000</td>
+    </tr>
+
+    <tr>
+      <td>صافي البيع بعد العمولة</td>
+      <td class="num">—</td>
+      <td class="num">11,182.199 − 11</td>
+      <td class="num">11,171.199</td>
+    </tr>
+
+    <tr>
+      <td>متوسط التكلفة</td>
+      <td class="num">0.722</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+
+    <tr>
+      <td>إجمالي التكلفة (على المتوسط)</td>
+      <td class="num">—</td>
+      <td class="num">13,619 × 0.722</td>
+      <td class="num">9,832.918</td>
+    </tr>
+
+    <tr>
+      <td><strong>الربح الصافي</strong></td>
+      <td class="num">—</td>
+      <td class="num">11,171.199 − 9,832.918</td>
+      <td class="num"><strong>1,338.281</strong></td>
+    </tr>
+
+    <tr>
+      <td colspan="4" style="background:#fafafa;"><strong>سيناريو إعادة الشراء</strong></td>
+    </tr>
+
+    <tr>
+      <td>متوسط شراء مفترض</td>
+      <td class="num">0.800</td>
+      <td>—</td>
+      <td>—</td>
+    </tr>
+
+    <tr>
+      <td>تكلفة إعادة الشراء (بدون عمولة)</td>
+      <td class="num">—</td>
+      <td class="num">13,619 × 0.800</td>
+      <td class="num">10,895.200</td>
+    </tr>
+
+    <tr>
+      <td>فارق الكاش (صافي البيع − تكلفة إعادة الشراء)</td>
+      <td class="num">—</td>
+      <td class="num">11,171.199 − 10,895.200</td>
+      <td class="num">275.999</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="note">
+  ملاحظة: الأرقام مبنية على عمولة بيع تقريبية 11 د.ك. إذا عطيتني العمولة الدقيقة للشراء/البيع أعدّل الجدول بدقة أكثر.
+</div>
+
+</body>
+</html>
