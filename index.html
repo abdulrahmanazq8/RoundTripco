@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>راوند تريب - وكالة السفر والسفر</title>
+    <title>راوند تريب - لتنظيم الرحلات السياحية</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <style>
@@ -782,12 +782,8 @@
     <header class="header">
         <div class="logo-container" onclick="showMainPage()">
             <!-- ========== ضع شعارك هنا ========== -->
-            <!-- الطريقة 1: رابط مباشر للشعار -->
-            <img src="https://via.placeholder.com/70x70/2a6c8c/ffffff?text=RT" alt="شعار راوند تريب" class="logo">
-            <!-- 
-                استبدل الرابط أعلاه برابط شعارك:
-                مثال: <img src="شعارك.png" alt="شعار راوند تريب" class="logo">
-            -->
+            <!-- استخدام صورة محلية للشعار -->
+            <img src="logo.png" alt="شعار راوند تريب" class="logo">
             
             <div class="company-info">
                 <div class="company-name-ar">راوند تريب</div>
@@ -797,11 +793,11 @@
         </div>
         
         <div class="contact-header">
-            <a href="https://wa.me/96567757521" class="whatsapp-btn pulse" target="_blank">
+            <a href="https://wa.me/96565750302" class="whatsapp-btn pulse" target="_blank">
                 <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
             </a>
             <div class="phone-number">
-                <i class="fas fa-phone"></i> +965 67757521
+                <i class="fas fa-phone"></i> +965 65750302
             </div>
         </div>
     </header>
@@ -811,13 +807,8 @@
         <!-- البانر الرئيسي -->
         <section class="banner">
             <!-- ========== ضع بانرك هنا ========== -->
-            <!-- الطريقة 1: رابط مباشر للبانر -->
-            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
-                 alt="بانر راوند تريب" class="banner-img">
-            <!-- 
-                استبدل الرابط أعلاه برابط بانرك:
-                مثال: <img src="بانرك.jpg" alt="بانر راوند تريب" class="banner-img">
-            -->
+            <!-- استخدام صورة محلية للبانر -->
+            <img src="banner.jpg" alt="بانر راوند تريب" class="banner-img">
             
             <div class="banner-content">
                 <h1>استمتع برحلتك مع راوند تريب</h1>
@@ -828,7 +819,6 @@
             </div>
         </section>
 
-        <!-- باقي الكود يبقى كما هو -->
         <!-- الخدمات -->
         <div class="container">
             <h2 class="section-title">خدماتنا المميزة</h2>
@@ -1286,7 +1276,7 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>راوند تريب</h3>
-                <p>نحن وكالة سفر رائدة نقدم خدمات حجوزات فنادق وتأشيرات وتأجير سيارات وباقات سياحية مخصصة. نضمن لعملائنا تجربة سفر استثنائية بأسعار تنافسية وخدمة مميزة.</p>
+                <p>نحن شركة متخصصة في تنظيم الرحلات السياحية نقدم خدمات حجوزات فنادق وتأشيرات وتأجير سيارات وباقات سياحية مخصصة. نضمن لعملائنا تجربة سفر استثنائية بأسعار تنافسية وخدمة مميزة.</p>
                 <div class="social-icons">
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -1310,23 +1300,23 @@
                 <h3>تواصل معنا</h3>
                 <div>
                     <i class="fas fa-phone"></i>
-                    <span>+965 67757521</span>
+                    <span>+965 65750302</span>
                 </div>
                 <div>
                     <i class="fab fa-whatsapp"></i>
-                    <span>واتساب: 67757521</span>
+                    <span>واتساب: 65750302</span>
                 </div>
                 <div>
                     <i class="fas fa-envelope"></i>
-                    <span>info@roundtrip.com</span>
+                    <span>sales@roundtripco.net</span>
                 </div>
                 <div>
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>الكويت - حولي - شارع السلام</span>
+                    <span>الكويت</span>
                 </div>
                 <div>
                     <i class="fas fa-clock"></i>
-                    <span>الأحد - الخميس: 9ص - 5م</span>
+                    <span>السبت - الخميس: 9ص - 11م</span>
                 </div>
             </div>
         </div>
@@ -1459,12 +1449,12 @@
 5. مكان الاستلام:
 6. مكان الإرجاع:
 
-📞 *للحجز السريع تواصل معنا على:* +965 67757521
+📞 *للحجز السريع تواصل معنا على:* +965 65750302
 
 --- راوند تريب - خدمة تأجير السيارات ---`;
             
             const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/96567757521?text=${encodedMessage}`;
+            const whatsappUrl = `https://wa.me/96565750302?text=${encodedMessage}`;
             window.open(whatsappUrl, '_blank');
             
             alert(`✅ تم فتح واتساب لطلب تأجير ${carType}\n\nيرجى إرسال البيانات المطلوبة للحجز`);
@@ -1528,7 +1518,7 @@ ${data.notes || 'لا توجد ملاحظات'}
             const encodedMessage = encodeURIComponent(message);
             
             // رقم واتساب الشركة
-            const companyWhatsappNumber = "96567757521";
+            const companyWhatsappNumber = "96565750302";
             
             // رابط واتساب
             const whatsappUrl = `https://wa.me/${companyWhatsappNumber}?text=${encodedMessage}`;
