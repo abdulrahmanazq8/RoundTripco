@@ -138,6 +138,13 @@
             backdrop-filter: blur(5px);
         }
         
+        .phone-number a {
+            color: white;
+            text-decoration: none;
+            direction: ltr;
+            display: inline-block;
+        }
+        
         /* البانر */
         .banner {
             height: 500px;
@@ -375,85 +382,6 @@
             padding: 0 20px;
         }
         
-        /* محتوى صفحة تأجير السيارات */
-        .car-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 50px 0;
-        }
-        
-        .car-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            border: 2px solid var(--light-beige);
-        }
-        
-        .car-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(85, 104, 89, 0.2);
-        }
-        
-        .car-image {
-            height: 200px;
-            background: linear-gradient(135deg, var(--light-beige), var(--sage-green));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            color: var(--olive-dark);
-        }
-        
-        .car-info {
-            padding: 25px;
-        }
-        
-        .car-info h4 {
-            color: var(--olive-dark);
-            margin-bottom: 10px;
-            font-size: 22px;
-        }
-        
-        .car-price {
-            color: var(--olive-dark);
-            font-size: 24px;
-            font-weight: bold;
-            margin: 15px 0;
-        }
-        
-        .car-features {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
-        
-        .car-features li {
-            padding: 5px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .book-car-btn {
-            background: linear-gradient(135deg, var(--olive-dark), var(--sage-green));
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            width: 100%;
-            transition: all 0.3s;
-        }
-        
-        .book-car-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(85, 104, 89, 0.3);
-        }
-        
         /* نموذج الحجز */
         .booking-section {
             background: var(--white);
@@ -524,7 +452,7 @@
             box-shadow: 0 0 0 3px rgba(175, 181, 152, 0.1);
         }
         
-        /* تصميم خاص لرقم الهاتف مع رمز الدولة */
+        /* تصميم خاص لرقم الهاتف */
         .phone-input-container {
             display: flex;
             gap: 10px;
@@ -578,8 +506,8 @@
             font-size: 24px;
         }
         
-        /* التوجيهات */
-        .instructions {
+        /* التوجيهات داخل النماذج */
+        .form-instructions {
             background: var(--light-beige);
             border-radius: 12px;
             padding: 25px;
@@ -587,7 +515,7 @@
             border-right: 5px solid var(--sage-green);
         }
         
-        .instructions h4 {
+        .form-instructions h4 {
             color: var(--olive-dark);
             margin-bottom: 15px;
             display: flex;
@@ -595,12 +523,12 @@
             gap: 10px;
         }
         
-        .instructions ol {
+        .form-instructions ol {
             padding-right: 20px;
             line-height: 2;
         }
         
-        /* صفحة تأجير السيارات مع سائق خاص */
+        /* تأجير سيارات مع سائق خاص */
         .driver-service-section {
             background: var(--white);
             border-radius: 25px;
@@ -641,6 +569,24 @@
             font-size: 40px;
             color: var(--olive-dark);
             margin-bottom: 15px;
+        }
+        
+        /* خيارات متعددة */
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
         }
         
         /* الفوتر */
@@ -788,10 +734,6 @@
             .phone-number {
                 font-size: 18px;
             }
-            
-            .car-types {
-                grid-template-columns: 1fr;
-            }
         }
         
         /* تأثيرات إضافية */
@@ -811,7 +753,7 @@
     <header class="header">
         <div class="logo-container" onclick="showMainPage()">
             <!-- شعار الشركة -->
-            <img src="logo.png" alt="شعار راوند تريب" class="logo" onerror="this.src='https://via.placeholder.com/70x70/556859/ffffff?text=RT'">
+            <img src="logo.png" alt="شعار راوند تريب" class="logo" onerror="this.style.display='none'">
             
             <div class="company-info">
                 <div class="company-name-ar">راوند تريب</div>
@@ -825,7 +767,12 @@
                 <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
             </a>
             <div class="phone-number">
-                <i class="fas fa-phone"></i> +965 65750302
+                <i class="fas fa-phone"></i> 
+                <a href="tel:+96565750302">+965 65750302</a>
+            </div>
+            <div class="phone-number" style="margin-top: 5px; font-size: 18px;">
+                <i class="fas fa-phone"></i> 
+                <a href="tel:+966569425758">+966 569425758</a>
             </div>
         </div>
     </header>
@@ -834,58 +781,31 @@
     <div id="mainPage">
         <!-- البانر الرئيسي -->
         <section class="banner">
-            <!-- البانر - عدة خيارات -->
-            <img src="banner.jpg" alt="بانر راوند تريب" class="banner-img" 
-                 onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80'; this.onerror=null;">
-            
+            <!-- البانر - يتم تحميله من خلال CSS -->
             <div class="banner-content">
                 <h1>استمتع برحلتك مع راوند تريب</h1>
                 <p>نخطط لرحلاتك بدقة فائقة، نضمن لك راحة تامة وتجربة سفر استثنائية تتناسب مع تطلعاتك وميزانيتك</p>
-                <a href="#booking" class="whatsapp-btn" style="background: linear-gradient(135deg, var(--olive-dark), var(--sage-green)); padding: 18px 40px; font-size: 18px;">
+                <a href="#services" class="whatsapp-btn" style="background: linear-gradient(135deg, var(--olive-dark), var(--sage-green)); padding: 18px 40px; font-size: 18px;">
                     ابدأ رحلتك الآن <i class="fas fa-plane"></i>
                 </a>
             </div>
         </section>
 
         <!-- الخدمات -->
-        <div class="container">
+        <div class="container" id="services">
             <h2 class="section-title">خدماتنا المميزة</h2>
             
             <div class="services">
-                <!-- حجوزات فنادق -->
-                <div class="service-card" onclick="showHotelPage()">
-                    <div class="service-icon">
-                        <i class="fas fa-hotel"></i>
-                    </div>
-                    <h3>حجوزات فنادق</h3>
-                    <div class="service-description">
-                        فنادق ومنتجعات فاخرة تناسب جميع الميزانيات في أهم الوجهات العالمية مع أفضل العروض والضمانات
-                    </div>
-                    <a class="service-link">استعرض الفنادق <i class="fas fa-arrow-left"></i></a>
-                </div>
-                
-                <!-- تأشيرات السفر -->
-                <div class="service-card" onclick="showVisaPage()">
-                    <div class="service-icon">
-                        <i class="fas fa-passport"></i>
-                    </div>
-                    <h3>تأشيرات السفر</h3>
-                    <div class="service-description">
-                        خدمات استخراج التأشيرات بكل يسر وسهولة لأغلب دول العالم مع متابعة حتى الاستلام
-                    </div>
-                    <a class="service-link">استعرض التأشيرات <i class="fas fa-arrow-left"></i></a>
-                </div>
-                
                 <!-- تأجير سيارات -->
                 <div class="service-card" onclick="showCarRentalPage()">
                     <div class="service-icon">
                         <i class="fas fa-car"></i>
                     </div>
-                    <h3>تأجير سيارات</h3>
+                    <h3>تأجير السيارات</h3>
                     <div class="service-description">
                         خدمات تأجير سيارات بمواصفات عالية في المطارات وأهم المدن حول العالم بأسعار منافسة
                     </div>
-                    <a class="service-link">استعرض السيارات <i class="fas fa-arrow-left"></i></a>
+                    <a class="service-link">احجز سيارتك <i class="fas fa-arrow-left"></i></a>
                 </div>
                 
                 <!-- تأجير سيارات مع سائق خاص -->
@@ -900,124 +820,40 @@
                     <a class="service-link">احجز مع سائق <i class="fas fa-arrow-left"></i></a>
                 </div>
                 
-                <!-- رحلات شهر العسل -->
-                <div class="service-card" onclick="showHoneymoonPage()">
+                <!-- تنظيم الرحلات والفعاليات -->
+                <div class="service-card" onclick="showToursPage()">
                     <div class="service-icon">
-                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-suitcase-rolling"></i>
                     </div>
-                    <h3>رحلات شهر العسل</h3>
+                    <h3>تنظيم الرحلات والفعاليات</h3>
                     <div class="service-description">
-                        باقات خاصة للأزواج مع إضافات رومانسية في أجمل الوجهات العالمية لتجربة لا تُنسى
+                        تنظيم رحلات شهر العسل، برامج سياحية مخصصة، وحجوزات تذاكر فعاليات وأنشطة ترفيهية
                     </div>
-                    <a class="service-link">استعرض الباقات <i class="fas fa-arrow-left"></i></a>
+                    <a class="service-link">نظم رحلتك <i class="fas fa-arrow-left"></i></a>
                 </div>
-            </div>
-        </div>
-
-        <!-- نموذج الحجز الرئيسي -->
-        <div class="container" id="booking">
-            <div class="booking-section">
-                <h2 class="section-title">احجز رحلتك الآن</h2>
                 
-                <form id="travelForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="name" class="required">الاسم الكامل</label>
-                            <input type="text" id="name" name="name" required placeholder="أدخل اسمك الثلاثي">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="phone" class="required">رقم الجوال</label>
-                            <div class="phone-input-container">
-                                <div class="country-code">
-                                    <select id="countryCode" name="countryCode" required>
-                                        <option value="">اختر الدولة</option>
-                                        <option value="965" selected>الكويت (+965)</option>
-                                        <option value="966">السعودية (+966)</option>
-                                        <option value="971">الإمارات (+971)</option>
-                                        <option value="973">البحرين (+973)</option>
-                                        <option value="974">قطر (+974)</option>
-                                        <option value="968">عُمان (+968)</option>
-                                    </select>
-                                </div>
-                                <div class="phone-number-input">
-                                    <input type="tel" id="phone" name="phone" required placeholder="رقم الهاتف">
-                                </div>
-                            </div>
-                        </div>
+                <!-- تأشيرات السفر -->
+                <div class="service-card" onclick="showVisaPage()">
+                    <div class="service-icon">
+                        <i class="fas fa-passport"></i>
                     </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">البريد الإلكتروني</label>
-                            <input type="email" id="email" name="email" placeholder="name@example.com">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="tripType" class="required">نوع الرحلة</label>
-                            <select id="tripType" name="tripType" required>
-                                <option value="">اختر نوع الرحلة</option>
-                                <option value="سياحية">رحلة سياحية</option>
-                                <option value="عمرة">عمرة</option>
-                                <option value="علاجية">رحلة علاجية</option>
-                                <option value="عمل">رحلة عمل</option>
-                                <option value="شهر عسل">شهر عسل</option>
-                                <option value="عائلية">رحلة عائلية</option>
-                                <option value="أخرى">أخرى</option>
-                            </select>
-                        </div>
+                    <h3>تأشيرات السفر</h3>
+                    <div class="service-description">
+                        خدمات استخراج التأشيرات بكل يسر وسهولة لأغلب دول العالم مع متابعة حتى الاستلام
                     </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="destination">الوجهة المطلوبة</label>
-                            <input type="text" id="destination" name="destination" placeholder="البلد أو المدينة">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="people">عدد المسافرين</label>
-                            <input type="number" id="people" name="people" min="1" placeholder="مثال: 2">
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="travelDate">تاريخ السفر المتوقع</label>
-                            <input type="date" id="travelDate" name="travelDate">
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="budget">الميزانية التقريبية (دينار كويتي)</label>
-                            <select id="budget" name="budget">
-                                <option value="">اختر الفئة السعرية</option>
-                                <option value="اقتصادية">اقتصادية (أقل من 500)</option>
-                                <option value="متوسطة">متوسطة (500 - 1500)</option>
-                                <option value="فاخرة">فاخرة (1500 - 3000)</option>
-                                <option value="VIP">VIP (أكثر من 3000)</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="notes">ملاحظات إضافية أو متطلبات خاصة</label>
-                        <textarea id="notes" name="notes" rows="4" placeholder="أي تفاصيل إضافية تريد إضافتها لرحلتك..."></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">
-                        <i class="fab fa-whatsapp whatsapp-icon"></i> إرسال الطلب عبر واتساب
-                    </button>
-                </form>
+                    <a class="service-link">استعرض التأشيرات <i class="fas fa-arrow-left"></i></a>
+                </div>
                 
-                <div class="instructions">
-                    <h4><i class="fas fa-info-circle"></i> كيفية إكمال الحجز:</h4>
-                    <ol>
-                        <li>املأ جميع البيانات المطلوبة في النموذج أعلاه</li>
-                        <li>اختر رمز الدولة ثم اكتب رقم هاتفك</li>
-                        <li>اضغط على زر "إرسال الطلب عبر واتساب"</li>
-                        <li>سيتم فتح تطبيق واتساب على جهازك تلقائياً</li>
-                        <li>ستجد الرسالة جاهزة مع كل بياناتك، فقط اضغط "إرسال"</li>
-                        <li>سنتصل بك خلال 24 ساعة لتأكيد الحجز وتفاصيل الدفع</li>
-                    </ol>
+                <!-- حجوزات فنادق -->
+                <div class="service-card" onclick="showHotelPage()">
+                    <div class="service-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <h3>حجوزات فنادق</h3>
+                    <div class="service-description">
+                        فنادق ومنتجعات فاخرة تناسب جميع الميزانيات في أهم الوجهات العالمية مع أفضل العروض
+                    </div>
+                    <a class="service-link">احجز فندقك <i class="fas fa-arrow-left"></i></a>
                 </div>
             </div>
         </div>
@@ -1033,97 +869,168 @@
         
         <div class="page-content">
             <div class="container">
-                <h2 class="section-title">اختر سيارتك المناسبة</h2>
-                
-                <div class="car-types">
-                    <!-- سيارة اقتصادية -->
-                    <div class="car-card">
-                        <div class="car-image">
-                            <i class="fas fa-car"></i>
-                        </div>
-                        <div class="car-info">
-                            <h4>سيارة اقتصادية</h4>
-                            <p>مثالية للأفراد والعائلات الصغيرة، اقتصادية في الاستهلاك وسهلة القيادة.</p>
-                            <ul class="car-features">
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> 5 ركاب</li>
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> مكيف هواء</li>
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> فتحة سقف</li>
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> تأمين شامل</li>
-                            </ul>
-                            <div class="car-price">25 د.ك / يوم</div>
-                            <button class="book-car-btn" onclick="bookCar('سيارة اقتصادية', 25)">احجز الآن</button>
-                        </div>
-                    </div>
+                <div class="booking-section">
+                    <h2 class="section-title">طلب تأجير سيارة</h2>
                     
-                    <!-- سيارة عائلية -->
-                    <div class="car-card">
-                        <div class="car-image">
-                            <i class="fas fa-car-side"></i>
+                    <form id="carRentalForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="carName" class="required">الاسم</label>
+                                <input type="text" id="carName" name="carName" required placeholder="أدخل اسمك">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="carPhone" class="required">رقم التواصل</label>
+                                <input type="tel" id="carPhone" name="carPhone" required placeholder="رقم الهاتف">
+                            </div>
                         </div>
-                        <div class="car-info">
-                            <h4>سيارة عائلية</h4>
-                            <p>واسعة ومريحة للعائلات، مع مساحة كبيرة للأمتعة والرحلات الطويلة.</p>
-                            <ul class="car-features">
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> 7 ركاب</li>
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> شاشة ترفيهية</li>
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> كاميرا خلفية</li>
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> تأمين شامل</li>
-                            </ul>
-                            <div class="car-price">40 د.ك / يوم</div>
-                            <button class="book-car-btn" onclick="bookCar('سيارة عائلية', 40)">احجز الآن</button>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="carEmail">البريد الإلكتروني (اختياري)</label>
+                                <input type="email" id="carEmail" name="carEmail" placeholder="name@example.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="carCountry" class="required">الدولة المراد الزيارة</label>
+                                <input type="text" id="carCountry" name="carCountry" required placeholder="الدولة التي ستزورها">
+                            </div>
                         </div>
-                    </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pickupLocation" class="required">مكان الاستلام</label>
+                                <input type="text" id="pickupLocation" name="pickupLocation" required placeholder="المدينة والدولة">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="pickupDate" class="required">تاريخ الاستلام</label>
+                                <input type="date" id="pickupDate" name="pickupDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="returnLocation" class="required">مكان التسليم</label>
+                                <input type="text" id="returnLocation" name="returnLocation" required placeholder="يمكن أن يكون نفس مكان الاستلام">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="returnDate" class="required">تاريخ التسليم</label>
+                                <input type="date" id="returnDate" name="returnDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="carType" class="required">نوع السيارة المفضل</label>
+                            <select id="carType" name="carType" required>
+                                <option value="">اختر نوع السيارة</option>
+                                <option value="سيدان">سيدان</option>
+                                <option value="SUV">SUV</option>
+                                <option value="فان">فان</option>
+                                <option value="دفع رباعي">دفع رباعي</option>
+                                <option value="اقتصادية">اقتصادية</option>
+                                <option value="فاخرة">فاخرة</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="driverAge" class="required">عمر السائق</label>
+                                <input type="number" id="driverAge" name="driverAge" min="18" max="100" required placeholder="أدخل عمر السائق">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="totalPassengers" class="required">عدد الأشخاص</label>
+                                <input type="number" id="totalPassengers" name="totalPassengers" min="1" required placeholder="إجمالي عدد الأشخاص">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="childrenCount">عدد الأطفال (إذا وجد)</label>
+                                <input type="number" id="childrenCount" name="childrenCount" min="0" placeholder="أدخل عدد الأطفال">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="childrenAges">أعمار الأطفال (إذا وجد)</label>
+                                <input type="text" id="childrenAges" name="childrenAges" placeholder="مثال: 5، 8، 10">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="largeBags">عدد الشنط الكبيرة</label>
+                                <select id="largeBags" name="largeBags">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5 أو أكثر</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="smallBags">عدد الشنط الصغيرة</label>
+                                <select id="smallBags" name="smallBags">
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5 أو أكثر</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="otherCountries">دول أخرى ستزورونها</label>
+                            <input type="text" id="otherCountries" name="otherCountries" placeholder="اذكر الدول الأخرى التي ستزورها خلال الرحلة">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>طريقة الدفع المفضلة (يمكن اختيار أكثر من واحد)</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="paymentVisa" name="paymentMethod" value="فيزا ائتمانيه">
+                                    <label for="paymentVisa">فيزا ائتمانيه</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="paymentPrepaid" name="paymentMethod" value="تعبئة">
+                                    <label for="paymentPrepaid">تعبئة</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="paymentCash" name="paymentMethod" value="كاش">
+                                    <label for="paymentCash">كاش</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="paymentElectronic" name="paymentMethod" value="الكترونيه">
+                                    <label for="paymentElectronic">الكترونيه</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="carNotes">ملاحظات إضافية</label>
+                            <textarea id="carNotes" name="carNotes" rows="4" placeholder="أي تفاصيل إضافية أو طلبات خاصة..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> إرسال طلب تأجير السيارة
+                        </button>
+                    </form>
                     
-                    <!-- سيارة فاخرة -->
-                    <div class="car-card">
-                        <div class="car-image">
-                            <i class="fas fa-car-alt"></i>
-                        </div>
-                        <div class="car-info">
-                            <h4>سيارة فاخرة</h4>
-                            <p>للذين يبحثون عن الرفاهية والأناقة في التنقل خلال رحلاتهم.</p>
-                            <ul class="car-features">
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> 4 ركاب</li>
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> جلد طبيعي</li>
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> نظام ملاحة</li>
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> تأمين شامل</li>
-                            </ul>
-                            <div class="car-price">70 د.ك / يوم</div>
-                            <button class="book-car-btn" onclick="bookCar('سيارة فاخرة', 70)">احجز الآن</button>
-                        </div>
+                    <div class="form-instructions">
+                        <h4><i class="fas fa-info-circle"></i> كيفية إكمال الحجز:</h4>
+                        <ol>
+                            <li>املأ جميع البيانات المطلوبة في النموذج أعلاه</li>
+                            <li>اضغط على زر "إرسال طلب تأجير السيارة"</li>
+                            <li>سيتم فتح تطبيق واتساب على جهازك تلقائياً</li>
+                            <li>ستجد الرسالة جاهزة مع كل بياناتك، فقط اضغط "إرسال"</li>
+                            <li>سنتصل بك خلال 24 ساعة لتأكيد الحجز وتفاصيل الدفع</li>
+                        </ol>
                     </div>
-                    
-                    <!-- دفع رباعي -->
-                    <div class="car-card">
-                        <div class="car-image">
-                            <i class="fas fa-truck-pickup"></i>
-                        </div>
-                        <div class="car-info">
-                            <h4>دفع رباعي</h4>
-                            <p>مثالية للطرق الوعرة والرحلات البرية والمغامرات.</p>
-                            <ul class="car-features">
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> 5 ركاب</li>
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> دفع رباعي</li>
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> سحب عالي</li>
-                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> تأمين شامل</li>
-                            </ul>
-                            <div class="car-price">55 د.ك / يوم</div>
-                            <button class="book-car-btn" onclick="bookCar('دفع رباعي', 55)">احجز الآن</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- معلومات إضافية -->
-                <div class="instructions" style="margin-top: 50px;">
-                    <h4><i class="fas fa-info-circle"></i> معلومات مهمة عن تأجير السيارات:</h4>
-                    <ul>
-                        <li>الحد الأدنى لسن السائق: 21 سنة</li>
-                        <li>يجب تقديم رخصة قيادة سارية المفعول</li>
-                        <li>يجب تقديم جواز سفر وبطاقة هوية</li>
-                        <li>السعر يشمل التأمين الشامل ضد الحوادث والسرقة</li>
-                        <li>يتم تسليم السيارة في المطار أو العنوان المطلوب</li>
-                        <li>السيارات مزودة بنظام GPS عند الطلب</li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -1139,8 +1046,6 @@
         
         <div class="page-content">
             <div class="container">
-                <h2 class="section-title">خدمات السائق الخاص</h2>
-                
                 <div class="driver-service-section">
                     <h3 style="text-align: center; color: var(--olive-dark); margin-bottom: 30px; font-size: 28px;">ما نقدمه في خدمة السائق الخاص</h3>
                     
@@ -1175,44 +1080,44 @@
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="driverName" class="required">الاسم الكامل</label>
-                                <input type="text" id="driverName" name="driverName" required placeholder="أدخل اسمك الثلاثي">
+                                <label for="driverName" class="required">الاسم</label>
+                                <input type="text" id="driverName" name="driverName" required placeholder="أدخل اسمك">
                             </div>
                             
                             <div class="form-group">
-                                <label for="driverPhone" class="required">رقم الجوال</label>
+                                <label for="driverPhone" class="required">رقم التواصل</label>
                                 <input type="tel" id="driverPhone" name="driverPhone" required placeholder="رقم الهاتف">
                             </div>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="pickupDate" class="required">تاريخ الاستلام</label>
-                                <input type="date" id="pickupDate" name="pickupDate" required>
+                                <label for="driverEmail">البريد الإلكتروني (اختياري)</label>
+                                <input type="email" id="driverEmail" name="driverEmail" placeholder="name@example.com">
                             </div>
                             
                             <div class="form-group">
-                                <label for="pickupTime" class="required">وقت الاستلام</label>
-                                <input type="time" id="pickupTime" name="pickupTime" required>
+                                <label for="driverCity" class="required">المدينة/الدولة</label>
+                                <input type="text" id="driverCity" name="driverCity" required placeholder="المدينة والدولة">
                             </div>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="fromLocation" class="required">مكان الاستلام</label>
+                                <label for="fromLocation" class="required">من (مكان الاستلام)</label>
                                 <input type="text" id="fromLocation" name="fromLocation" required placeholder="مثال: مطار الكويت الدولي">
                             </div>
                             
                             <div class="form-group">
-                                <label for="toLocation" class="required">مكان التسليم</label>
+                                <label for="toLocation" class="required">إلى (مكان التسليم)</label>
                                 <input type="text" id="toLocation" name="toLocation" required placeholder="مثال: فندق موفنبيك">
                             </div>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="driverPassengers" class="required">عدد الأشخاص</label>
-                                <select id="driverPassengers" name="driverPassengers" required>
+                                <label for="driverPassengers" class="required">عدد الأشخاص (بما فيهم الأطفال)</label>
+                                <select id="driverPassengers" name="driverPassengers" required onchange="checkPassengerLimit(this)">
                                     <option value="">اختر عدد الأشخاص</option>
                                     <option value="1">1 شخص</option>
                                     <option value="2">2 أشخاص</option>
@@ -1220,46 +1125,62 @@
                                     <option value="4">4 أشخاص</option>
                                     <option value="5">5 أشخاص</option>
                                     <option value="6">6 أشخاص</option>
-                                    <option value="7">7 أشخاص أو أكثر</option>
+                                    <option value="7">7 أشخاص</option>
+                                    <option value="8">8 أشخاص</option>
+                                    <option value="more">أكثر من 8 أشخاص</option>
                                 </select>
+                                <small id="passengerWarning" style="color: #e74c3c; display: none; margin-top: 5px;">
+                                    * سيتم تخصيص سيارة إضافية حيث أن الحد الأقصى للركاب هو 8 + السائق
+                                </small>
                             </div>
                             
                             <div class="form-group">
-                                <label for="luggageCount" class="required">عدد القطع من الأمتعة</label>
-                                <select id="luggageCount" name="luggageCount" required>
-                                    <option value="">اختر عدد القطع</option>
-                                    <option value="0">لا يوجد أمتعة</option>
-                                    <option value="1">1 قطعة</option>
-                                    <option value="2">2 قطع</option>
-                                    <option value="3">3 قطع</option>
-                                    <option value="4">4 قطع</option>
-                                    <option value="5">5 قطع أو أكثر</option>
-                                </select>
+                                <label for="driverTripTypes" class="required">نوع الرحلات المطلوبة (يمكن اختيار أكثر من واحد)</label>
+                                <div class="checkbox-group">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="tripAirport" name="tripType" value="استقبال من المطار">
+                                        <label for="tripAirport">استقبال من المطار</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="tripDropoff" name="tripType" value="توديع إلى المطار">
+                                        <label for="tripDropoff">توديع إلى المطار</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="tripTours" name="tripType" value="جولات سياحية">
+                                        <label for="tripTours">جولات سياحية</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="tripTransport" name="tripType" value="توصيلات داخلية">
+                                        <label for="tripTransport">توصيلات داخلية</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="carType" class="required">نوع السيارة المطلوبة</label>
-                                <select id="carType" name="carType" required>
+                                <label for="driverCarType" class="required">نوع السيارة المطلوبة</label>
+                                <select id="driverCarType" name="driverCarType" required>
                                     <option value="">اختر نوع السيارة</option>
-                                    <option value="اقتصادية">سيارة اقتصادية</option>
-                                    <option value="عائلية">سيارة عائلية</option>
-                                    <option value="فاخرة">سيارة فاخرة</option>
+                                    <option value="سيدان">سيدان</option>
+                                    <option value="SUV">SUV</option>
+                                    <option value="فان">فان</option>
                                     <option value="دفع رباعي">دفع رباعي</option>
                                     <option value="باص">باص صغير</option>
                                 </select>
                             </div>
                             
                             <div class="form-group">
-                                <label for="serviceType" class="required">نوع الخدمة</label>
-                                <select id="serviceType" name="serviceType" required>
-                                    <option value="">اختر نوع الخدمة</option>
-                                    <option value="استقبال">استقبال من المطار فقط</option>
-                                    <option value="توديع">توديع إلى المطار فقط</option>
-                                    <option value="ذهاب وعودة">ذهاب وعودة</option>
-                                    <option value="جولة سياحية">جولة سياحية</option>
-                                    <option value="يوم كامل">خدمة يوم كامل</option>
+                                <label for="driverServiceDays">عدد الأيام المطلوبة</label>
+                                <select id="driverServiceDays" name="driverServiceDays">
+                                    <option value="1">يوم واحد</option>
+                                    <option value="2">يومان</option>
+                                    <option value="3">3 أيام</option>
+                                    <option value="4">4 أيام</option>
+                                    <option value="5">5 أيام</option>
+                                    <option value="6">6 أيام</option>
+                                    <option value="7">أسبوع</option>
+                                    <option value="more">أكثر من أسبوع</option>
                                 </select>
                             </div>
                         </div>
@@ -1274,16 +1195,239 @@
                         </button>
                     </form>
                     
-                    <div class="instructions" style="margin-top: 30px;">
-                        <h4><i class="fas fa-info-circle"></i> معلومات عن خدمة السائق الخاص:</h4>
-                        <ul>
-                            <li>جميع سائقينا محترفون وذوو خبرة عالية</li>
-                            <li>السيارات حديثة ومجهزة بأعلى المواصفات</li>
-                            <li>خدمة 24/7 في جميع أيام الأسبوع</li>
-                            <li>أسعار شاملة الوقود ورسوم الطرق</li>
-                            <li>يمكن طلب خدمة متعددة الأيام بخصم خاص</li>
-                            <li>متوفر خدمة مرشد سياحي عند الطلب</li>
-                        </ul>
+                    <div class="form-instructions">
+                        <h4><i class="fas fa-info-circle"></i> كيفية إكمال الحجز:</h4>
+                        <ol>
+                            <li>املأ جميع البيانات المطلوبة في النموذج أعلاه</li>
+                            <li>اضغط على زر "إرسال طلب خدمة السائق الخاص"</li>
+                            <li>سيتم فتح تطبيق واتساب على جهازك تلقائياً</li>
+                            <li>ستجد الرسالة جاهزة مع كل بياناتك، فقط اضغط "إرسال"</li>
+                            <li>سنتصل بك خلال 24 ساعة لتأكيد الحجز وتفاصيل الدفع</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة تنظيم الرحلات والفعاليات -->
+    <div id="toursPage" class="internal-page">
+        <div class="page-header">
+            <h1 class="page-title">تنظيم الرحلات والفعاليات</h1>
+            <p class="page-subtitle">تنظيم رحلات شهر العسل، برامج سياحية مخصصة، وحجوزات تذاكر فعاليات وأنشطة ترفيهية</p>
+            <button class="back-btn" onclick="showMainPage()"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
+        </div>
+        
+        <div class="page-content">
+            <div class="container">
+                <div class="booking-section">
+                    <h2 class="section-title">نموذج حجز رحلات وفعاليات</h2>
+                    
+                    <form id="toursForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="toursName" class="required">الاسم</label>
+                                <input type="text" id="toursName" name="toursName" required placeholder="أدخل اسمك">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="toursPhone" class="required">رقم التواصل</label>
+                                <input type="tel" id="toursPhone" name="toursPhone" required placeholder="رقم الهاتف">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="toursEmail">البريد الإلكتروني (اختياري)</label>
+                                <input type="email" id="toursEmail" name="toursEmail" placeholder="name@example.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="toursType" class="required">نوع الرحلة/الفعالية</label>
+                                <select id="toursType" name="toursType" required>
+                                    <option value="">اختر نوع الرحلة</option>
+                                    <option value="شهر العسل">رحلة شهر العسل</option>
+                                    <option value="برنامج سياحي">برنامج سياحي مخصص</option>
+                                    <option value="فعاليات">حجز فعاليات وأنشطة</option>
+                                    <option value="تذاكر معالم">تذاكر معالم سياحية</option>
+                                    <option value="عائلية">رحلة عائلية</option>
+                                    <option value="أخرى">أخرى</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="toursDestination" class="required">الوجهة المطلوبة</label>
+                                <input type="text" id="toursDestination" name="toursDestination" required placeholder="البلد أو المدينة">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="toursPeople" class="required">عدد المسافرين</label>
+                                <input type="number" id="toursPeople" name="toursPeople" min="1" required placeholder="مثال: 2">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="toursStartDate" class="required">تاريخ السفر المتوقع</label>
+                                <input type="date" id="toursStartDate" name="toursStartDate" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="toursDuration">مدة الرحلة (أيام)</label>
+                                <input type="number" id="toursDuration" name="toursDuration" min="1" placeholder="مثال: 7">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="toursBudget">الميزانية التقريبية (دينار كويتي)</label>
+                                <select id="toursBudget" name="toursBudget">
+                                    <option value="">اختر الفئة السعرية</option>
+                                    <option value="اقتصادية">اقتصادية (أقل من 500)</option>
+                                    <option value="متوسطة">متوسطة (500 - 1500)</option>
+                                    <option value="فاخرة">فاخرة (1500 - 3000)</option>
+                                    <option value="VIP">VIP (أكثر من 3000)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="toursActivities" class="required">الأنشطة المطلوبة (يمكن اختيار أكثر من واحد)</label>
+                                <div class="checkbox-group">
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="activityHotel" name="tourActivity" value="حجز فنادق">
+                                        <label for="activityHotel">حجز فنادق</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="activityTickets" name="tourActivity" value="تذاكر فعاليات">
+                                        <label for="activityTickets">تذاكر فعاليات</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="activityTours" name="tourActivity" value="جولات سياحية">
+                                        <label for="activityTours">جولات سياحية</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="activityTransport" name="tourActivity" value="مواصلات">
+                                        <label for="activityTransport">مواصلات</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="toursSpecialRequests">طلبات خاصة أو متطلبات إضافية</label>
+                            <textarea id="toursSpecialRequests" name="toursSpecialRequests" rows="4" placeholder="اذكر أي طلبات خاصة مثل: شهر عسل رومانسي، فعاليات عائلية، أنشطة ترفيهية..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> إرسال طلب تنظيم الرحلة
+                        </button>
+                    </form>
+                    
+                    <div class="form-instructions">
+                        <h4><i class="fas fa-info-circle"></i> كيفية إكمال الحجز:</h4>
+                        <ol>
+                            <li>املأ جميع البيانات المطلوبة في النموذج أعلاه</li>
+                            <li>اضغط على زر "إرسال طلب تنظيم الرحلة"</li>
+                            <li>سيتم فتح تطبيق واتساب على جهازك تلقائياً</li>
+                            <li>ستجد الرسالة جاهزة مع كل بياناتك، فقط اضغط "إرسال"</li>
+                            <li>سنتصل بك خلال 24 ساعة لتأكيد الحجز وتفاصيل الدفع</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة التأشيرات -->
+    <div id="visaPage" class="internal-page">
+        <div class="page-header">
+            <h1 class="page-title">خدمات التأشيرات</h1>
+            <p class="page-subtitle">نقدم خدمات استخراج التأشيرات لدول العالم بسرعة واحترافية</p>
+            <button class="back-btn" onclick="showMainPage()"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
+        </div>
+        
+        <div class="page-content">
+            <div class="container">
+                <div class="booking-section">
+                    <h2 class="section-title">طلب تأشيرة سفر</h2>
+                    
+                    <form id="visaForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="visaName" class="required">الاسم</label>
+                                <input type="text" id="visaName" name="visaName" required placeholder="أدخل اسمك">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="visaPhone" class="required">رقم التواصل</label>
+                                <input type="tel" id="visaPhone" name="visaPhone" required placeholder="رقم الهاتف">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="visaEmail">البريد الإلكتروني (اختياري)</label>
+                                <input type="email" id="visaEmail" name="visaEmail" placeholder="name@example.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="visaNationality" class="required">الجنسية</label>
+                                <input type="text" id="visaNationality" name="visaNationality" required placeholder="جنسيتك الحالية">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="visaDestination" class="required">الدولة المراد السفر إليها</label>
+                                <input type="text" id="visaDestination" name="visaDestination" required placeholder="الدولة التي تريد السفر إليها">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="visaTravelDate" class="required">تاريخ السفر المتوقع</label>
+                                <input type="date" id="visaTravelDate" name="visaTravelDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="visaPeople" class="required">عدد الأشخاص</label>
+                                <input type="number" id="visaPeople" name="visaPeople" min="1" required placeholder="عدد الأشخاص المراد استخراج التأشيرة لهم">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="visaType">نوع التأشيرة المطلوبة</label>
+                                <select id="visaType" name="visaType">
+                                    <option value="">اختر نوع التأشيرة</option>
+                                    <option value="سياحية">تأشيرة سياحية</option>
+                                    <option value="عمل">تأشيرة عمل</option>
+                                    <option value="زيارة">تأشيرة زيارة</option>
+                                    <option value="علاج">تأشيرة علاج</option>
+                                    <option value="دراسة">تأشيرة دراسة</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="visaNotes">ملاحظات إضافية</label>
+                            <textarea id="visaNotes" name="visaNotes" rows="4" placeholder="أي تفاصيل إضافية أو طلبات خاصة..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> إرسال طلب التأشيرة
+                        </button>
+                    </form>
+                    
+                    <div class="form-instructions">
+                        <h4><i class="fas fa-info-circle"></i> كيفية إكمال الحجز:</h4>
+                        <ol>
+                            <li>املأ جميع البيانات المطلوبة في النموذج أعلاه</li>
+                            <li>اضغط على زر "إرسال طلب التأشيرة"</li>
+                            <li>سيتم فتح تطبيق واتساب على جهازك تلقائياً</li>
+                            <li>ستجد الرسالة جاهزة مع كل بياناتك، فقط اضغط "إرسال"</li>
+                            <li>سنتصل بك خلال 24 ساعة لتأكيد الحجز وتفاصيل الدفع</li>
+                        </ol>
                     </div>
                 </div>
             </div>
@@ -1300,75 +1444,97 @@
         
         <div class="page-content">
             <div class="container">
-                <h2 class="section-title">اختر فندقك المفضل</h2>
-                <p style="text-align: center; margin-bottom: 40px; color: #666; font-size: 18px;">
-                    نقدم لك أفضل العروض على فنادق 5 نجوم و 4 نجوم في جميع أنحاء العالم
-                </p>
-                
-                <div style="text-align: center; padding: 60px 20px; background: var(--light-beige); border-radius: 15px;">
-                    <i class="fas fa-hotel" style="font-size: 60px; color: var(--olive-dark); margin-bottom: 20px;"></i>
-                    <h3 style="color: var(--olive-dark); margin-bottom: 15px;">صفحة الفنادق قيد التطوير</h3>
-                    <p style="color: #666; max-width: 600px; margin: 0 auto;">
-                        نحن نعمل على إضافة قائمة كاملة بأفضل الفنادق والمنتجعات في جميع الوجهات.
-                        يمكنك التواصل معنا لمعرفة العروض المتاحة لوجهتك.
-                    </p>
-                    <button class="whatsapp-btn" style="margin-top: 30px; background: linear-gradient(135deg, var(--olive-dark), var(--sage-green));" onclick="showMainPage(); document.getElementById('booking').scrollIntoView()">
-                        <i class="fab fa-whatsapp"></i> احجز فندقك الآن
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- صفحة التأشيرات -->
-    <div id="visaPage" class="internal-page">
-        <div class="page-header">
-            <h1 class="page-title">خدمات التأشيرات</h1>
-            <p class="page-subtitle">نقدم خدمات استخراج التأشيرات لدول العالم بسرعة واحترافية</p>
-            <button class="back-btn" onclick="showMainPage()"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
-        </div>
-        
-        <div class="page-content">
-            <div class="container">
-                <h2 class="section-title">أنواع التأشيرات المتاحة</h2>
-                
-                <div style="text-align: center; padding: 60px 20px; background: var(--light-beige); border-radius: 15px;">
-                    <i class="fas fa-passport" style="font-size: 60px; color: var(--olive-dark); margin-bottom: 20px;"></i>
-                    <h3 style="color: var(--olive-dark); margin-bottom: 15px;">صفحة التأشيرات قيد التطوير</h3>
-                    <p style="color: #666; max-width: 600px; margin: 0 auto;">
-                        نحن نعمل على إضافة جميع تفاصيل التأشيرات المتاحة ومتطلبات كل دولة.
-                        يمكنك التواصل معنا لمعرفة متطلبات التأشيرة لوجهتك.
-                    </p>
-                    <button class="whatsapp-btn" style="margin-top: 30px; background: linear-gradient(135deg, var(--olive-dark), var(--sage-green));" onclick="showMainPage(); document.getElementById('booking').scrollIntoView()">
-                        <i class="fab fa-whatsapp"></i> اطلب تأشيرتك الآن
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- صفحة شهر العسل -->
-    <div id="honeymoonPage" class="internal-page">
-        <div class="page-header">
-            <h1 class="page-title">رحلات شهر العسل</h1>
-            <p class="page-subtitle">باقات خاصة بالأزواج في أجمل الوجهات الرومانسية حول العالم</p>
-            <button class="back-btn" onclick="showMainPage()"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
-        </div>
-        
-        <div class="page-content">
-            <div class="container">
-                <h2 class="section-title">باقات شهر العسل</h2>
-                
-                <div style="text-align: center; padding: 60px 20px; background: var(--light-beige); border-radius: 15px;">
-                    <i class="fas fa-heart" style="font-size: 60px; color: var(--olive-dark); margin-bottom: 20px;"></i>
-                    <h3 style="color: var(--olive-dark); margin-bottom: 15px;">صفحة شهر العسل قيد التطوير</h3>
-                    <p style="color: #666; max-width: 600px; margin: 0 auto;">
-                        نحن نعمل على إضافة باقات شهر العسل الفاخرة في أجمل الوجهات الرومانسية.
-                        يمكنك التواصل معنا لمعرفة الباقات المتاحة لوجهتك المفضلة.
-                    </p>
-                    <button class="whatsapp-btn" style="margin-top: 30px; background: linear-gradient(135deg, var(--olive-dark), var(--sage-green));" onclick="showMainPage(); document.getElementById('booking').scrollIntoView()">
-                        <i class="fab fa-whatsapp"></i> احجز رحلة شهر العسل
-                    </button>
+                <div class="booking-section">
+                    <h2 class="section-title">طلب حجز فندق</h2>
+                    
+                    <form id="hotelForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="hotelName" class="required">الاسم</label>
+                                <input type="text" id="hotelName" name="hotelName" required placeholder="أدخل اسمك">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="hotelPhone" class="required">رقم التواصل</label>
+                                <input type="tel" id="hotelPhone" name="hotelPhone" required placeholder="رقم الهاتف">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="hotelEmail">البريد الإلكتروني (اختياري)</label>
+                                <input type="email" id="hotelEmail" name="hotelEmail" placeholder="name@example.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="hotelDestination" class="required">الوجهة</label>
+                                <input type="text" id="hotelDestination" name="hotelDestination" required placeholder="المدينة والبلد">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="hotelCheckIn" class="required">تاريخ الوصول</label>
+                                <input type="date" id="hotelCheckIn" name="hotelCheckIn" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="hotelCheckOut" class="required">تاريخ المغادرة</label>
+                                <input type="date" id="hotelCheckOut" name="hotelCheckOut" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="hotelRooms" class="required">عدد الغرف</label>
+                                <input type="number" id="hotelRooms" name="hotelRooms" min="1" required placeholder="عدد الغرف المطلوبة">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="hotelGuests" class="required">عدد الضيوف</label>
+                                <input type="number" id="hotelGuests" name="hotelGuests" min="1" required placeholder="إجمالي عدد الضيوف">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="hotelType">نوع الفندق المفضل</label>
+                                <select id="hotelType" name="hotelType">
+                                    <option value="">اختر نوع الفندق</option>
+                                    <option value="5 نجوم">5 نجوم</option>
+                                    <option value="4 نجوم">4 نجوم</option>
+                                    <option value="3 نجوم">3 نجوم</option>
+                                    <option value="منتجع">منتجع</option>
+                                    <option value="شقة فندقية">شقة فندقية</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="hotelBudget">الميزانية التقريبية (ليلة/غرفة)</label>
+                                <input type="text" id="hotelBudget" name="hotelBudget" placeholder="الميزانية للغرفة في الليلة الواحدة">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hotelSpecialRequests">طلبات خاصة</label>
+                            <textarea id="hotelSpecialRequests" name="hotelSpecialRequests" rows="4" placeholder="أي طلبات خاصة مثل: سرير إضافي، مطلوب جناح، إطلالة على البحر..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> إرسال طلب حجز الفندق
+                        </button>
+                    </form>
+                    
+                    <div class="form-instructions">
+                        <h4><i class="fas fa-info-circle"></i> كيفية إكمال الحجز:</h4>
+                        <ol>
+                            <li>املأ جميع البيانات المطلوبة في النموذج أعلاه</li>
+                            <li>اضغط على زر "إرسال طلب حجز الفندق"</li>
+                            <li>سيتم فتح تطبيق واتساب على جهازك تلقائياً</li>
+                            <li>ستجد الرسالة جاهزة مع كل بياناتك، فقط اضغط "إرسال"</li>
+                            <li>سنتصل بك خلال 24 ساعة لتأكيد الحجز وتفاصيل الدفع</li>
+                        </ol>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1381,10 +1547,9 @@
                 <h3>راوند تريب</h3>
                 <p>نحن شركة متخصصة في تنظيم الرحلات السياحية نقدم خدمات حجوزات فنادق وتأشيرات وتأجير سيارات وباقات سياحية مخصصة. نضمن لعملائنا تجربة سفر استثنائية بأسعار تنافسية وخدمة مميزة.</p>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-snapchat"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.instagram.com/roundtripco" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@roundtripco" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.snapchat.com/add/roundtripco" target="_blank"><i class="fab fa-snapchat"></i></a>
                 </div>
             </div>
             
@@ -1392,10 +1557,10 @@
                 <h3>روابط سريعة</h3>
                 <ul style="list-style: none; line-height: 2.5;">
                     <li><a href="#" onclick="showMainPage(); return false;" style="color: white; text-decoration: none;">الرئيسية</a></li>
-                    <li><a href="#" onclick="showMainPage(); document.getElementById('booking').scrollIntoView(); return false;" style="color: white; text-decoration: none;">احجز الآن</a></li>
                     <li><a href="#" onclick="showCarRentalPage(); return false;" style="color: white; text-decoration: none;">تأجير السيارات</a></li>
                     <li><a href="#" onclick="showDriverPage(); return false;" style="color: white; text-decoration: none;">سائق خاص</a></li>
-                    <li><a href="#" onclick="showHotelPage(); return false;" style="color: white; text-decoration: none;">الفنادق</a></li>
+                    <li><a href="#" onclick="showToursPage(); return false;" style="color: white; text-decoration: none;">تنظيم الرحلات</a></li>
+                    <li><a href="#" onclick="showVisaPage(); return false;" style="color: white; text-decoration: none;">التأشيرات</a></li>
                 </ul>
             </div>
             
@@ -1403,19 +1568,19 @@
                 <h3>تواصل معنا</h3>
                 <div>
                     <i class="fas fa-phone"></i>
-                    <span>+965 65750302</span>
+                    <span><a href="tel:+96565750302" style="color: white; text-decoration: none;">+965 65750302</a></span>
+                </div>
+                <div>
+                    <i class="fas fa-phone"></i>
+                    <span><a href="tel:+966569425758" style="color: white; text-decoration: none;">+966 569425758</a></span>
                 </div>
                 <div>
                     <i class="fab fa-whatsapp"></i>
-                    <span>واتساب: 65750302</span>
+                    <span><a href="https://wa.me/96565750302" style="color: white; text-decoration: none;" target="_blank">واتساب: 65750302</a></span>
                 </div>
                 <div>
                     <i class="fas fa-envelope"></i>
-                    <span>sales@roundtripco.net</span>
-                </div>
-                <div>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>الكويت</span>
+                    <span><a href="mailto:sales@roundtripco.net" style="color: white; text-decoration: none;">sales@roundtripco.net</a></span>
                 </div>
                 <div>
                     <i class="fas fa-clock"></i>
@@ -1425,8 +1590,8 @@
         </div>
         
         <div class="copyright">
-            <p>© 2023 راوند تريب - جميع الحقوق محفوظة. | تصميم وتطوير: فريق راوند تريب</p>
-            <p style="margin-top: 10px; font-size: 14px;" class="english-font">ROUND TRIP Travel Agency - Kuwait</p>
+            <p>© 2026 راوند تريب - جميع الحقوق محفوظة. | تصميم وتطوير: فريق راوند تريب</p>
+            <p style="margin-top: 10px; font-size: 14px;" class="english-font">ROUND TRIP Travel Agency</p>
         </div>
     </footer>
 
@@ -1436,9 +1601,9 @@
             document.getElementById('mainPage').style.display = 'block';
             document.getElementById('carRentalPage').style.display = 'none';
             document.getElementById('driverPage').style.display = 'none';
-            document.getElementById('hotelPage').style.display = 'none';
+            document.getElementById('toursPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'none';
-            document.getElementById('honeymoonPage').style.display = 'none';
+            document.getElementById('hotelPage').style.display = 'none';
             window.scrollTo(0, 0);
         }
         
@@ -1446,9 +1611,9 @@
             document.getElementById('mainPage').style.display = 'none';
             document.getElementById('carRentalPage').style.display = 'block';
             document.getElementById('driverPage').style.display = 'none';
-            document.getElementById('hotelPage').style.display = 'none';
+            document.getElementById('toursPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'none';
-            document.getElementById('honeymoonPage').style.display = 'none';
+            document.getElementById('hotelPage').style.display = 'none';
             window.scrollTo(0, 0);
         }
         
@@ -1456,19 +1621,19 @@
             document.getElementById('mainPage').style.display = 'none';
             document.getElementById('driverPage').style.display = 'block';
             document.getElementById('carRentalPage').style.display = 'none';
-            document.getElementById('hotelPage').style.display = 'none';
+            document.getElementById('toursPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'none';
-            document.getElementById('honeymoonPage').style.display = 'none';
+            document.getElementById('hotelPage').style.display = 'none';
             window.scrollTo(0, 0);
         }
         
-        function showHotelPage() {
+        function showToursPage() {
             document.getElementById('mainPage').style.display = 'none';
-            document.getElementById('hotelPage').style.display = 'block';
+            document.getElementById('toursPage').style.display = 'block';
             document.getElementById('carRentalPage').style.display = 'none';
             document.getElementById('driverPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'none';
-            document.getElementById('honeymoonPage').style.display = 'none';
+            document.getElementById('hotelPage').style.display = 'none';
             window.scrollTo(0, 0);
         }
         
@@ -1477,123 +1642,104 @@
             document.getElementById('visaPage').style.display = 'block';
             document.getElementById('carRentalPage').style.display = 'none';
             document.getElementById('driverPage').style.display = 'none';
+            document.getElementById('toursPage').style.display = 'none';
             document.getElementById('hotelPage').style.display = 'none';
-            document.getElementById('honeymoonPage').style.display = 'none';
             window.scrollTo(0, 0);
         }
         
-        function showHoneymoonPage() {
+        function showHotelPage() {
             document.getElementById('mainPage').style.display = 'none';
-            document.getElementById('honeymoonPage').style.display = 'block';
+            document.getElementById('hotelPage').style.display = 'block';
             document.getElementById('carRentalPage').style.display = 'none';
             document.getElementById('driverPage').style.display = 'none';
-            document.getElementById('hotelPage').style.display = 'none';
+            document.getElementById('toursPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'none';
             window.scrollTo(0, 0);
         }
         
-        // حجز سيارة
-        function bookCar(carType, price) {
-            const message = `🚗 *طلب تأجير سيارة - راوند تريب* 🚗
-
-🔸 *تفاصيل السيارة:*
-• نوع السيارة: ${carType}
-• السعر اليومي: ${price} دينار كويتي
-
-🔸 *يرجى تزويدنا بالبيانات التالية:*
-1. الاسم الكامل:
-2. رقم الجوال:
-3. تاريخ الاستلام:
-4. تاريخ الإرجاع:
-5. مكان الاستلام:
-6. مكان الإرجاع:
-
-📞 *للحجز السريع تواصل معنا على:* +965 65750302
-
---- راوند تريب - خدمة تأجير السيارات ---`;
-            
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/96565750302?text=${encodedMessage}`;
-            window.open(whatsappUrl, '_blank');
-            
-            alert(`✅ تم فتح واتساب لطلب تأجير ${carType}\n\nيرجى إرسال البيانات المطلوبة للحجز`);
+        // التحقق من حد الركاب في خدمة السائق
+        function checkPassengerLimit(select) {
+            const warning = document.getElementById('passengerWarning');
+            if (select.value === 'more') {
+                warning.style.display = 'block';
+            } else {
+                warning.style.display = 'none';
+            }
         }
         
-        // نموذج الحجز الرئيسي
-        document.getElementById('travelForm').addEventListener('submit', function(e) {
+        // نموذج تأجير السيارات
+        document.getElementById('carRentalForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             // جمع البيانات من النموذج
             const form = e.target;
             const formData = new FormData(form);
             const data = {};
-            formData.forEach((value, key) => data[key] = value);
+            formData.forEach((value, key) => {
+                if (key === 'paymentMethod') {
+                    if (!data[key]) data[key] = [];
+                    data[key].push(value);
+                } else {
+                    data[key] = value;
+                }
+            });
             
-            // تنسيق رقم الهاتف الكامل
-            const fullPhoneNumber = `+${data.countryCode}${data.phone}`;
-            
-            // تنسيق تاريخ السفر
-            let travelDateFormatted = 'غير محدد';
-            if (data.travelDate) {
-                const dateObj = new Date(data.travelDate);
-                travelDateFormatted = dateObj.toLocaleDateString('ar-KW', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
+            // تنسيق التواريخ
+            let pickupDateFormatted = 'غير محدد';
+            if (data.pickupDate) {
+                const dateObj = new Date(data.pickupDate);
+                pickupDateFormatted = dateObj.toLocaleDateString('ar-KW');
             }
             
-            // بناء الرسالة بتنسيق منظم
-            const message = `🌟 *طلب حجز جديد - راوند تريب* 🌟
+            let returnDateFormatted = 'غير محدد';
+            if (data.returnDate) {
+                const dateObj = new Date(data.returnDate);
+                returnDateFormatted = dateObj.toLocaleDateString('ar-KW');
+            }
+            
+            // بناء الرسالة
+            const paymentMethods = data.paymentMethod ? data.paymentMethod.join('، ') : 'غير محدد';
+            const childrenInfo = data.childrenCount > 0 ? `${data.childrenCount} طفل، أعمارهم: ${data.childrenAges || 'غير محدد'}` : 'لا يوجد أطفال';
+            
+            const message = `🚗 *طلب تأجير سيارة - راوند تريب* 🚗
 
 🔸 *المعلومات الشخصية:*
-• الاسم: ${data.name}
-• رمز الدولة: +${data.countryCode}
-• رقم الجوال: ${fullPhoneNumber}
-• البريد: ${data.email || 'غير محدد'}
+• الاسم: ${data.carName}
+• رقم التواصل: ${data.carPhone}
+• البريد: ${data.carEmail || 'غير محدد'}
 
 🔸 *تفاصيل الرحلة:*
-• نوع الرحلة: ${data.tripType}
-• الوجهة: ${data.destination || 'غير محددة'}
-• عدد المسافرين: ${data.people || 'غير محدد'}
-• تاريخ السفر: ${travelDateFormatted}
-• الميزانية: ${data.budget || 'غير محددة'}
+• الدولة المراد الزيارة: ${data.carCountry}
+• مكان الاستلام: ${data.pickupLocation}
+• تاريخ الاستلام: ${pickupDateFormatted}
+• مكان التسليم: ${data.returnLocation}
+• تاريخ التسليم: ${returnDateFormatted}
+
+🔸 *تفاصيل السيارة:*
+• نوع السيارة المفضل: ${data.carType}
+• عمر السائق: ${data.driverAge} سنة
+• عدد الأشخاص: ${data.totalPassengers}
+• الأطفال: ${childrenInfo}
+• شنط كبيرة: ${data.largeBags}
+• شنط صغيرة: ${data.smallBags}
+
+🔸 *معلومات إضافية:*
+• دول أخرى ستزورونها: ${data.otherCountries || 'لا يوجد'}
+• طريقة الدفع المفضلة: ${paymentMethods}
 
 🔸 *ملاحظات إضافية:*
-${data.notes || 'لا توجد ملاحظات'}
+${data.carNotes || 'لا توجد ملاحظات'}
 
 📅 *تم إرسال الطلب في:* ${new Date().toLocaleString('ar-KW')}
-📞 *رقم العميل للتواصل:* ${fullPhoneNumber}
+📞 *رقم التواصل:* ${data.carPhone}
 
---- نرحب بك في عائلة راوند تريب ---`;
+--- راوند تريب - خدمة تأجير السيارات ---`;
             
-            // ترميح الرسالة
-            const encodedMessage = encodeURIComponent(message);
+            // إرسال عبر واتساب
+            sendWhatsAppMessage(message);
             
-            // رقم واتساب الشركة
-            const companyWhatsappNumber = "96565750302";
-            
-            // رابط واتساب
-            const whatsappUrl = `https://wa.me/${companyWhatsappNumber}?text=${encodedMessage}`;
-            
-            // فتح واتساب في نافذة جديدة
-            window.open(whatsappUrl, '_blank');
-            
-            // رسالة تأكيد للعميل
-            alert(`🚀 تم تجهيز طلبك بنجاح!
-
-سيتم الآن فتح تطبيق واتساب:
-1. تأكد من ظهور جميع بياناتك في الرسالة
-2. انقر على زر الإرسال (↲) في واتساب
-3. سيتصل بك فريقنا خلال 24 ساعة
-
-شكراً لاختيارك راوند تريب! ✈️`);
-            
-            // إعادة تعيين النموذج بعد 2 ثانية
-            setTimeout(() => {
-                form.reset();
-                document.getElementById('countryCode').value = "965";
-            }, 2000);
+            // إعادة تعيين النموذج
+            setTimeout(() => form.reset(), 2000);
         });
         
         // نموذج خدمة السائق الخاص
@@ -1604,44 +1750,219 @@ ${data.notes || 'لا توجد ملاحظات'}
             const form = e.target;
             const formData = new FormData(form);
             const data = {};
-            formData.forEach((value, key) => data[key] = value);
+            const tripTypes = [];
             
-            // تنسيق التاريخ والوقت
-            let pickupDateFormatted = 'غير محدد';
-            if (data.pickupDate) {
-                const dateObj = new Date(data.pickupDate);
-                pickupDateFormatted = dateObj.toLocaleDateString('ar-KW', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                });
-            }
+            formData.forEach((value, key) => {
+                if (key === 'tripType') {
+                    tripTypes.push(value);
+                } else {
+                    data[key] = value;
+                }
+            });
             
             // بناء الرسالة
+            const tripTypesStr = tripTypes.length > 0 ? tripTypes.join('، ') : 'غير محدد';
+            
             const message = `🚖 *طلب خدمة سائق خاص - راوند تريب* 🚖
 
 🔸 *المعلومات الشخصية:*
 • الاسم: ${data.driverName}
-• رقم الجوال: ${data.driverPhone}
+• رقم التواصل: ${data.driverPhone}
+• البريد: ${data.driverEmail || 'غير محدد'}
+• المدينة/الدولة: ${data.driverCity}
 
 🔸 *تفاصيل الرحلة:*
-• تاريخ الاستلام: ${pickupDateFormatted}
-• وقت الاستلام: ${data.pickupTime || 'غير محدد'}
-• مكان الاستلام: ${data.fromLocation}
-• مكان التسليم: ${data.toLocation}
-• عدد الأشخاص: ${data.driverPassengers} شخص
-• عدد الأمتعة: ${data.luggageCount} قطعة
-• نوع السيارة: ${data.carType}
-• نوع الخدمة: ${data.serviceType}
+• من (مكان الاستلام): ${data.fromLocation}
+• إلى (مكان التسليم): ${data.toLocation}
+• عدد الأشخاص: ${data.driverPassengers} (بما فيهم الأطفال)
+• نوع الرحلات المطلوبة: ${tripTypesStr}
+• نوع السيارة: ${data.driverCarType}
+• عدد الأيام: ${data.driverServiceDays}
 
 🔸 *ملاحظات إضافية:*
 ${data.driverNotes || 'لا توجد ملاحظات'}
 
+${data.driverPassengers === 'more' ? '⚠️ *ملاحظة:* سيتم تخصيص سيارة إضافية حيث أن الحد الأقصى للركاب هو 8 + السائق\n\n' : ''}
 📅 *تم إرسال الطلب في:* ${new Date().toLocaleString('ar-KW')}
-📞 *رقم العميل للتواصل:* ${data.driverPhone}
+📞 *رقم التواصل:* ${data.driverPhone}
 
 --- راوند تريب - خدمة السائق الخاص ---`;
             
+            // إرسال عبر واتساب
+            sendWhatsAppMessage(message);
+            
+            // إعادة تعيين النموذج
+            setTimeout(() => {
+                form.reset();
+                document.getElementById('passengerWarning').style.display = 'none';
+            }, 2000);
+        });
+        
+        // نموذج تنظيم الرحلات والفعاليات
+        document.getElementById('toursForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // جمع البيانات من النموذج
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = {};
+            const activities = [];
+            
+            formData.forEach((value, key) => {
+                if (key === 'tourActivity') {
+                    activities.push(value);
+                } else {
+                    data[key] = value;
+                }
+            });
+            
+            // تنسيق التاريخ
+            let travelDateFormatted = 'غير محدد';
+            if (data.toursStartDate) {
+                const dateObj = new Date(data.toursStartDate);
+                travelDateFormatted = dateObj.toLocaleDateString('ar-KW');
+            }
+            
+            // بناء الرسالة
+            const activitiesStr = activities.length > 0 ? activities.join('، ') : 'غير محدد';
+            
+            const message = `🌟 *طلب تنظيم رحلة/فعالية - راوند تريب* 🌟
+
+🔸 *المعلومات الشخصية:*
+• الاسم: ${data.toursName}
+• رقم التواصل: ${data.toursPhone}
+• البريد: ${data.toursEmail || 'غير محدد'}
+
+🔸 *تفاصيل الرحلة:*
+• نوع الرحلة/الفعالية: ${data.toursType}
+• الوجهة: ${data.toursDestination}
+• عدد المسافرين: ${data.toursPeople}
+• تاريخ السفر: ${travelDateFormatted}
+• مدة الرحلة: ${data.toursDuration || 'غير محدد'} يوم
+• الميزانية: ${data.toursBudget || 'غير محدد'}
+
+🔸 *الأنشطة المطلوبة:*
+${activitiesStr}
+
+🔸 *طلبات خاصة:*
+${data.toursSpecialRequests || 'لا توجد طلبات خاصة'}
+
+📅 *تم إرسال الطلب في:* ${new Date().toLocaleString('ar-KW')}
+📞 *رقم التواصل:* ${data.toursPhone}
+
+--- راوند تريب - تنظيم الرحلات والفعاليات ---`;
+            
+            // إرسال عبر واتساب
+            sendWhatsAppMessage(message);
+            
+            // إعادة تعيين النموذج
+            setTimeout(() => form.reset(), 2000);
+        });
+        
+        // نموذج التأشيرات
+        document.getElementById('visaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // جمع البيانات من النموذج
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => data[key] = value);
+            
+            // تنسيق التاريخ
+            let travelDateFormatted = 'غير محدد';
+            if (data.visaTravelDate) {
+                const dateObj = new Date(data.visaTravelDate);
+                travelDateFormatted = dateObj.toLocaleDateString('ar-KW');
+            }
+            
+            // بناء الرسالة
+            const message = `🛂 *طلب تأشيرة سفر - راوند تريب* 🛂
+
+🔸 *المعلومات الشخصية:*
+• الاسم: ${data.visaName}
+• رقم التواصل: ${data.visaPhone}
+• البريد: ${data.visaEmail || 'غير محدد'}
+• الجنسية: ${data.visaNationality}
+
+🔸 *تفاصيل التأشيرة:*
+• الدولة المراد السفر إليها: ${data.visaDestination}
+• تاريخ السفر المتوقع: ${travelDateFormatted}
+• عدد الأشخاص: ${data.visaPeople}
+• نوع التأشيرة: ${data.visaType || 'غير محدد'}
+
+🔸 *ملاحظات إضافية:*
+${data.visaNotes || 'لا توجد ملاحظات'}
+
+📅 *تم إرسال الطلب في:* ${new Date().toLocaleString('ar-KW')}
+📞 *رقم التواصل:* ${data.visaPhone}
+
+--- راوند تريب - خدمة التأشيرات ---`;
+            
+            // إرسال عبر واتساب
+            sendWhatsAppMessage(message);
+            
+            // إعادة تعيين النموذج
+            setTimeout(() => form.reset(), 2000);
+        });
+        
+        // نموذج حجز الفنادق
+        document.getElementById('hotelForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // جمع البيانات من النموذج
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => data[key] = value);
+            
+            // تنسيق التواريخ
+            let checkInFormatted = 'غير محدد';
+            if (data.hotelCheckIn) {
+                const dateObj = new Date(data.hotelCheckIn);
+                checkInFormatted = dateObj.toLocaleDateString('ar-KW');
+            }
+            
+            let checkOutFormatted = 'غير محدد';
+            if (data.hotelCheckOut) {
+                const dateObj = new Date(data.hotelCheckOut);
+                checkOutFormatted = dateObj.toLocaleDateString('ar-KW');
+            }
+            
+            // بناء الرسالة
+            const message = `🏨 *طلب حجز فندق - راوند تريب* 🏨
+
+🔸 *المعلومات الشخصية:*
+• الاسم: ${data.hotelName}
+• رقم التواصل: ${data.hotelPhone}
+• البريد: ${data.hotelEmail || 'غير محدد'}
+
+🔸 *تفاصيل الحجز:*
+• الوجهة: ${data.hotelDestination}
+• تاريخ الوصول: ${checkInFormatted}
+• تاريخ المغادرة: ${checkOutFormatted}
+• عدد الغرف: ${data.hotelRooms}
+• عدد الضيوف: ${data.hotelGuests}
+• نوع الفندق: ${data.hotelType || 'غير محدد'}
+• الميزانية: ${data.hotelBudget || 'غير محدد'}
+
+🔸 *طلبات خاصة:*
+${data.hotelSpecialRequests || 'لا توجد طلبات خاصة'}
+
+📅 *تم إرسال الطلب في:* ${new Date().toLocaleString('ar-KW')}
+📞 *رقم التواصل:* ${data.hotelPhone}
+
+--- راوند تريب - خدمة حجز الفنادق ---`;
+            
+            // إرسال عبر واتساب
+            sendWhatsAppMessage(message);
+            
+            // إعادة تعيين النموذج
+            setTimeout(() => form.reset(), 2000);
+        });
+        
+        // دالة عامة لإرسال الرسائل عبر واتساب
+        function sendWhatsAppMessage(message) {
             // ترميح الرسالة
             const encodedMessage = encodeURIComponent(message);
             
@@ -1655,44 +1976,45 @@ ${data.driverNotes || 'لا توجد ملاحظات'}
             window.open(whatsappUrl, '_blank');
             
             // رسالة تأكيد للعميل
-            alert(`✅ تم تجهيز طلب خدمة السائق الخاص بنجاح!
+            alert(`✅ تم تجهيز طلبك بنجاح!
 
 سيتم الآن فتح تطبيق واتساب:
 1. تأكد من ظهور جميع بياناتك في الرسالة
 2. انقر على زر الإرسال (↲) في واتساب
 3. سيتصل بك فريقنا خلال 24 ساعة
 
-شكراً لاختيارك راوند تريب! 🚖`);
-            
-            // إعادة تعيين النموذج بعد 2 ثانية
-            setTimeout(() => {
-                form.reset();
-            }, 2000);
-        });
+شكراً لاختيارك راوند تريب! ✈️`);
+        }
         
-        // تعيين الحد الأدنى للتاريخ على اليوم الحالي
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('travelDate').min = today;
-        document.getElementById('pickupDate').min = today;
-        
-        // تعيين الكويت كاختيار افتراضي لرمز الدولة
-        document.getElementById('countryCode').value = "965";
-        
-        // إضافة تحميل الصور بشكل صحيح
+        // تعيين الحد الأدنى للتاريخ على اليوم الحالي لجميع حقول التاريخ
         document.addEventListener('DOMContentLoaded', function() {
-            // محاولة تحميل البانر من عدة مصادر
-            const bannerImg = document.querySelector('.banner-img');
-            if (bannerImg && !bannerImg.complete) {
-                bannerImg.onerror = function() {
-                    this.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80';
-                };
-            }
+            const today = new Date().toISOString().split('T')[0];
             
-            // محاولة تحميل الشعار من عدة مصادر
-            const logoImg = document.querySelector('.logo');
-            if (logoImg && !logoImg.complete) {
-                logoImg.onerror = function() {
-                    this.src = 'https://via.placeholder.com/70x70/556859/ffffff?text=RT';
+            // تعيين لجميع حقول التاريخ
+            const dateFields = [
+                'pickupDate', 'returnDate', 'toursStartDate', 
+                'visaTravelDate', 'hotelCheckIn', 'hotelCheckOut'
+            ];
+            
+            dateFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.min = today;
+                }
+            });
+            
+            // إضافة صورة البانر من خلال CSS
+            const banner = document.querySelector('.banner');
+            if (banner) {
+                // محاولة تحميل الصورة المحلية أولاً
+                const img = new Image();
+                img.src = 'banner.jpg';
+                img.onload = function() {
+                    banner.style.backgroundImage = `linear-gradient(rgba(85, 104, 89, 0.85), rgba(175, 181, 152, 0.8)), url('banner.jpg')`;
+                };
+                img.onerror = function() {
+                    // إذا فشل تحميل الصورة المحلية، استخدم صورة من الإنترنت
+                    banner.style.backgroundImage = `linear-gradient(rgba(85, 104, 89, 0.85), rgba(175, 181, 152, 0.8)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')`;
                 };
             }
         });
