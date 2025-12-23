@@ -4,36 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>راوند تريب - لتنظيم الرحلات السياحية</title>
+    <!-- إضافة خطوط Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <style>
         :root {
-            --primary: #2a6c8c;
-            --secondary: #3a9bc8;
-            --accent: #f8b400;
-            --dark: #1a4a63;
-            --light: #e6f2f8;
+            --olive-dark: #556859;
+            --sage-green: #AFB598;
+            --light-beige: #D0CEBB;
+            --black: #000000;
+            --white: #FFFFFF;
+            --primary: #556859;
+            --secondary: #AFB598;
+            --accent: #D0CEBB;
+            --dark: #000000;
+            --light: #f5f5f5;
         }
         
         * { 
             box-sizing: border-box; 
             margin: 0; 
             padding: 0; 
-            font-family: 'Segoe UI', 'Arial', 'Tahoma', sans-serif;
         }
         
         body {
             line-height: 1.7;
-            color: #333;
-            background-color: #f9f9f9;
+            color: var(--black);
+            background-color: var(--white);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .english-font {
+            font-family: 'Montserrat', sans-serif;
         }
         
         /* الهيدر والشعار */
         .header {
-            background: linear-gradient(135deg, var(--dark) 0%, var(--primary) 100%);
+            background: linear-gradient(135deg, var(--olive-dark) 0%, var(--sage-green) 100%);
             padding: 15px 5%;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             position: sticky;
@@ -49,6 +61,7 @@
             display: flex;
             align-items: center;
             gap: 20px;
+            cursor: pointer;
         }
         
         .logo {
@@ -57,6 +70,8 @@
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             object-fit: contain;
+            background-color: var(--light-beige);
+            padding: 5px;
         }
         
         .company-info {
@@ -73,7 +88,7 @@
         
         .company-name-en {
             font-size: 18px;
-            color: var(--accent);
+            color: var(--light-beige);
             letter-spacing: 2px;
             font-weight: 600;
         }
@@ -126,7 +141,7 @@
         /* البانر */
         .banner {
             height: 500px;
-            background: linear-gradient(rgba(42, 108, 140, 0.85), rgba(58, 155, 200, 0.8));
+            background: linear-gradient(rgba(85, 104, 89, 0.85), rgba(175, 181, 152, 0.8));
             background-size: cover;
             background-position: center;
             display: flex;
@@ -152,6 +167,10 @@
             max-width: 900px;
             animation: fadeInUp 1s ease-out;
             z-index: 1;
+            background-color: rgba(85, 104, 89, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
         }
         
         @keyframes fadeInUp {
@@ -191,7 +210,7 @@
         
         .section-title {
             text-align: center;
-            color: var(--dark);
+            color: var(--olive-dark);
             margin-bottom: 50px;
             font-size: 36px;
             position: relative;
@@ -203,32 +222,33 @@
             display: block;
             width: 120px;
             height: 4px;
-            background: linear-gradient(to right, var(--accent), var(--secondary));
+            background: linear-gradient(to right, var(--sage-green), var(--light-beige));
             margin: 15px auto;
             border-radius: 2px;
         }
         
         .services {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 35px;
             margin: 60px 0;
         }
         
         .service-card {
-            background: white;
+            background: var(--white);
             border-radius: 20px;
-            padding: 35px 30px;
+            padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 15px 40px rgba(85, 104, 89, 0.1);
             transition: all 0.4s;
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 2px solid var(--light-beige);
             position: relative;
             overflow: hidden;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             height: 100%;
+            min-height: 350px;
         }
         
         .service-card:before {
@@ -237,23 +257,24 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, var(--secondary), var(--accent));
+            height: 8px;
+            background: linear-gradient(to right, var(--sage-green), var(--olive-dark));
         }
         
         .service-card:hover {
             transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 25px 50px rgba(85, 104, 89, 0.2);
+            border-color: var(--sage-green);
         }
         
         .service-icon {
-            font-size: 50px;
-            margin-bottom: 25px;
-            color: var(--secondary);
-            height: 80px;
-            width: 80px;
-            line-height: 80px;
-            background: var(--light);
+            font-size: 60px;
+            margin-bottom: 30px;
+            color: var(--olive-dark);
+            height: 100px;
+            width: 100px;
+            line-height: 100px;
+            background: var(--light-beige);
             border-radius: 50%;
             margin-left: auto;
             margin-right: auto;
@@ -261,39 +282,41 @@
         }
         
         .service-card h3 {
-            color: var(--dark);
-            margin-bottom: 15px;
-            font-size: 24px;
+            color: var(--olive-dark);
+            margin-bottom: 20px;
+            font-size: 28px;
             flex-grow: 1;
         }
         
         .service-description {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             color: #666;
-            line-height: 1.6;
+            line-height: 1.8;
             flex-grow: 2;
+            font-size: 18px;
         }
         
         .service-link {
             display: inline-block;
-            background: var(--light);
-            color: var(--primary);
-            padding: 10px 20px;
+            background: var(--light-beige);
+            color: var(--olive-dark);
+            padding: 12px 25px;
             border-radius: 25px;
             text-decoration: none;
-            font-weight: 600;
+            font-weight: 700;
             transition: all 0.3s;
             margin-top: auto;
-            border: 2px solid transparent;
+            border: 2px solid var(--sage-green);
+            font-size: 18px;
         }
         
         .service-link:hover {
-            background: var(--primary);
+            background: var(--olive-dark);
             color: white;
-            border-color: var(--primary);
+            border-color: var(--olive-dark);
         }
         
-        /* الصفحات الداخلية (مخفية افتراضياً) */
+        /* الصفحات الداخلية */
         .internal-page {
             display: none;
             animation: fadeIn 0.5s ease-out;
@@ -305,7 +328,7 @@
         }
         
         .page-header {
-            background: linear-gradient(135deg, var(--dark), var(--primary));
+            background: linear-gradient(135deg, var(--olive-dark), var(--sage-green));
             color: white;
             padding: 60px 5%;
             text-align: center;
@@ -329,7 +352,7 @@
             background: rgba(255,255,255,0.2);
             color: white;
             border: 2px solid white;
-            padding: 10px 25px;
+            padding: 12px 30px;
             border-radius: 25px;
             cursor: pointer;
             font-weight: bold;
@@ -338,11 +361,12 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s;
+            font-size: 18px;
         }
         
         .back-btn:hover {
             background: white;
-            color: var(--primary);
+            color: var(--olive-dark);
         }
         
         .page-content {
@@ -360,25 +384,27 @@
         }
         
         .car-card {
-            background: white;
+            background: var(--white);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: transform 0.3s;
+            border: 2px solid var(--light-beige);
         }
         
         .car-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(85, 104, 89, 0.2);
         }
         
         .car-image {
             height: 200px;
-            background: linear-gradient(135deg, var(--light), #d4eaf7);
+            background: linear-gradient(135deg, var(--light-beige), var(--sage-green));
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 60px;
-            color: var(--primary);
+            color: var(--olive-dark);
         }
         
         .car-info {
@@ -386,13 +412,13 @@
         }
         
         .car-info h4 {
-            color: var(--dark);
+            color: var(--olive-dark);
             margin-bottom: 10px;
             font-size: 22px;
         }
         
         .car-price {
-            color: var(--accent);
+            color: var(--olive-dark);
             font-size: 24px;
             font-weight: bold;
             margin: 15px 0;
@@ -412,7 +438,7 @@
         }
         
         .book-car-btn {
-            background: linear-gradient(135deg, var(--accent), #e09b00);
+            background: linear-gradient(135deg, var(--olive-dark), var(--sage-green));
             color: white;
             border: none;
             padding: 12px 25px;
@@ -425,18 +451,18 @@
         
         .book-car-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(248, 180, 0, 0.3);
+            box-shadow: 0 5px 15px rgba(85, 104, 89, 0.3);
         }
         
         /* نموذج الحجز */
         .booking-section {
-            background: white;
+            background: var(--white);
             border-radius: 25px;
             padding: 50px;
             margin: 80px auto;
             max-width: 850px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 15px 40px rgba(85, 104, 89, 0.1);
+            border: 2px solid var(--light-beige);
             position: relative;
             overflow: hidden;
         }
@@ -448,7 +474,7 @@
             right: 0;
             width: 100%;
             height: 8px;
-            background: linear-gradient(to left, var(--secondary), var(--accent));
+            background: linear-gradient(to left, var(--sage-green), var(--olive-dark));
         }
         
         .form-group {
@@ -470,8 +496,8 @@
         label {
             display: block;
             margin-bottom: 10px;
-            color: var(--dark);
-            font-weight: 600;
+            color: var(--olive-dark);
+            font-weight: 700;
             font-size: 16px;
         }
         
@@ -483,18 +509,19 @@
         input, select, textarea {
             width: 100%;
             padding: 16px 20px;
-            border: 2px solid #e1e8ed;
+            border: 2px solid var(--light-beige);
             border-radius: 12px;
             font-size: 16px;
             transition: all 0.3s;
             background: #f8fafc;
+            font-family: 'Cairo', sans-serif;
         }
         
         input:focus, select:focus, textarea:focus {
-            border-color: var(--secondary);
+            border-color: var(--sage-green);
             outline: none;
             background: white;
-            box-shadow: 0 0 0 3px rgba(58, 155, 200, 0.1);
+            box-shadow: 0 0 0 3px rgba(175, 181, 152, 0.1);
         }
         
         /* تصميم خاص لرقم الهاتف مع رمز الدولة */
@@ -521,31 +548,8 @@
             flex: 1;
         }
         
-        .flag-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .flag-icon {
-            width: 20px;
-            height: 15px;
-            border-radius: 2px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-        
-        .country-name {
-            flex-grow: 1;
-        }
-        
-        .country-code-display {
-            font-weight: bold;
-            color: var(--primary);
-            margin-left: 5px;
-        }
-        
         .submit-btn {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            background: linear-gradient(135deg, var(--sage-green), var(--olive-dark));
             color: white;
             border: none;
             padding: 20px 45px;
@@ -561,16 +565,13 @@
             gap: 12px;
             margin-top: 20px;
             letter-spacing: 1px;
+            font-family: 'Cairo', sans-serif;
         }
         
         .submit-btn:hover {
-            background: linear-gradient(135deg, var(--primary), var(--dark));
+            background: linear-gradient(135deg, var(--olive-dark), var(--sage-green));
             transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(42, 108, 140, 0.3);
-        }
-        
-        .submit-btn:active {
-            transform: translateY(-1px);
+            box-shadow: 0 10px 25px rgba(85, 104, 89, 0.3);
         }
         
         .whatsapp-icon {
@@ -579,15 +580,15 @@
         
         /* التوجيهات */
         .instructions {
-            background: var(--light);
+            background: var(--light-beige);
             border-radius: 12px;
             padding: 25px;
             margin-top: 30px;
-            border-right: 5px solid var(--accent);
+            border-right: 5px solid var(--sage-green);
         }
         
         .instructions h4 {
-            color: var(--dark);
+            color: var(--olive-dark);
             margin-bottom: 15px;
             display: flex;
             align-items: center;
@@ -599,9 +600,52 @@
             line-height: 2;
         }
         
+        /* صفحة تأجير السيارات مع سائق خاص */
+        .driver-service-section {
+            background: var(--white);
+            border-radius: 25px;
+            padding: 50px;
+            margin: 80px auto;
+            max-width: 1000px;
+            box-shadow: 0 15px 40px rgba(85, 104, 89, 0.1);
+            border: 2px solid var(--light-beige);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .driver-service-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to left, var(--sage-green), var(--olive-dark));
+        }
+        
+        .driver-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .driver-feature {
+            background: var(--light-beige);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .driver-feature i {
+            font-size: 40px;
+            color: var(--olive-dark);
+            margin-bottom: 15px;
+        }
+        
         /* الفوتر */
         .footer {
-            background: linear-gradient(135deg, var(--dark) 0%, #153d52 100%);
+            background: linear-gradient(135deg, var(--olive-dark) 0%, #445a4a 100%);
             color: white;
             padding: 70px 5% 30px;
             margin-top: 80px;
@@ -618,7 +662,7 @@
         .footer-section h3 {
             font-size: 22px;
             margin-bottom: 25px;
-            color: var(--accent);
+            color: var(--light-beige);
             padding-bottom: 10px;
             border-bottom: 2px solid rgba(255,255,255,0.1);
         }
@@ -650,8 +694,8 @@
         }
         
         .social-icons a:hover {
-            background: var(--accent);
-            transform: translateY(-3px);
+            background: var(--light-beige);
+            color: var(--olive-dark);
         }
         
         .copyright {
@@ -690,7 +734,7 @@
                 font-size: 28px;
             }
             
-            .booking-section {
+            .booking-section, .driver-service-section {
                 padding: 35px 25px;
                 margin: 50px 20px;
             }
@@ -706,6 +750,10 @@
             .page-title {
                 font-size: 32px;
             }
+            
+            .services {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 576px) {
@@ -717,12 +765,24 @@
                 font-size: 32px;
             }
             
+            .banner-content {
+                padding: 20px;
+            }
+            
             .section-title {
                 font-size: 28px;
             }
             
             .service-card {
                 padding: 25px 20px;
+                min-height: 300px;
+            }
+            
+            .service-icon {
+                font-size: 50px;
+                height: 80px;
+                width: 80px;
+                line-height: 80px;
             }
             
             .phone-number {
@@ -744,50 +804,18 @@
             70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
-        
-        /* تصنيف الخدمات */
-        .service-categories {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin: 40px 0;
-        }
-        
-        .category-btn {
-            background: white;
-            border: 2px solid var(--light);
-            padding: 12px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--dark);
-            transition: all 0.3s;
-        }
-        
-        .category-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-        
-        .category-btn:hover:not(.active) {
-            border-color: var(--secondary);
-            color: var(--secondary);
-        }
     </style>
 </head>
 <body>
     <!-- الهيدر والشعار -->
     <header class="header">
         <div class="logo-container" onclick="showMainPage()">
-            <!-- ========== ضع شعارك هنا ========== -->
-            <!-- استخدام صورة محلية للشعار -->
-            <img src="logo.png" alt="شعار راوند تريب" class="logo">
+            <!-- شعار الشركة -->
+            <img src="logo.png" alt="شعار راوند تريب" class="logo" onerror="this.src='https://via.placeholder.com/70x70/556859/ffffff?text=RT'">
             
             <div class="company-info">
                 <div class="company-name-ar">راوند تريب</div>
-                <div class="company-name-en">ROUND TRIP</div>
+                <div class="company-name-en english-font">ROUND TRIP</div>
                 <div class="company-tagline">رحلات لا تُنسى، تجارب استثنائية</div>
             </div>
         </div>
@@ -806,14 +834,14 @@
     <div id="mainPage">
         <!-- البانر الرئيسي -->
         <section class="banner">
-            <!-- ========== ضع بانرك هنا ========== -->
-            <!-- استخدام صورة محلية للبانر -->
-            <img src="banner.jpg" alt="بانر راوند تريب" class="banner-img">
+            <!-- البانر - عدة خيارات -->
+            <img src="banner.jpg" alt="بانر راوند تريب" class="banner-img" 
+                 onerror="this.src='https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80'; this.onerror=null;">
             
             <div class="banner-content">
                 <h1>استمتع برحلتك مع راوند تريب</h1>
                 <p>نخطط لرحلاتك بدقة فائقة، نضمن لك راحة تامة وتجربة سفر استثنائية تتناسب مع تطلعاتك وميزانيتك</p>
-                <a href="#booking" class="whatsapp-btn" style="background: linear-gradient(135deg, var(--accent), #e09b00); padding: 18px 40px; font-size: 18px;">
+                <a href="#booking" class="whatsapp-btn" style="background: linear-gradient(135deg, var(--olive-dark), var(--sage-green)); padding: 18px 40px; font-size: 18px;">
                     ابدأ رحلتك الآن <i class="fas fa-plane"></i>
                 </a>
             </div>
@@ -823,18 +851,9 @@
         <div class="container">
             <h2 class="section-title">خدماتنا المميزة</h2>
             
-            <!-- أزرار التصنيف -->
-            <div class="service-categories">
-                <button class="category-btn active" onclick="filterServices('all')">جميع الخدمات</button>
-                <button class="category-btn" onclick="filterServices('hotels')">الفنادق</button>
-                <button class="category-btn" onclick="filterServices('visas')">التأشيرات</button>
-                <button class="category-btn" onclick="filterServices('cars')">تأجير السيارات</button>
-                <button class="category-btn" onclick="filterServices('honeymoon')">شهر العسل</button>
-            </div>
-            
             <div class="services">
                 <!-- حجوزات فنادق -->
-                <div class="service-card" data-category="hotels" onclick="showHotelPage()">
+                <div class="service-card" onclick="showHotelPage()">
                     <div class="service-icon">
                         <i class="fas fa-hotel"></i>
                     </div>
@@ -846,7 +865,7 @@
                 </div>
                 
                 <!-- تأشيرات السفر -->
-                <div class="service-card" data-category="visas" onclick="showVisaPage()">
+                <div class="service-card" onclick="showVisaPage()">
                     <div class="service-icon">
                         <i class="fas fa-passport"></i>
                     </div>
@@ -858,7 +877,7 @@
                 </div>
                 
                 <!-- تأجير سيارات -->
-                <div class="service-card" data-category="cars" onclick="showCarRentalPage()">
+                <div class="service-card" onclick="showCarRentalPage()">
                     <div class="service-icon">
                         <i class="fas fa-car"></i>
                     </div>
@@ -869,8 +888,20 @@
                     <a class="service-link">استعرض السيارات <i class="fas fa-arrow-left"></i></a>
                 </div>
                 
+                <!-- تأجير سيارات مع سائق خاص -->
+                <div class="service-card" onclick="showDriverPage()">
+                    <div class="service-icon">
+                        <i class="fas fa-car-side"></i>
+                    </div>
+                    <h3>تأجير سيارات مع سائق</h3>
+                    <div class="service-description">
+                        خدمة تأجير سيارات مع سائق خاص، استقبال وتوديع من المطار، جولات سياحية مرنة
+                    </div>
+                    <a class="service-link">احجز مع سائق <i class="fas fa-arrow-left"></i></a>
+                </div>
+                
                 <!-- رحلات شهر العسل -->
-                <div class="service-card" data-category="honeymoon" onclick="showHoneymoonPage()">
+                <div class="service-card" onclick="showHoneymoonPage()">
                     <div class="service-icon">
                         <i class="fas fa-heart"></i>
                     </div>
@@ -880,34 +911,10 @@
                     </div>
                     <a class="service-link">استعرض الباقات <i class="fas fa-arrow-left"></i></a>
                 </div>
-                
-                <!-- تنظيم برامج سياحية -->
-                <div class="service-card" data-category="tours" onclick="showTourPage()">
-                    <div class="service-icon">
-                        <i class="fas fa-suitcase-rolling"></i>
-                    </div>
-                    <h3>تنظيم برامج سياحية</h3>
-                    <div class="service-description">
-                        تصميم برامج سياحية مخصصة تناسب اهتماماتك ووقتك في أي وجهة تختارها حول العالم
-                    </div>
-                    <a class="service-link">استعرض البرامج <i class="fas fa-arrow-left"></i></a>
-                </div>
-                
-                <!-- تذاكر معالم سياحية -->
-                <div class="service-card" data-category="tickets" onclick="showTicketsPage()">
-                    <div class="service-icon">
-                        <i class="fas fa-ticket-alt"></i>
-                    </div>
-                    <h3>تذاكر معالم سياحية</h3>
-                    <div class="service-description">
-                        حجوزات تذاكر دخول للمتاحف والمعالم السياحية والأنشطة الترفيهية في جميع الوجهات
-                    </div>
-                    <a class="service-link">استعرض التذاكر <i class="fas fa-arrow-left"></i></a>
-                </div>
             </div>
         </div>
 
-        <!-- نموذج الحجز -->
+        <!-- نموذج الحجز الرئيسي -->
         <div class="container" id="booking">
             <div class="booking-section">
                 <h2 class="section-title">احجز رحلتك الآن</h2>
@@ -925,27 +932,16 @@
                                 <div class="country-code">
                                     <select id="countryCode" name="countryCode" required>
                                         <option value="">اختر الدولة</option>
-                                        <option value="965" data-flag="kw">الكويت (+965)</option>
-                                        <option value="966" data-flag="sa">السعودية (+966)</option>
-                                        <option value="971" data-flag="ae">الإمارات (+971)</option>
-                                        <option value="973" data-flag="bh">البحرين (+973)</option>
-                                        <option value="974" data-flag="qa">قطر (+974)</option>
-                                        <option value="968" data-flag="om">عُمان (+968)</option>
-                                        <option value="20" data-flag="eg">مصر (+20)</option>
-                                        <option value="962" data-flag="jo">الأردن (+962)</option>
-                                        <option value="963" data-flag="sy">سوريا (+963)</option>
-                                        <option value="964" data-flag="iq">العراق (+964)</option>
-                                        <option value="961" data-flag="lb">لبنان (+961)</option>
-                                        <option value="212" data-flag="ma">المغرب (+212)</option>
-                                        <option value="213" data-flag="dz">الجزائر (+213)</option>
-                                        <option value="216" data-flag="tn">تونس (+216)</option>
-                                        <option value="90" data-flag="tr">تركيا (+90)</option>
-                                        <option value="44" data-flag="gb">بريطانيا (+44)</option>
-                                        <option value="1" data-flag="us">أمريكا/كندا (+1)</option>
+                                        <option value="965" selected>الكويت (+965)</option>
+                                        <option value="966">السعودية (+966)</option>
+                                        <option value="971">الإمارات (+971)</option>
+                                        <option value="973">البحرين (+973)</option>
+                                        <option value="974">قطر (+974)</option>
+                                        <option value="968">عُمان (+968)</option>
                                     </select>
                                 </div>
                                 <div class="phone-number-input">
-                                    <input type="tel" id="phone" name="phone" required placeholder="رقم الهاتف بدون الصفر الأول">
+                                    <input type="tel" id="phone" name="phone" required placeholder="رقم الهاتف">
                                 </div>
                             </div>
                         </div>
@@ -1049,10 +1045,10 @@
                             <h4>سيارة اقتصادية</h4>
                             <p>مثالية للأفراد والعائلات الصغيرة، اقتصادية في الاستهلاك وسهلة القيادة.</p>
                             <ul class="car-features">
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> 5 ركاب</li>
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> مكيف هواء</li>
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> فتحة سقف</li>
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> تأمين شامل</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> 5 ركاب</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> مكيف هواء</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> فتحة سقف</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> تأمين شامل</li>
                             </ul>
                             <div class="car-price">25 د.ك / يوم</div>
                             <button class="book-car-btn" onclick="bookCar('سيارة اقتصادية', 25)">احجز الآن</button>
@@ -1068,10 +1064,10 @@
                             <h4>سيارة عائلية</h4>
                             <p>واسعة ومريحة للعائلات، مع مساحة كبيرة للأمتعة والرحلات الطويلة.</p>
                             <ul class="car-features">
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> 7 ركاب</li>
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> شاشة ترفيهية</li>
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> كاميرا خلفية</li>
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> تأمين شامل</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> 7 ركاب</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> شاشة ترفيهية</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> كاميرا خلفية</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> تأمين شامل</li>
                             </ul>
                             <div class="car-price">40 د.ك / يوم</div>
                             <button class="book-car-btn" onclick="bookCar('سيارة عائلية', 40)">احجز الآن</button>
@@ -1087,10 +1083,10 @@
                             <h4>سيارة فاخرة</h4>
                             <p>للذين يبحثون عن الرفاهية والأناقة في التنقل خلال رحلاتهم.</p>
                             <ul class="car-features">
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> 4 ركاب</li>
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> جلد طبيعي</li>
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> نظام ملاحة</li>
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> تأمين شامل</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> 4 ركاب</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> جلد طبيعي</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> نظام ملاحة</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> تأمين شامل</li>
                             </ul>
                             <div class="car-price">70 د.ك / يوم</div>
                             <button class="book-car-btn" onclick="bookCar('سيارة فاخرة', 70)">احجز الآن</button>
@@ -1106,10 +1102,10 @@
                             <h4>دفع رباعي</h4>
                             <p>مثالية للطرق الوعرة والرحلات البرية والمغامرات.</p>
                             <ul class="car-features">
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> 5 ركاب</li>
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> دفع رباعي</li>
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> سحب عالي</li>
-                                <li><i class="fas fa-check" style="color: var(--secondary);"></i> تأمين شامل</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> 5 ركاب</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> دفع رباعي</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> سحب عالي</li>
+                                <li><i class="fas fa-check" style="color: var(--sage-green);"></i> تأمين شامل</li>
                             </ul>
                             <div class="car-price">55 د.ك / يوم</div>
                             <button class="book-car-btn" onclick="bookCar('دفع رباعي', 55)">احجز الآن</button>
@@ -1133,6 +1129,167 @@
         </div>
     </div>
 
+    <!-- صفحة تأجير سيارات مع سائق خاص -->
+    <div id="driverPage" class="internal-page">
+        <div class="page-header">
+            <h1 class="page-title">تأجير سيارات مع سائق خاص</h1>
+            <p class="page-subtitle">خدمة تأجير سيارات مع سائق خاص، استقبال وتوديع من المطار، جولات سياحية مرنة</p>
+            <button class="back-btn" onclick="showMainPage()"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
+        </div>
+        
+        <div class="page-content">
+            <div class="container">
+                <h2 class="section-title">خدمات السائق الخاص</h2>
+                
+                <div class="driver-service-section">
+                    <h3 style="text-align: center; color: var(--olive-dark); margin-bottom: 30px; font-size: 28px;">ما نقدمه في خدمة السائق الخاص</h3>
+                    
+                    <div class="driver-features">
+                        <div class="driver-feature">
+                            <i class="fas fa-plane-arrival"></i>
+                            <h4>استقبال من المطار</h4>
+                            <p>استقبالك في المطار مع لافتة باسمك</p>
+                        </div>
+                        
+                        <div class="driver-feature">
+                            <i class="fas fa-plane-departure"></i>
+                            <h4>توديع إلى المطار</h4>
+                            <p>توصيلك إلى المطار في الوقت المحدد</p>
+                        </div>
+                        
+                        <div class="driver-feature">
+                            <i class="fas fa-map-marked-alt"></i>
+                            <h4>جولات سياحية</h4>
+                            <p>جولات سياحية مرنة حسب رغبتك</p>
+                        </div>
+                        
+                        <div class="driver-feature">
+                            <i class="fas fa-suitcase"></i>
+                            <h4>مساعدة الأمتعة</h4>
+                            <p>مساعدة في حمل الأمتعة والشنط</p>
+                        </div>
+                    </div>
+                    
+                    <form id="driverForm">
+                        <h3 style="color: var(--olive-dark); margin-bottom: 30px; text-align: center;">نموذج طلب خدمة السائق الخاص</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="driverName" class="required">الاسم الكامل</label>
+                                <input type="text" id="driverName" name="driverName" required placeholder="أدخل اسمك الثلاثي">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="driverPhone" class="required">رقم الجوال</label>
+                                <input type="tel" id="driverPhone" name="driverPhone" required placeholder="رقم الهاتف">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pickupDate" class="required">تاريخ الاستلام</label>
+                                <input type="date" id="pickupDate" name="pickupDate" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="pickupTime" class="required">وقت الاستلام</label>
+                                <input type="time" id="pickupTime" name="pickupTime" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fromLocation" class="required">مكان الاستلام</label>
+                                <input type="text" id="fromLocation" name="fromLocation" required placeholder="مثال: مطار الكويت الدولي">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="toLocation" class="required">مكان التسليم</label>
+                                <input type="text" id="toLocation" name="toLocation" required placeholder="مثال: فندق موفنبيك">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="driverPassengers" class="required">عدد الأشخاص</label>
+                                <select id="driverPassengers" name="driverPassengers" required>
+                                    <option value="">اختر عدد الأشخاص</option>
+                                    <option value="1">1 شخص</option>
+                                    <option value="2">2 أشخاص</option>
+                                    <option value="3">3 أشخاص</option>
+                                    <option value="4">4 أشخاص</option>
+                                    <option value="5">5 أشخاص</option>
+                                    <option value="6">6 أشخاص</option>
+                                    <option value="7">7 أشخاص أو أكثر</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="luggageCount" class="required">عدد القطع من الأمتعة</label>
+                                <select id="luggageCount" name="luggageCount" required>
+                                    <option value="">اختر عدد القطع</option>
+                                    <option value="0">لا يوجد أمتعة</option>
+                                    <option value="1">1 قطعة</option>
+                                    <option value="2">2 قطع</option>
+                                    <option value="3">3 قطع</option>
+                                    <option value="4">4 قطع</option>
+                                    <option value="5">5 قطع أو أكثر</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="carType" class="required">نوع السيارة المطلوبة</label>
+                                <select id="carType" name="carType" required>
+                                    <option value="">اختر نوع السيارة</option>
+                                    <option value="اقتصادية">سيارة اقتصادية</option>
+                                    <option value="عائلية">سيارة عائلية</option>
+                                    <option value="فاخرة">سيارة فاخرة</option>
+                                    <option value="دفع رباعي">دفع رباعي</option>
+                                    <option value="باص">باص صغير</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="serviceType" class="required">نوع الخدمة</label>
+                                <select id="serviceType" name="serviceType" required>
+                                    <option value="">اختر نوع الخدمة</option>
+                                    <option value="استقبال">استقبال من المطار فقط</option>
+                                    <option value="توديع">توديع إلى المطار فقط</option>
+                                    <option value="ذهاب وعودة">ذهاب وعودة</option>
+                                    <option value="جولة سياحية">جولة سياحية</option>
+                                    <option value="يوم كامل">خدمة يوم كامل</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="driverNotes">ملاحظات إضافية</label>
+                            <textarea id="driverNotes" name="driverNotes" rows="4" placeholder="أي تفاصيل إضافية أو طلبات خاصة..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> إرسال طلب خدمة السائق الخاص
+                        </button>
+                    </form>
+                    
+                    <div class="instructions" style="margin-top: 30px;">
+                        <h4><i class="fas fa-info-circle"></i> معلومات عن خدمة السائق الخاص:</h4>
+                        <ul>
+                            <li>جميع سائقينا محترفون وذوو خبرة عالية</li>
+                            <li>السيارات حديثة ومجهزة بأعلى المواصفات</li>
+                            <li>خدمة 24/7 في جميع أيام الأسبوع</li>
+                            <li>أسعار شاملة الوقود ورسوم الطرق</li>
+                            <li>يمكن طلب خدمة متعددة الأيام بخصم خاص</li>
+                            <li>متوفر خدمة مرشد سياحي عند الطلب</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- صفحة حجوزات الفنادق -->
     <div id="hotelPage" class="internal-page">
         <div class="page-header">
@@ -1148,14 +1305,14 @@
                     نقدم لك أفضل العروض على فنادق 5 نجوم و 4 نجوم في جميع أنحاء العالم
                 </p>
                 
-                <div style="text-align: center; padding: 60px 20px; background: var(--light); border-radius: 15px;">
-                    <i class="fas fa-hotel" style="font-size: 60px; color: var(--primary); margin-bottom: 20px;"></i>
-                    <h3 style="color: var(--dark); margin-bottom: 15px;">صفحة الفنادق قيد التطوير</h3>
+                <div style="text-align: center; padding: 60px 20px; background: var(--light-beige); border-radius: 15px;">
+                    <i class="fas fa-hotel" style="font-size: 60px; color: var(--olive-dark); margin-bottom: 20px;"></i>
+                    <h3 style="color: var(--olive-dark); margin-bottom: 15px;">صفحة الفنادق قيد التطوير</h3>
                     <p style="color: #666; max-width: 600px; margin: 0 auto;">
                         نحن نعمل على إضافة قائمة كاملة بأفضل الفنادق والمنتجعات في جميع الوجهات.
                         يمكنك التواصل معنا لمعرفة العروض المتاحة لوجهتك.
                     </p>
-                    <button class="whatsapp-btn" style="margin-top: 30px;" onclick="showMainPage(); document.getElementById('booking').scrollIntoView()">
+                    <button class="whatsapp-btn" style="margin-top: 30px; background: linear-gradient(135deg, var(--olive-dark), var(--sage-green));" onclick="showMainPage(); document.getElementById('booking').scrollIntoView()">
                         <i class="fab fa-whatsapp"></i> احجز فندقك الآن
                     </button>
                 </div>
@@ -1175,14 +1332,14 @@
             <div class="container">
                 <h2 class="section-title">أنواع التأشيرات المتاحة</h2>
                 
-                <div style="text-align: center; padding: 60px 20px; background: var(--light); border-radius: 15px;">
-                    <i class="fas fa-passport" style="font-size: 60px; color: var(--primary); margin-bottom: 20px;"></i>
-                    <h3 style="color: var(--dark); margin-bottom: 15px;">صفحة التأشيرات قيد التطوير</h3>
+                <div style="text-align: center; padding: 60px 20px; background: var(--light-beige); border-radius: 15px;">
+                    <i class="fas fa-passport" style="font-size: 60px; color: var(--olive-dark); margin-bottom: 20px;"></i>
+                    <h3 style="color: var(--olive-dark); margin-bottom: 15px;">صفحة التأشيرات قيد التطوير</h3>
                     <p style="color: #666; max-width: 600px; margin: 0 auto;">
                         نحن نعمل على إضافة جميع تفاصيل التأشيرات المتاحة ومتطلبات كل دولة.
                         يمكنك التواصل معنا لمعرفة متطلبات التأشيرة لوجهتك.
                     </p>
-                    <button class="whatsapp-btn" style="margin-top: 30px;" onclick="showMainPage(); document.getElementById('booking').scrollIntoView()">
+                    <button class="whatsapp-btn" style="margin-top: 30px; background: linear-gradient(135deg, var(--olive-dark), var(--sage-green));" onclick="showMainPage(); document.getElementById('booking').scrollIntoView()">
                         <i class="fab fa-whatsapp"></i> اطلب تأشيرتك الآن
                     </button>
                 </div>
@@ -1202,69 +1359,15 @@
             <div class="container">
                 <h2 class="section-title">باقات شهر العسل</h2>
                 
-                <div style="text-align: center; padding: 60px 20px; background: var(--light); border-radius: 15px;">
-                    <i class="fas fa-heart" style="font-size: 60px; color: var(--primary); margin-bottom: 20px;"></i>
-                    <h3 style="color: var(--dark); margin-bottom: 15px;">صفحة شهر العسل قيد التطوير</h3>
+                <div style="text-align: center; padding: 60px 20px; background: var(--light-beige); border-radius: 15px;">
+                    <i class="fas fa-heart" style="font-size: 60px; color: var(--olive-dark); margin-bottom: 20px;"></i>
+                    <h3 style="color: var(--olive-dark); margin-bottom: 15px;">صفحة شهر العسل قيد التطوير</h3>
                     <p style="color: #666; max-width: 600px; margin: 0 auto;">
                         نحن نعمل على إضافة باقات شهر العسل الفاخرة في أجمل الوجهات الرومانسية.
                         يمكنك التواصل معنا لمعرفة الباقات المتاحة لوجهتك المفضلة.
                     </p>
-                    <button class="whatsapp-btn" style="margin-top: 30px;" onclick="showMainPage(); document.getElementById('booking').scrollIntoView()">
+                    <button class="whatsapp-btn" style="margin-top: 30px; background: linear-gradient(135deg, var(--olive-dark), var(--sage-green));" onclick="showMainPage(); document.getElementById('booking').scrollIntoView()">
                         <i class="fab fa-whatsapp"></i> احجز رحلة شهر العسل
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- صفحة البرامج السياحية -->
-    <div id="tourPage" class="internal-page">
-        <div class="page-header">
-            <h1 class="page-title">تنظيم برامج سياحية</h1>
-            <p class="page-subtitle">برامج سياحية مخصصة تناسب اهتماماتك ووقتك في أي وجهة تختارها</p>
-            <button class="back-btn" onclick="showMainPage()"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
-        </div>
-        
-        <div class="page-content">
-            <div class="container">
-                <h2 class="section-title">برامج سياحية مخصصة</h2>
-                
-                <div style="text-align: center; padding: 60px 20px; background: var(--light); border-radius: 15px;">
-                    <i class="fas fa-suitcase-rolling" style="font-size: 60px; color: var(--primary); margin-bottom: 20px;"></i>
-                    <h3 style="color: var(--dark); margin-bottom: 15px;">صفحة البرامج السياحية قيد التطوير</h3>
-                    <p style="color: #666; max-width: 600px; margin: 0 auto;">
-                        نحن نعمل على إضافة برامج سياحية مخصصة لجميع الوجهات.
-                        يمكنك التواصل معنا لتصميم برنامج يناسب اهتماماتك ووقتك.
-                    </p>
-                    <button class="whatsapp-btn" style="margin-top: 30px;" onclick="showMainPage(); document.getElementById('booking').scrollIntoView()">
-                        <i class="fab fa-whatsapp"></i> صمم برنامجك السياحي
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- صفحة تذاكر المعالم السياحية -->
-    <div id="ticketsPage" class="internal-page">
-        <div class="page-header">
-            <h1 class="page-title">تذاكر معالم سياحية</h1>
-            <p class="page-subtitle">حجوزات تذاكر دخول للمتاحف والمعالم السياحية والأنشطة الترفيهية</p>
-            <button class="back-btn" onclick="showMainPage()"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
-        </div>
-        
-        <div class="page-content">
-            <div class="container">
-                <h2 class="section-title">تذاكر المعالم السياحية</h2>
-                
-                <div style="text-align: center; padding: 60px 20px; background: var(--light); border-radius: 15px;">
-                    <i class="fas fa-ticket-alt" style="font-size: 60px; color: var(--primary); margin-bottom: 20px;"></i>
-                    <h3 style="color: var(--dark); margin-bottom: 15px;">صفحة التذاكر قيد التطوير</h3>
-                    <p style="color: #666; max-width: 600px; margin: 0 auto;">
-                        نحن نعمل على إضافة جميع تذاكر المعالم السياحية والأنشطة الترفيهية.
-                        يمكنك التواصل معنا لحجز تذاكر المعالم في وجهتك.
-                    </p>
-                    <button class="whatsapp-btn" style="margin-top: 30px;" onclick="showMainPage(); document.getElementById('booking').scrollIntoView()">
-                        <i class="fab fa-whatsapp"></i> احجز تذاكر المعالم
                     </button>
                 </div>
             </div>
@@ -1291,8 +1394,8 @@
                     <li><a href="#" onclick="showMainPage(); return false;" style="color: white; text-decoration: none;">الرئيسية</a></li>
                     <li><a href="#" onclick="showMainPage(); document.getElementById('booking').scrollIntoView(); return false;" style="color: white; text-decoration: none;">احجز الآن</a></li>
                     <li><a href="#" onclick="showCarRentalPage(); return false;" style="color: white; text-decoration: none;">تأجير السيارات</a></li>
+                    <li><a href="#" onclick="showDriverPage(); return false;" style="color: white; text-decoration: none;">سائق خاص</a></li>
                     <li><a href="#" onclick="showHotelPage(); return false;" style="color: white; text-decoration: none;">الفنادق</a></li>
-                    <li><a href="#" onclick="showVisaPage(); return false;" style="color: white; text-decoration: none;">التأشيرات</a></li>
                 </ul>
             </div>
             
@@ -1323,7 +1426,7 @@
         
         <div class="copyright">
             <p>© 2023 راوند تريب - جميع الحقوق محفوظة. | تصميم وتطوير: فريق راوند تريب</p>
-            <p style="margin-top: 10px; font-size: 14px;">ROUND TRIP Travel Agency - Kuwait</p>
+            <p style="margin-top: 10px; font-size: 14px;" class="english-font">ROUND TRIP Travel Agency - Kuwait</p>
         </div>
     </footer>
 
@@ -1332,22 +1435,30 @@
         function showMainPage() {
             document.getElementById('mainPage').style.display = 'block';
             document.getElementById('carRentalPage').style.display = 'none';
+            document.getElementById('driverPage').style.display = 'none';
             document.getElementById('hotelPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'none';
             document.getElementById('honeymoonPage').style.display = 'none';
-            document.getElementById('tourPage').style.display = 'none';
-            document.getElementById('ticketsPage').style.display = 'none';
             window.scrollTo(0, 0);
         }
         
         function showCarRentalPage() {
             document.getElementById('mainPage').style.display = 'none';
             document.getElementById('carRentalPage').style.display = 'block';
+            document.getElementById('driverPage').style.display = 'none';
             document.getElementById('hotelPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'none';
             document.getElementById('honeymoonPage').style.display = 'none';
-            document.getElementById('tourPage').style.display = 'none';
-            document.getElementById('ticketsPage').style.display = 'none';
+            window.scrollTo(0, 0);
+        }
+        
+        function showDriverPage() {
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('driverPage').style.display = 'block';
+            document.getElementById('carRentalPage').style.display = 'none';
+            document.getElementById('hotelPage').style.display = 'none';
+            document.getElementById('visaPage').style.display = 'none';
+            document.getElementById('honeymoonPage').style.display = 'none';
             window.scrollTo(0, 0);
         }
         
@@ -1355,10 +1466,9 @@
             document.getElementById('mainPage').style.display = 'none';
             document.getElementById('hotelPage').style.display = 'block';
             document.getElementById('carRentalPage').style.display = 'none';
+            document.getElementById('driverPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'none';
             document.getElementById('honeymoonPage').style.display = 'none';
-            document.getElementById('tourPage').style.display = 'none';
-            document.getElementById('ticketsPage').style.display = 'none';
             window.scrollTo(0, 0);
         }
         
@@ -1366,10 +1476,9 @@
             document.getElementById('mainPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'block';
             document.getElementById('carRentalPage').style.display = 'none';
+            document.getElementById('driverPage').style.display = 'none';
             document.getElementById('hotelPage').style.display = 'none';
             document.getElementById('honeymoonPage').style.display = 'none';
-            document.getElementById('tourPage').style.display = 'none';
-            document.getElementById('ticketsPage').style.display = 'none';
             window.scrollTo(0, 0);
         }
         
@@ -1377,60 +1486,10 @@
             document.getElementById('mainPage').style.display = 'none';
             document.getElementById('honeymoonPage').style.display = 'block';
             document.getElementById('carRentalPage').style.display = 'none';
+            document.getElementById('driverPage').style.display = 'none';
             document.getElementById('hotelPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'none';
-            document.getElementById('tourPage').style.display = 'none';
-            document.getElementById('ticketsPage').style.display = 'none';
             window.scrollTo(0, 0);
-        }
-        
-        function showTourPage() {
-            document.getElementById('mainPage').style.display = 'none';
-            document.getElementById('tourPage').style.display = 'block';
-            document.getElementById('carRentalPage').style.display = 'none';
-            document.getElementById('hotelPage').style.display = 'none';
-            document.getElementById('visaPage').style.display = 'none';
-            document.getElementById('honeymoonPage').style.display = 'none';
-            document.getElementById('ticketsPage').style.display = 'none';
-            window.scrollTo(0, 0);
-        }
-        
-        function showTicketsPage() {
-            document.getElementById('mainPage').style.display = 'none';
-            document.getElementById('ticketsPage').style.display = 'block';
-            document.getElementById('carRentalPage').style.display = 'none';
-            document.getElementById('hotelPage').style.display = 'none';
-            document.getElementById('visaPage').style.display = 'none';
-            document.getElementById('honeymoonPage').style.display = 'none';
-            document.getElementById('tourPage').style.display = 'none';
-            window.scrollTo(0, 0);
-        }
-        
-        // تصفية الخدمات حسب الفئة
-        function filterServices(category) {
-            const services = document.querySelectorAll('.service-card');
-            const categoryBtns = document.querySelectorAll('.category-btn');
-            
-            // تحديث أزرار التصنيف النشطة
-            categoryBtns.forEach(btn => {
-                if (btn.textContent.includes(category === 'all' ? 'جميع' : 
-                    category === 'hotels' ? 'الفنادق' :
-                    category === 'visas' ? 'التأشيرات' :
-                    category === 'cars' ? 'تأجير' :
-                    category === 'honeymoon' ? 'شهر' : 'كل')) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-            
-            services.forEach(service => {
-                if (category === 'all' || service.getAttribute('data-category') === category) {
-                    service.style.display = 'flex';
-                } else {
-                    service.style.display = 'none';
-                }
-            });
         }
         
         // حجز سيارة
@@ -1470,11 +1529,6 @@
             const data = {};
             formData.forEach((value, key) => data[key] = value);
             
-            // الحصول على اسم الدولة المختارة
-            const countrySelect = document.getElementById('countryCode');
-            const selectedOption = countrySelect.options[countrySelect.selectedIndex];
-            const countryName = selectedOption.text.split('(')[0].trim();
-            
             // تنسيق رقم الهاتف الكامل
             const fullPhoneNumber = `+${data.countryCode}${data.phone}`;
             
@@ -1494,7 +1548,6 @@
 
 🔸 *المعلومات الشخصية:*
 • الاسم: ${data.name}
-• الدولة: ${countryName}
 • رمز الدولة: +${data.countryCode}
 • رقم الجوال: ${fullPhoneNumber}
 • البريد: ${data.email || 'غير محدد'}
@@ -1543,38 +1596,104 @@ ${data.notes || 'لا توجد ملاحظات'}
             }, 2000);
         });
         
+        // نموذج خدمة السائق الخاص
+        document.getElementById('driverForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // جمع البيانات من النموذج
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = {};
+            formData.forEach((value, key) => data[key] = value);
+            
+            // تنسيق التاريخ والوقت
+            let pickupDateFormatted = 'غير محدد';
+            if (data.pickupDate) {
+                const dateObj = new Date(data.pickupDate);
+                pickupDateFormatted = dateObj.toLocaleDateString('ar-KW', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            }
+            
+            // بناء الرسالة
+            const message = `🚖 *طلب خدمة سائق خاص - راوند تريب* 🚖
+
+🔸 *المعلومات الشخصية:*
+• الاسم: ${data.driverName}
+• رقم الجوال: ${data.driverPhone}
+
+🔸 *تفاصيل الرحلة:*
+• تاريخ الاستلام: ${pickupDateFormatted}
+• وقت الاستلام: ${data.pickupTime || 'غير محدد'}
+• مكان الاستلام: ${data.fromLocation}
+• مكان التسليم: ${data.toLocation}
+• عدد الأشخاص: ${data.driverPassengers} شخص
+• عدد الأمتعة: ${data.luggageCount} قطعة
+• نوع السيارة: ${data.carType}
+• نوع الخدمة: ${data.serviceType}
+
+🔸 *ملاحظات إضافية:*
+${data.driverNotes || 'لا توجد ملاحظات'}
+
+📅 *تم إرسال الطلب في:* ${new Date().toLocaleString('ar-KW')}
+📞 *رقم العميل للتواصل:* ${data.driverPhone}
+
+--- راوند تريب - خدمة السائق الخاص ---`;
+            
+            // ترميح الرسالة
+            const encodedMessage = encodeURIComponent(message);
+            
+            // رقم واتساب الشركة
+            const companyWhatsappNumber = "96565750302";
+            
+            // رابط واتساب
+            const whatsappUrl = `https://wa.me/${companyWhatsappNumber}?text=${encodedMessage}`;
+            
+            // فتح واتساب في نافذة جديدة
+            window.open(whatsappUrl, '_blank');
+            
+            // رسالة تأكيد للعميل
+            alert(`✅ تم تجهيز طلب خدمة السائق الخاص بنجاح!
+
+سيتم الآن فتح تطبيق واتساب:
+1. تأكد من ظهور جميع بياناتك في الرسالة
+2. انقر على زر الإرسال (↲) في واتساب
+3. سيتصل بك فريقنا خلال 24 ساعة
+
+شكراً لاختيارك راوند تريب! 🚖`);
+            
+            // إعادة تعيين النموذج بعد 2 ثانية
+            setTimeout(() => {
+                form.reset();
+            }, 2000);
+        });
+        
         // تعيين الحد الأدنى للتاريخ على اليوم الحالي
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('travelDate').min = today;
+        document.getElementById('pickupDate').min = today;
         
         // تعيين الكويت كاختيار افتراضي لرمز الدولة
         document.getElementById('countryCode').value = "965";
         
-        // تحديث عرض أعلام الدول في القائمة المنسدلة
+        // إضافة تحميل الصور بشكل صحيح
         document.addEventListener('DOMContentLoaded', function() {
-            const countrySelect = document.getElementById('countryCode');
-            const options = countrySelect.options;
+            // محاولة تحميل البانر من عدة مصادر
+            const bannerImg = document.querySelector('.banner-img');
+            if (bannerImg && !bannerImg.complete) {
+                bannerImg.onerror = function() {
+                    this.src = 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80';
+                };
+            }
             
-            for (let i = 0; i < options.length; i++) {
-                const option = options[i];
-                const flagCode = option.getAttribute('data-flag');
-                
-                if (flagCode) {
-                    // إنشاء عنصر العلم
-                    const flagSpan = document.createElement('span');
-                    flagSpan.className = 'flag-option';
-                    flagSpan.innerHTML = `
-                        <img src="https://flagcdn.com/w20/${flagCode}.png" class="flag-icon" alt="${flagCode}">
-                        <span class="country-name">${option.text.split('(')[0].trim()}</span>
-                        <span class="country-code-display">${option.text.split('(')[1] ? '(' + option.text.split('(')[1] : ''}</span>
-                    `;
-                    
-                    // تخزين النص الأصلي كخاصية
-                    option.textContent = option.text;
-                    
-                    // إضافة العلم كعنصر HTML
-                    option.innerHTML = flagSpan.outerHTML;
-                }
+            // محاولة تحميل الشعار من عدة مصادر
+            const logoImg = document.querySelector('.logo');
+            if (logoImg && !logoImg.complete) {
+                logoImg.onerror = function() {
+                    this.src = 'https://via.placeholder.com/70x70/556859/ffffff?text=RT';
+                };
             }
         });
     </script>
