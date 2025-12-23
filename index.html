@@ -53,19 +53,10 @@
         
         .logo {
             height: 70px;
-            width: 70px;
-            background: white;
+            width: auto;
             border-radius: 12px;
-            padding: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-weight: bold;
-            font-size: 14px;
-            text-align: center;
-            cursor: pointer;
+            object-fit: contain;
         }
         
         .company-info {
@@ -135,8 +126,7 @@
         /* البانر */
         .banner {
             height: 500px;
-            background: linear-gradient(rgba(42, 108, 140, 0.85), rgba(58, 155, 200, 0.8)),
-                        url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background: linear-gradient(rgba(42, 108, 140, 0.85), rgba(58, 155, 200, 0.8));
             background-size: cover;
             background-position: center;
             display: flex;
@@ -148,9 +138,20 @@
             position: relative;
         }
         
+        .banner-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
         .banner-content {
             max-width: 900px;
             animation: fadeInUp 1s ease-out;
+            z-index: 1;
         }
         
         @keyframes fadeInUp {
@@ -780,10 +781,14 @@
     <!-- الهيدر والشعار -->
     <header class="header">
         <div class="logo-container" onclick="showMainPage()">
-            <!-- شعار الشركة -->
-            <div class="logo">
-                R<br>T
-            </div>
+            <!-- ========== ضع شعارك هنا ========== -->
+            <!-- الطريقة 1: رابط مباشر للشعار -->
+            <img src="https://via.placeholder.com/70x70/2a6c8c/ffffff?text=RT" alt="شعار راوند تريب" class="logo">
+            <!-- 
+                استبدل الرابط أعلاه برابط شعارك:
+                مثال: <img src="شعارك.png" alt="شعار راوند تريب" class="logo">
+            -->
+            
             <div class="company-info">
                 <div class="company-name-ar">راوند تريب</div>
                 <div class="company-name-en">ROUND TRIP</div>
@@ -792,11 +797,11 @@
         </div>
         
         <div class="contact-header">
-            <a href="https://wa.me/96565750302" class="whatsapp-btn pulse" target="_blank">
+            <a href="https://wa.me/96567757521" class="whatsapp-btn pulse" target="_blank">
                 <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
             </a>
             <div class="phone-number">
-                <i class="fas fa-phone"></i> +965 65750302
+                <i class="fas fa-phone"></i> +965 67757521
             </div>
         </div>
     </header>
@@ -805,6 +810,15 @@
     <div id="mainPage">
         <!-- البانر الرئيسي -->
         <section class="banner">
+            <!-- ========== ضع بانرك هنا ========== -->
+            <!-- الطريقة 1: رابط مباشر للبانر -->
+            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
+                 alt="بانر راوند تريب" class="banner-img">
+            <!-- 
+                استبدل الرابط أعلاه برابط بانرك:
+                مثال: <img src="بانرك.jpg" alt="بانر راوند تريب" class="banner-img">
+            -->
+            
             <div class="banner-content">
                 <h1>استمتع برحلتك مع راوند تريب</h1>
                 <p>نخطط لرحلاتك بدقة فائقة، نضمن لك راحة تامة وتجربة سفر استثنائية تتناسب مع تطلعاتك وميزانيتك</p>
@@ -814,6 +828,7 @@
             </div>
         </section>
 
+        <!-- باقي الكود يبقى كما هو -->
         <!-- الخدمات -->
         <div class="container">
             <h2 class="section-title">خدماتنا المميزة</h2>
@@ -940,7 +955,7 @@
                                     </select>
                                 </div>
                                 <div class="phone-number-input">
-                                    <input type="tel" id="phone" name="phone" required placeholder="رقم الهاتف">
+                                    <input type="tel" id="phone" name="phone" required placeholder="رقم الهاتف بدون الصفر الأول">
                                 </div>
                             </div>
                         </div>
@@ -1295,29 +1310,29 @@
                 <h3>تواصل معنا</h3>
                 <div>
                     <i class="fas fa-phone"></i>
-                    <span>+965 65750302</span>
+                    <span>+965 67757521</span>
                 </div>
                 <div>
                     <i class="fab fa-whatsapp"></i>
-                    <span>واتساب: 65750302</span>
+                    <span>واتساب: 67757521</span>
                 </div>
                 <div>
                     <i class="fas fa-envelope"></i>
-                    <span>sales@roundtripco.net</span>
+                    <span>info@roundtrip.com</span>
                 </div>
                 <div>
                     <i class="fas fa-map-marker-alt"></i>
-                    <span>الكويت </span>
+                    <span>الكويت - حولي - شارع السلام</span>
                 </div>
                 <div>
                     <i class="fas fa-clock"></i>
-                    <span>السبت - الخميس: 9ص - 11م</span>
+                    <span>الأحد - الخميس: 9ص - 5م</span>
                 </div>
             </div>
         </div>
         
         <div class="copyright">
-            <p>© 2026 راوند تريب - جميع الحقوق محفوظة. | تصميم وتطوير: فريق راوند تريب</p>
+            <p>© 2023 راوند تريب - جميع الحقوق محفوظة. | تصميم وتطوير: فريق راوند تريب</p>
             <p style="margin-top: 10px; font-size: 14px;">ROUND TRIP Travel Agency - Kuwait</p>
         </div>
     </footer>
@@ -1444,12 +1459,12 @@
 5. مكان الاستلام:
 6. مكان الإرجاع:
 
-📞 *للحجز السريع تواصل معنا على:* +965 65750302
+📞 *للحجز السريع تواصل معنا على:* +965 67757521
 
 --- راوند تريب - خدمة تأجير السيارات ---`;
             
             const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/96565750302?text=${encodedMessage}`;
+            const whatsappUrl = `https://wa.me/96567757521?text=${encodedMessage}`;
             window.open(whatsappUrl, '_blank');
             
             alert(`✅ تم فتح واتساب لطلب تأجير ${carType}\n\nيرجى إرسال البيانات المطلوبة للحجز`);
@@ -1513,7 +1528,7 @@ ${data.notes || 'لا توجد ملاحظات'}
             const encodedMessage = encodeURIComponent(message);
             
             // رقم واتساب الشركة
-            const companyWhatsappNumber = "96565750302";
+            const companyWhatsappNumber = "96567757521";
             
             // رابط واتساب
             const whatsappUrl = `https://wa.me/${companyWhatsappNumber}?text=${encodedMessage}`;
