@@ -125,47 +125,9 @@
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
         }
         
+        /* إخفاء أرقام الهاتف من الهيدر */
         .phone-numbers-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .phone-number {
-            font-size: 20px;
-            color: white;
-            direction: ltr;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: bold;
-            background: rgba(255,255,255,0.1);
-            padding: 8px 15px;
-            border-radius: 8px;
-            backdrop-filter: blur(5px);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .phone-number:hover {
-            background: rgba(255,255,255,0.2);
-        }
-        
-        .phone-number a {
-            color: white;
-            text-decoration: none;
-            direction: ltr;
-            display: inline-block;
-            flex: 1;
-            font-size: 20px;
-        }
-        
-        .flag-icon {
-            width: 24px;
-            height: 16px;
-            border-radius: 3px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            display: none;
         }
         
         /* البانر */
@@ -776,10 +738,6 @@
             .phone-numbers-container {
                 align-items: center;
             }
-            
-            .phone-number {
-                font-size: 18px;
-            }
         }
         
         @media (max-width: 576px) {
@@ -810,15 +768,6 @@
                 width: 80px;
                 line-height: 80px;
             }
-            
-            .phone-number {
-                font-size: 16px;
-                padding: 6px 12px;
-            }
-            
-            .phone-number a {
-                font-size: 16px;
-            }
         }
         
         /* تأثيرات إضافية */
@@ -830,6 +779,63 @@
             0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
             70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        /* خيارات أعمار الأطفال المخفية */
+        .child-age-group {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .child-age-group .form-row {
+            margin-top: 10px;
+        }
+        
+        /* خيارات مكان التسليم */
+        .return-options {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .return-option {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            border: 2px solid var(--light-beige);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .return-option:hover {
+            border-color: var(--sage-green);
+        }
+        
+        .return-option.selected {
+            border-color: var(--olive-dark);
+            background-color: rgba(85, 104, 89, 0.05);
+        }
+        
+        /* خيارات أعمار الأطفال في الفنادق */
+        .children-ages-container {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .age-select-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -850,18 +856,6 @@
         <div class="contact-header">
             <div class="whatsapp-btn pulse" onclick="openWhatsApp('96565750302')">
                 <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
-            </div>
-            
-            <div class="phone-numbers-container">
-                <div class="phone-number" onclick="openWhatsApp('96565750302')">
-                    <img src="https://flagcdn.com/w20/kw.png" class="flag-icon" alt="علم الكويت">
-                    <a href="https://wa.me/96565750302" target="_blank">+965 65750302</a>
-                </div>
-                
-                <div class="phone-number" onclick="openWhatsApp('966569425758')">
-                    <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="علم السعودية">
-                    <a href="https://wa.me/966569425758" target="_blank">+966 569425758</a>
-                </div>
             </div>
         </div>
     </header>
@@ -980,7 +974,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="carPhone" class="required">رقم التواصل</label>
+                                <label for="carPhone" class="required" style="text-align: right;">رقم الهاتف</label>
                                 <input type="tel" id="carPhone" name="carPhone" required placeholder="رقم الهاتف">
                             </div>
                         </div>
@@ -992,32 +986,38 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="carCountry" class="required">الدولة المراد الزيارة</label>
-                                <input type="text" id="carCountry" name="carCountry" required placeholder="الدولة التي ستزورها">
+                                <label for="pickupLocation" class="required">مكان الاستلام</label>
+                                <input type="text" id="pickupLocation" name="pickupLocation" required placeholder="المدينة والدولة">
                             </div>
                         </div>
                         
                         <div class="form-row">
-                            <div class="form-group">
-                                <label for="pickupLocation" class="required">مكان الاستلام</label>
-                                <input type="text" id="pickupLocation" name="pickupLocation" required placeholder="المدينة والدولة">
-                            </div>
-                            
                             <div class="form-group">
                                 <label for="pickupDate" class="required">تاريخ الاستلام</label>
                                 <input type="date" id="pickupDate" name="pickupDate" required>
                             </div>
-                        </div>
-                        
-                        <div class="form-row">
+                            
                             <div class="form-group">
                                 <label for="pickupTime" class="required">وقت الاستلام</label>
                                 <input type="time" id="pickupTime" name="pickupTime" required>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="returnLocation" class="required">مكان التسليم</label>
-                                <input type="text" id="returnLocation" name="returnLocation" required placeholder="يمكن أن يكون نفس مكان الاستلام">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>مكان التسليم</label>
+                            <div class="return-options">
+                                <div class="return-option" onclick="selectReturnOption('same')">
+                                    <i class="fas fa-check-circle"></i>
+                                    <div>نفس مكان الاستلام</div>
+                                </div>
+                                <div class="return-option" onclick="selectReturnOption('different')">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div>مكان آخر</div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="returnOption" name="returnOption" value="">
+                            <div id="returnLocationContainer" style="display: none; margin-top: 15px;">
+                                <input type="text" id="returnLocation" name="returnLocation" placeholder="أدخل مكان التسليم">
                             </div>
                         </div>
                         
@@ -1034,22 +1034,19 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="carType" class="required">نوع السيارة المفضل</label>
-                            <select id="carType" name="carType" required>
+                            <label for="carType">نوع السيارة المفضل</label>
+                            <select id="carType" name="carType">
                                 <option value="">اختر نوع السيارة</option>
-                                <option value="سيدان">سيدان</option>
-                                <option value="SUV">SUV</option>
-                                <option value="فان">فان</option>
-                                <option value="دفع رباعي">دفع رباعي</option>
-                                <option value="اقتصادية">اقتصادية</option>
-                                <option value="فاخرة">فاخرة</option>
+                                <option value="سيارة صغيرة - متوسطة">سيارة صغيرة - متوسطة</option>
+                                <option value="SUV جيب">SUV جيب</option>
+                                <option value="فان 8-9 راكب">فان 8-9 راكب</option>
                             </select>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="driverAge" class="required">عمر السائق</label>
-                                <input type="number" id="driverAge" name="driverAge" min="18" max="100" required placeholder="أدخل عمر السائق">
+                                <input type="number" id="driverAge" name="driverAge" min="19" max="100" required placeholder="أدخل عمر السائق">
                             </div>
                             
                             <div class="form-group">
@@ -1061,12 +1058,12 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="childrenCount">عدد الأطفال (إذا وجد)</label>
-                                <input type="number" id="childrenCount" name="childrenCount" min="0" placeholder="أدخل عدد الأطفال">
+                                <input type="number" id="childrenCount" name="childrenCount" min="0" placeholder="أدخل عدد الأطفال" onchange="toggleChildAges(this.value)">
                             </div>
                             
-                            <div class="form-group">
-                                <label for="childrenAges">أعمار الأطفال (إذا وجد)</label>
-                                <input type="text" id="childrenAges" name="childrenAges" placeholder="مثال: 5، 8، 10">
+                            <div id="childAgeGroup" class="child-age-group">
+                                <label>أعمار الأطفال</label>
+                                <div id="childAgeInputs"></div>
                             </div>
                         </div>
                         
@@ -1097,7 +1094,7 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="otherCountries">دول أخرى ستزورونها</label>
+                            <label for="otherCountries">دول أخرى ستزورونها غير بلد الاستلام والتسليم</label>
                             <input type="text" id="otherCountries" name="otherCountries" placeholder="اذكر الدول الأخرى التي ستزورها خلال الرحلة">
                         </div>
                         
@@ -1137,16 +1134,16 @@
                     <div class="terms-section">
                         <h3><i class="fas fa-file-contract"></i> الشروط العامة لتأجير السيارات</h3>
                         <ul class="terms-list">
-                            <li><i class="fas fa-check-circle"></i> <strong>الحد الأدنى للعمر:</strong> يجب أن يكون عمر السائق 21 سنة أو أكثر</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>رخصة القيادة:</strong> يجب تقديم رخصة قيادة سارية المفعول</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>المستندات المطلوبة:</strong> جواز سفر وبطاقة هوية سارية</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>الحد الأدنى للعمر:</strong> يجب أن يكون عمر السائق 19 سنة أو أكثر (قد يتطلب عمر أكبر لبعض المدن والسيارات)</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>المستندات المطلوبة:</strong> الرخصة المحلية - الرخصة الدولية - جواز السفر</li>
                             <li><i class="fas fa-check-circle"></i> <strong>التأمين:</strong> يشمل السعر تأميناً شاملاً ضد الحوادث والسرقة</li>
                             <li><i class="fas fa-check-circle"></i> <strong>الوديعة:</strong> قد يتم طلب وديعــة مستردة عند استلام السيارة</li>
                             <li><i class="fas fa-check-circle"></i> <strong>الوقود:</strong> يتم تسليم السيارة بوقود كامل ويجب إرجاعها بنفس الحالة</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>المسافة المقطوعة:</strong> بعض العقود تشمل مسافة محددة يومياً</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>المسافة المقطوعة:</strong> جميع السيارات عداد مفتوح</li>
                             <li><i class="fas fa-check-circle"></i> <strong>الممنوعات:</strong> يحظر التدخين أو قيادة السيارة تحت تأثير أي مواد مخدرة</li>
                             <li><i class="fas fa-check-circle"></i> <strong>التسليم والاستلام:</strong> متوفر في المطار أو العنوان المطلوب</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>نظام GPS:</strong> متوفر عند الطلب برسوم إضافية</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>الأطفال:</strong> يجب ابلاغنا بوجود الأطفال تحت 8 سنوات لضرورة توفير الكرسي</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>النظافة:</strong> يجب اعادة السيارة بحالة نظيفة</li>
                         </ul>
                     </div>
                     
@@ -1181,25 +1178,16 @@
                     <div class="driver-features">
                         <div class="driver-feature">
                             <i class="fas fa-plane-arrival"></i>
-                            <h4>استقبال من المطار</h4>
-                            <p>استقبالك في المطار مع لافتة باسمك</p>
-                        </div>
-                        
-                        <div class="driver-feature">
-                            <i class="fas fa-plane-departure"></i>
-                            <h4>توديع إلى المطار</h4>
-                            <p>توصيلك إلى المطار في الوقت المحدد</p>
+                            <p>استقبال وتوديع من المطار</p>
                         </div>
                         
                         <div class="driver-feature">
                             <i class="fas fa-map-marked-alt"></i>
-                            <h4>جولات سياحية</h4>
                             <p>جولات سياحية مرنة حسب رغبتك</p>
                         </div>
                         
                         <div class="driver-feature">
                             <i class="fas fa-suitcase"></i>
-                            <h4>مساعدة الأمتعة</h4>
                             <p>مساعدة في حمل الأمتعة والشنط</p>
                         </div>
                     </div>
@@ -1214,7 +1202,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="driverPhone" class="required">رقم التواصل</label>
+                                <label for="driverPhone" class="required" style="text-align: right;">رقم الهاتف</label>
                                 <input type="tel" id="driverPhone" name="driverPhone" required placeholder="رقم الهاتف">
                             </div>
                         </div>
@@ -1233,13 +1221,13 @@
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="fromLocation" class="required">من (مكان الاستلام)</label>
-                                <input type="text" id="fromLocation" name="fromLocation" required placeholder="مثال: مطار الكويت الدولي">
+                                <label for="fromLocation" class="required">مكان الانطلاق</label>
+                                <input type="text" id="fromLocation" name="fromLocation" required placeholder="مثال: مطار مالبينسا ميلان">
                             </div>
                             
                             <div class="form-group">
-                                <label for="toLocation" class="required">إلى (مكان التسليم)</label>
-                                <input type="text" id="toLocation" name="toLocation" required placeholder="مثال: فندق موفنبيك">
+                                <label for="toLocation" class="required">مكان الوصول</label>
+                                <input type="text" id="toLocation" name="toLocation" required placeholder="مثال: فندق روزا قراند ميلانو">
                             </div>
                         </div>
                         
@@ -1267,16 +1255,12 @@
                                 <label for="driverTripTypes" class="required">نوع الرحلات المطلوبة (يمكن اختيار أكثر من واحد)</label>
                                 <div class="checkbox-group">
                                     <div class="checkbox-item">
-                                        <input type="checkbox" id="tripAirport" name="tripType" value="استقبال من المطار">
-                                        <label for="tripAirport">استقبال من المطار</label>
+                                        <input type="checkbox" id="tripAirport" name="tripType" value="استقبال وتوديع من المطار">
+                                        <label for="tripAirport">استقبال وتوديع من المطار</label>
                                     </div>
                                     <div class="checkbox-item">
-                                        <input type="checkbox" id="tripDropoff" name="tripType" value="توديع إلى المطار">
-                                        <label for="tripDropoff">توديع إلى المطار</label>
-                                    </div>
-                                    <div class="checkbox-item">
-                                        <input type="checkbox" id="tripTours" name="tripType" value="جولات سياحية">
-                                        <label for="tripTours">جولات سياحية</label>
+                                        <input type="checkbox" id="tripTours" name="tripType" value="جولات سياحية مرنة حسب رغبتك">
+                                        <label for="tripTours">جولات سياحية مرنة حسب رغبتك</label>
                                     </div>
                                     <div class="checkbox-item">
                                         <input type="checkbox" id="tripTransport" name="tripType" value="توصيلات داخلية">
@@ -1291,11 +1275,8 @@
                                 <label for="driverCarType" class="required">نوع السيارة المطلوبة</label>
                                 <select id="driverCarType" name="driverCarType" required>
                                     <option value="">اختر نوع السيارة</option>
-                                    <option value="سيدان">سيدان</option>
-                                    <option value="SUV">SUV</option>
+                                    <option value="سيارة متوسطة">سيارة متوسطة</option>
                                     <option value="فان">فان</option>
-                                    <option value="دفع رباعي">دفع رباعي</option>
-                                    <option value="باص">باص صغير</option>
                                 </select>
                             </div>
                             
@@ -1343,7 +1324,7 @@
     <div id="honeymoonPage" class="internal-page">
         <div class="page-header">
             <h1 class="page-title">رحلات شهر العسل</h1>
-            <p class="page-subtitle">باقات خاصة للأزواج مع إضافات رومانسية في أجمل الوجهات العالمية لتجربة لا تُنسى</p>
+            <p class="page-subtitle">باقات خاصة للأزواج مع إضافات في أجمل الوجهات العالمية لتجربة لا تُنسى</p>
             <button class="back-btn" onclick="showMainPage()"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
         </div>
         
@@ -1360,7 +1341,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="honeymoonPhone" class="required">رقم التواصل</label>
+                                <label for="honeymoonPhone" class="required" style="text-align: right;">رقم الهاتف</label>
                                 <input type="tel" id="honeymoonPhone" name="honeymoonPhone" required placeholder="رقم الهاتف">
                             </div>
                         </div>
@@ -1372,18 +1353,8 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="honeymoonDestination" class="required">الوجهة المطلوبة</label>
-                                <select id="honeymoonDestination" name="honeymoonDestination" required>
-                                    <option value="">اختر الوجهة</option>
-                                    <option value="مالديف">مالديف</option>
-                                    <option value="باريس">باريس</option>
-                                    <option value="بالي">بالي</option>
-                                    <option value="سيشل">سيشل</option>
-                                    <option value="اليونان">اليونان</option>
-                                    <option value="ايطاليا">إيطاليا</option>
-                                    <option value="تركيا">تركيا</option>
-                                    <option value="أخرى">أخرى</option>
-                                </select>
+                                <label for="honeymoonDestination">الوجهة المطلوبة</label>
+                                <input type="text" id="honeymoonDestination" name="honeymoonDestination" placeholder="اذكر الوجهة المطلوبة">
                             </div>
                         </div>
                         
@@ -1401,25 +1372,17 @@
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="honeymoonBudget">الميزانية التقريبية (دينار كويتي)</label>
-                                <select id="honeymoonBudget" name="honeymoonBudget">
-                                    <option value="">اختر الفئة السعرية</option>
-                                    <option value="اقتصادية">اقتصادية (أقل من 1000)</option>
-                                    <option value="متوسطة">متوسطة (1000 - 2500)</option>
-                                    <option value="فاخرة">فاخرة (2500 - 5000)</option>
-                                    <option value="VIP">VIP (أكثر من 5000)</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="honeymoonType">نوع الباقة المطلوبة</label>
-                                <select id="honeymoonType" name="honeymoonType">
-                                    <option value="">اختر نوع الباقة</option>
-                                    <option value="اقتصادية">باقة اقتصادية</option>
-                                    <option value="رومانسية">باقة رومانسية</option>
-                                    <option value="فاخرة">باقة فاخرة</option>
-                                    <option value="مميزة">باقة شهر عسل مميزة</option>
-                                </select>
+                                <label for="honeymoonBudget">الميزانية التقريبية</label>
+                                <div class="budget-currency-container">
+                                    <input type="number" id="honeymoonBudget" name="honeymoonBudget" placeholder="المبلغ">
+                                    <select id="honeymoonCurrency" name="honeymoonCurrency" style="width: 120px; margin-right: 10px;">
+                                        <option value="دينار كويتي">دينار كويتي</option>
+                                        <option value="ريال سعودي">ريال سعودي</option>
+                                        <option value="درهم إماراتي">درهم إماراتي</option>
+                                        <option value="دولار أمريكي">دولار أمريكي</option>
+                                        <option value="يورو">يورو</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         
@@ -1427,27 +1390,27 @@
                             <label>الخدمات المطلوبة (يمكن اختيار أكثر من واحد)</label>
                             <div class="checkbox-group">
                                 <div class="checkbox-item">
-                                    <input type="checkbox" id="serviceHotel" name="honeymoonService" value="فندق رومانسي">
-                                    <label for="serviceHotel">فندق رومانسي</label>
+                                    <input type="checkbox" id="serviceHotel" name="honeymoonService" value="فنادق">
+                                    <label for="serviceHotel">فنادق</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input type="checkbox" id="serviceFlights" name="honeymoonService" value="تذاكر طيران">
-                                    <label for="serviceFlights">تذاكر طيران</label>
+                                    <input type="checkbox" id="serviceTransport" name="honeymoonService" value="سيارة ومواصلات">
+                                    <label for="serviceTransport">سيارة ومواصلات</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input type="checkbox" id="serviceTours" name="honeymoonService" value="جولات سياحية">
-                                    <label for="serviceTours">جولات سياحية</label>
+                                    <input type="checkbox" id="serviceItinerary" name="honeymoonService" value="جدول تفصيلي">
+                                    <label for="serviceItinerary">جدول تفصيلي</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input type="checkbox" id="serviceSurprise" name="honeymoonService" value="مفاجآت رومانسية">
-                                    <label for="serviceSurprise">مفاجآت رومانسية</label>
+                                    <input type="checkbox" id="serviceVisa" name="honeymoonService" value="فيزا">
+                                    <label for="serviceVisa">فيزا</label>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="form-group">
-                            <label for="honeymoonSpecialRequests">طلبات خاصة أو إضافات رومانسية</label>
-                            <textarea id="honeymoonSpecialRequests" name="honeymoonSpecialRequests" rows="4" placeholder="اذكر أي طلبات خاصة مثل: إطلالة على البحر، موسيقى رومانسية، إفطار في الغرفة..."></textarea>
+                            <label for="honeymoonSpecialRequests">طلبات خاصة</label>
+                            <textarea id="honeymoonSpecialRequests" name="honeymoonSpecialRequests" rows="4" placeholder="مثل: الافطار مع الحجز - غرف مع اطلالة - تجهيز الورود"></textarea>
                         </div>
                         
                         <button type="submit" class="submit-btn">
@@ -1491,7 +1454,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="toursPhone" class="required">رقم التواصل</label>
+                                <label for="toursPhone" class="required" style="text-align: right;">رقم الهاتف</label>
                                 <input type="tel" id="toursPhone" name="toursPhone" required placeholder="رقم الهاتف">
                             </div>
                         </div>
@@ -1541,14 +1504,17 @@
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="toursBudget">الميزانية التقريبية للشخص (دينار كويتي)</label>
-                                <select id="toursBudget" name="toursBudget">
-                                    <option value="">اختر الفئة السعرية</option>
-                                    <option value="اقتصادية">اقتصادية (أقل من 300)</option>
-                                    <option value="متوسطة">متوسطة (300 - 800)</option>
-                                    <option value="فاخرة">فاخرة (800 - 1500)</option>
-                                    <option value="VIP">VIP (أكثر من 1500)</option>
-                                </select>
+                                <label for="toursBudget">الميزانية التقريبية للشخص</label>
+                                <div class="budget-currency-container">
+                                    <input type="number" id="toursBudget" name="toursBudget" placeholder="المبلغ">
+                                    <select id="toursCurrency" name="toursCurrency" style="width: 120px; margin-right: 10px;">
+                                        <option value="دينار كويتي">دينار كويتي</option>
+                                        <option value="ريال سعودي">ريال سعودي</option>
+                                        <option value="درهم إماراتي">درهم إماراتي</option>
+                                        <option value="دولار أمريكي">دولار أمريكي</option>
+                                        <option value="يورو">يورو</option>
+                                    </select>
+                                </div>
                             </div>
                             
                             <div class="form-group">
@@ -1620,7 +1586,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="visaPhone" class="required">رقم التواصل</label>
+                                <label for="visaPhone" class="required" style="text-align: right;">رقم الهاتف</label>
                                 <input type="tel" id="visaPhone" name="visaPhone" required placeholder="رقم الهاتف">
                             </div>
                         </div>
@@ -1714,7 +1680,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="hotelPhone" class="required">رقم التواصل</label>
+                                <label for="hotelPhone" class="required" style="text-align: right;">رقم الهاتف</label>
                                 <input type="tel" id="hotelPhone" name="hotelPhone" required placeholder="رقم الهاتف">
                             </div>
                         </div>
@@ -1750,12 +1716,17 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="hotelGuests" class="required">عدد الضيوف</label>
-                                <input type="number" id="hotelGuests" name="hotelGuests" min="1" required placeholder="إجمالي عدد الضيوف">
+                                <label for="hotelAdults" class="required">عدد البالغين</label>
+                                <input type="number" id="hotelAdults" name="hotelAdults" min="1" required placeholder="عدد البالغين">
                             </div>
                         </div>
                         
                         <div class="form-row">
+                            <div class="form-group">
+                                <label for="hotelChildren">عدد الأطفال</label>
+                                <input type="number" id="hotelChildren" name="hotelChildren" min="0" placeholder="عدد الأطفال" onchange="toggleChildrenAges(this.value)">
+                            </div>
+                            
                             <div class="form-group">
                                 <label for="hotelType">نوع الفندق المفضل</label>
                                 <select id="hotelType" name="hotelType">
@@ -1767,11 +1738,11 @@
                                     <option value="شقة فندقية">شقة فندقية</option>
                                 </select>
                             </div>
-                            
-                            <div class="form-group">
-                                <label for="hotelBudget">الميزانية التقريبية (ليلة/غرفة)</label>
-                                <input type="text" id="hotelBudget" name="hotelBudget" placeholder="الميزانية للغرفة في الليلة الواحدة">
-                            </div>
+                        </div>
+                        
+                        <div id="childrenAgesContainer" class="children-ages-container">
+                            <label>أعمار الأطفال</label>
+                            <div id="childrenAgeInputs"></div>
                         </div>
                         
                         <div class="form-group">
@@ -1955,39 +1926,139 @@
             }
         }
         
+        // خيارات مكان التسليم
+        function selectReturnOption(option) {
+            const options = document.querySelectorAll('.return-option');
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            if (option === 'same') {
+                options[0].classList.add('selected');
+                document.getElementById('returnOption').value = 'same';
+                document.getElementById('returnLocationContainer').style.display = 'none';
+                const pickupLocation = document.getElementById('pickupLocation').value;
+                document.getElementById('returnLocation').value = pickupLocation || 'نفس مكان الاستلام';
+            } else {
+                options[1].classList.add('selected');
+                document.getElementById('returnOption').value = 'different';
+                document.getElementById('returnLocationContainer').style.display = 'block';
+                document.getElementById('returnLocation').value = '';
+                document.getElementById('returnLocation').focus();
+            }
+        }
+        
+        // تفعيل خيارات أعمار الأطفال عند تحديد عددهم
+        function toggleChildAges(count) {
+            const childAgeGroup = document.getElementById('childAgeGroup');
+            const childAgeInputs = document.getElementById('childAgeInputs');
+            
+            if (count > 0) {
+                childAgeGroup.style.display = 'block';
+                childAgeInputs.innerHTML = '';
+                
+                for (let i = 1; i <= count; i++) {
+                    const ageSelect = document.createElement('div');
+                    ageSelect.className = 'form-group';
+                    ageSelect.innerHTML = `
+                        <label for="childAge${i}">عمر الطفل ${i}</label>
+                        <select id="childAge${i}" name="childAge${i}" required>
+                            <option value="">اختر العمر</option>
+                            <option value="أقل من سنتين">أقل من سنتين</option>
+                            <option value="2">2 سنوات</option>
+                            <option value="3">3 سنوات</option>
+                            <option value="4">4 سنوات</option>
+                            <option value="5">5 سنوات</option>
+                            <option value="6">6 سنوات</option>
+                            <option value="7">7 سنوات</option>
+                            <option value="8">8 سنوات</option>
+                            <option value="9">9 سنوات</option>
+                            <option value="10">10 سنوات</option>
+                        </select>
+                    `;
+                    childAgeInputs.appendChild(ageSelect);
+                }
+            } else {
+                childAgeGroup.style.display = 'none';
+                childAgeInputs.innerHTML = '';
+            }
+        }
+        
+        // تفعيل خيارات أعمار الأطفال في الفنادق
+        function toggleChildrenAges(count) {
+            const container = document.getElementById('childrenAgesContainer');
+            const inputs = document.getElementById('childrenAgeInputs');
+            
+            if (count > 0) {
+                container.style.display = 'block';
+                inputs.innerHTML = '';
+                
+                for (let i = 1; i <= count; i++) {
+                    const ageSelect = document.createElement('div');
+                    ageSelect.className = 'age-select-group';
+                    ageSelect.innerHTML = `
+                        <label for="hotelChildAge${i}">عمر الطفل ${i}</label>
+                        <select id="hotelChildAge${i}" name="hotelChildAge${i}" required>
+                            <option value="">اختر العمر</option>
+                            <option value="1">1 سنة</option>
+                            <option value="2">2 سنوات</option>
+                            <option value="3">3 سنوات</option>
+                            <option value="4">4 سنوات</option>
+                            <option value="5">5 سنوات</option>
+                            <option value="6">6 سنوات</option>
+                            <option value="7">7 سنوات</option>
+                            <option value="8">8 سنوات</option>
+                            <option value="9">9 سنوات</option>
+                            <option value="10">10 سنوات</option>
+                            <option value="11">11 سنة</option>
+                            <option value="12">12 سنة</option>
+                        </select>
+                    `;
+                    inputs.appendChild(ageSelect);
+                }
+            } else {
+                container.style.display = 'none';
+                inputs.innerHTML = '';
+            }
+        }
+        
+        // تحديث مكان التسليم عند تغيير مكان الاستلام
+        document.getElementById('pickupLocation').addEventListener('input', function() {
+            if (document.getElementById('returnOption').value === 'same') {
+                document.getElementById('returnLocation').value = this.value;
+            }
+        });
+        
+        // نماذج الإرسال (نفس النماذج السابقة مع تعديلات طفيفة لتناسب التغييرات)
+        
         // نموذج تأجير السيارات
         document.getElementById('carRentalForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // جمع البيانات من النموذج
             const form = e.target;
             const formData = new FormData(form);
             const data = {};
+            const paymentMethods = [];
+            const childAges = [];
+            
+            // جمع بيانات أعمار الأطفال
+            const childrenCount = parseInt(formData.get('childrenCount') || 0);
+            for (let i = 1; i <= childrenCount; i++) {
+                const age = formData.get(`childAge${i}`);
+                if (age) childAges.push(age);
+            }
+            
             formData.forEach((value, key) => {
+                if (key.startsWith('childAge')) return;
                 if (key === 'paymentMethod') {
-                    if (!data[key]) data[key] = [];
-                    data[key].push(value);
+                    paymentMethods.push(value);
                 } else {
                     data[key] = value;
                 }
             });
             
-            // تنسيق التواريخ والأوقات
-            let pickupDateFormatted = 'غير محدد';
-            if (data.pickupDate) {
-                const dateObj = new Date(data.pickupDate);
-                pickupDateFormatted = dateObj.toLocaleDateString('ar-KW');
-            }
-            
-            let returnDateFormatted = 'غير محدد';
-            if (data.returnDate) {
-                const dateObj = new Date(data.returnDate);
-                returnDateFormatted = dateObj.toLocaleDateString('ar-KW');
-            }
-            
-            // بناء الرسالة
-            const paymentMethods = data.paymentMethod ? data.paymentMethod.join('، ') : 'غير محدد';
-            const childrenInfo = data.childrenCount > 0 ? `${data.childrenCount} طفل، أعمارهم: ${data.childrenAges || 'غير محدد'}` : 'لا يوجد أطفال';
+            // بناء الرسالة مع البيانات الجديدة
+            const paymentMethodsStr = paymentMethods.length > 0 ? paymentMethods.join('، ') : 'غير محدد';
+            const childrenInfo = childrenCount > 0 ? `${childrenCount} طفل، أعمارهم: ${childAges.join('، ')}` : 'لا يوجد أطفال';
+            const returnLocation = data.returnOption === 'same' ? 'نفس مكان الاستلام' : data.returnLocation;
             
             const message = `🚗 *طلب تأجير سيارة - راوند تريب* 🚗
 
@@ -1997,16 +2068,15 @@
 • البريد: ${data.carEmail || 'غير محدد'}
 
 🔸 *تفاصيل الرحلة:*
-• الدولة المراد الزيارة: ${data.carCountry}
 • مكان الاستلام: ${data.pickupLocation}
-• تاريخ الاستلام: ${pickupDateFormatted}
+• تاريخ الاستلام: ${data.pickupDate || 'غير محدد'}
 • وقت الاستلام: ${data.pickupTime || 'غير محدد'}
-• مكان التسليم: ${data.returnLocation}
-• تاريخ التسليم: ${returnDateFormatted}
+• مكان التسليم: ${returnLocation}
+• تاريخ التسليم: ${data.returnDate || 'غير محدد'}
 • وقت التسليم: ${data.returnTime || 'غير محدد'}
 
 🔸 *تفاصيل السيارة:*
-• نوع السيارة المفضل: ${data.carType}
+• نوع السيارة المفضل: ${data.carType || 'غير محدد'}
 • عمر السائق: ${data.driverAge} سنة
 • عدد الأشخاص: ${data.totalPassengers}
 • الأطفال: ${childrenInfo}
@@ -2014,8 +2084,8 @@
 • شنط صغيرة: ${data.smallBags}
 
 🔸 *معلومات إضافية:*
-• دول أخرى ستزورونها: ${data.otherCountries || 'لا يوجد'}
-• طريقة الدفع المفضلة: ${paymentMethods}
+• دول أخرى ستزورونها غير بلد الاستلام والتسليم: ${data.otherCountries || 'لا يوجد'}
+• طريقة الدفع المفضلة: ${paymentMethodsStr}
 
 🔸 *ملاحظات إضافية:*
 ${data.carNotes || 'لا توجد ملاحظات'}
@@ -2025,10 +2095,7 @@ ${data.carNotes || 'لا توجد ملاحظات'}
 
 --- راوند تريب - خدمة تأجير السيارات ---`;
             
-            // إرسال عبر واتساب
             sendWhatsAppMessage(message);
-            
-            // إعادة تعيين النموذج
             setTimeout(() => form.reset(), 2000);
         });
         
@@ -2036,7 +2103,6 @@ ${data.carNotes || 'لا توجد ملاحظات'}
         document.getElementById('driverForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // جمع البيانات من النموذج
             const form = e.target;
             const formData = new FormData(form);
             const data = {};
@@ -2050,7 +2116,6 @@ ${data.carNotes || 'لا توجد ملاحظات'}
                 }
             });
             
-            // بناء الرسالة
             const tripTypesStr = tripTypes.length > 0 ? tripTypes.join('، ') : 'غير محدد';
             
             const message = `🚖 *طلب خدمة سائق خاص - راوند تريب* 🚖
@@ -2062,8 +2127,8 @@ ${data.carNotes || 'لا توجد ملاحظات'}
 • المدينة/الدولة: ${data.driverCity}
 
 🔸 *تفاصيل الرحلة:*
-• من (مكان الاستلام): ${data.fromLocation}
-• إلى (مكان التسليم): ${data.toLocation}
+• مكان الانطلاق: ${data.fromLocation}
+• مكان الوصول: ${data.toLocation}
 • عدد الأشخاص: ${data.driverPassengers} (بما فيهم الأطفال)
 • نوع الرحلات المطلوبة: ${tripTypesStr}
 • نوع السيارة: ${data.driverCarType}
@@ -2078,10 +2143,7 @@ ${data.driverPassengers === 'more' ? '⚠️ *ملاحظة:* سيتم تخصيص
 
 --- راوند تريب - خدمة السائق الخاص ---`;
             
-            // إرسال عبر واتساب
             sendWhatsAppMessage(message);
-            
-            // إعادة تعيين النموذج
             setTimeout(() => {
                 form.reset();
                 document.getElementById('passengerWarning').style.display = 'none';
@@ -2092,7 +2154,6 @@ ${data.driverPassengers === 'more' ? '⚠️ *ملاحظة:* سيتم تخصيص
         document.getElementById('honeymoonForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // جمع البيانات من النموذج
             const form = e.target;
             const formData = new FormData(form);
             const data = {};
@@ -2106,14 +2167,6 @@ ${data.driverPassengers === 'more' ? '⚠️ *ملاحظة:* سيتم تخصيص
                 }
             });
             
-            // تنسيق التاريخ
-            let travelDateFormatted = 'غير محدد';
-            if (data.honeymoonStartDate) {
-                const dateObj = new Date(data.honeymoonStartDate);
-                travelDateFormatted = dateObj.toLocaleDateString('ar-KW');
-            }
-            
-            // بناء الرسالة
             const servicesStr = services.length > 0 ? services.join('، ') : 'غير محدد';
             
             const message = `💖 *طلب رحلة شهر العسل - راوند تريب* 💖
@@ -2124,11 +2177,10 @@ ${data.driverPassengers === 'more' ? '⚠️ *ملاحظة:* سيتم تخصيص
 • البريد: ${data.honeymoonEmail || 'غير محدد'}
 
 🔸 *تفاصيل الرحلة:*
-• الوجهة: ${data.honeymoonDestination}
-• تاريخ السفر: ${travelDateFormatted}
+• الوجهة: ${data.honeymoonDestination || 'غير محدد'}
+• تاريخ السفر: ${data.honeymoonStartDate || 'غير محدد'}
 • مدة الرحلة: ${data.honeymoonDuration} يوم
-• الميزانية: ${data.honeymoonBudget || 'غير محدد'}
-• نوع الباقة: ${data.honeymoonType || 'غير محدد'}
+• الميزانية: ${data.honeymoonBudget || '0'} ${data.honeymoonCurrency || 'دينار كويتي'}
 
 🔸 *الخدمات المطلوبة:*
 ${servicesStr}
@@ -2141,10 +2193,7 @@ ${data.honeymoonSpecialRequests || 'لا توجد طلبات خاصة'}
 
 --- راوند تريب - رحلات شهر العسل ---`;
             
-            // إرسال عبر واتساب
             sendWhatsAppMessage(message);
-            
-            // إعادة تعيين النموذج
             setTimeout(() => form.reset(), 2000);
         });
         
@@ -2152,7 +2201,6 @@ ${data.honeymoonSpecialRequests || 'لا توجد طلبات خاصة'}
         document.getElementById('toursForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // جمع البيانات من النموذج
             const form = e.target;
             const formData = new FormData(form);
             const data = {};
@@ -2166,14 +2214,6 @@ ${data.honeymoonSpecialRequests || 'لا توجد طلبات خاصة'}
                 }
             });
             
-            // تنسيق التاريخ
-            let travelDateFormatted = 'غير محدد';
-            if (data.toursStartDate) {
-                const dateObj = new Date(data.toursStartDate);
-                travelDateFormatted = dateObj.toLocaleDateString('ar-KW');
-            }
-            
-            // بناء الرسالة
             const activitiesStr = activities.length > 0 ? activities.join('، ') : 'غير محدد';
             
             const message = `🌟 *طلب تنظيم رحلة/فعالية - راوند تريب* 🌟
@@ -2187,9 +2227,9 @@ ${data.honeymoonSpecialRequests || 'لا توجد طلبات خاصة'}
 • نوع الخدمة: ${data.toursType}
 • الوجهة: ${data.toursDestination}
 • عدد الأشخاص: ${data.toursPeople}
-• تاريخ السفر: ${travelDateFormatted}
+• تاريخ السفر: ${data.toursStartDate || 'غير محدد'}
 • مدة الرحلة: ${data.toursDuration || 'غير محدد'} يوم
-• الميزانية للشخص: ${data.toursBudget || 'غير محدد'}
+• الميزانية للشخص: ${data.toursBudget || '0'} ${data.toursCurrency || 'دينار كويتي'}
 
 🔸 *الأنشطة المطلوبة:*
 ${activitiesStr}
@@ -2202,10 +2242,7 @@ ${data.toursSpecialRequests || 'لا توجد تفاصيل إضافية'}
 
 --- راوند تريب - تنظيم الرحلات والفعاليات ---`;
             
-            // إرسال عبر واتساب
             sendWhatsAppMessage(message);
-            
-            // إعادة تعيين النموذج
             setTimeout(() => form.reset(), 2000);
         });
         
@@ -2213,20 +2250,11 @@ ${data.toursSpecialRequests || 'لا توجد تفاصيل إضافية'}
         document.getElementById('visaForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // جمع البيانات من النموذج
             const form = e.target;
             const formData = new FormData(form);
             const data = {};
             formData.forEach((value, key) => data[key] = value);
             
-            // تنسيق التاريخ
-            let travelDateFormatted = 'غير محدد';
-            if (data.visaTravelDate) {
-                const dateObj = new Date(data.visaTravelDate);
-                travelDateFormatted = dateObj.toLocaleDateString('ar-KW');
-            }
-            
-            // بناء الرسالة
             const message = `🛂 *طلب تأشيرة سفر - راوند تريب* 🛂
 
 🔸 *المعلومات الشخصية:*
@@ -2237,7 +2265,7 @@ ${data.toursSpecialRequests || 'لا توجد تفاصيل إضافية'}
 
 🔸 *تفاصيل التأشيرة:*
 • الدولة المراد السفر إليها: ${data.visaDestination}
-• تاريخ السفر المتوقع: ${travelDateFormatted}
+• تاريخ السفر المتوقع: ${data.visaTravelDate || 'غير محدد'}
 • عدد الأشخاص: ${data.visaPeople}
 • نوع التأشيرة: ${data.visaType || 'غير محدد'}
 
@@ -2249,10 +2277,7 @@ ${data.visaNotes || 'لا توجد ملاحظات'}
 
 --- راوند تريب - خدمة التأشيرات ---`;
             
-            // إرسال عبر واتساب
             sendWhatsAppMessage(message);
-            
-            // إعادة تعيين النموذج
             setTimeout(() => form.reset(), 2000);
         });
         
@@ -2260,26 +2285,25 @@ ${data.visaNotes || 'لا توجد ملاحظات'}
         document.getElementById('hotelForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // جمع البيانات من النموذج
             const form = e.target;
             const formData = new FormData(form);
             const data = {};
-            formData.forEach((value, key) => data[key] = value);
+            const childAges = [];
             
-            // تنسيق التواريخ
-            let checkInFormatted = 'غير محدد';
-            if (data.hotelCheckIn) {
-                const dateObj = new Date(data.hotelCheckIn);
-                checkInFormatted = dateObj.toLocaleDateString('ar-KW');
+            // جمع بيانات أعمار الأطفال
+            const childrenCount = parseInt(formData.get('hotelChildren') || 0);
+            for (let i = 1; i <= childrenCount; i++) {
+                const age = formData.get(`hotelChildAge${i}`);
+                if (age) childAges.push(age + ' سنة');
             }
             
-            let checkOutFormatted = 'غير محدد';
-            if (data.hotelCheckOut) {
-                const dateObj = new Date(data.hotelCheckOut);
-                checkOutFormatted = dateObj.toLocaleDateString('ar-KW');
-            }
+            formData.forEach((value, key) => {
+                if (key.startsWith('hotelChildAge')) return;
+                data[key] = value;
+            });
             
-            // بناء الرسالة
+            const childrenInfo = childrenCount > 0 ? `${childrenCount} طفل، أعمارهم: ${childAges.join('، ')}` : 'لا يوجد أطفال';
+            
             const message = `🏨 *طلب حجز فندق - راوند تريب* 🏨
 
 🔸 *المعلومات الشخصية:*
@@ -2289,12 +2313,12 @@ ${data.visaNotes || 'لا توجد ملاحظات'}
 
 🔸 *تفاصيل الحجز:*
 • الوجهة: ${data.hotelDestination}
-• تاريخ الوصول: ${checkInFormatted}
-• تاريخ المغادرة: ${checkOutFormatted}
+• تاريخ الوصول: ${data.hotelCheckIn || 'غير محدد'}
+• تاريخ المغادرة: ${data.hotelCheckOut || 'غير محدد'}
 • عدد الغرف: ${data.hotelRooms}
-• عدد الضيوف: ${data.hotelGuests}
+• عدد البالغين: ${data.hotelAdults}
+• الأطفال: ${childrenInfo}
 • نوع الفندق: ${data.hotelType || 'غير محدد'}
-• الميزانية: ${data.hotelBudget || 'غير محدد'}
 
 🔸 *طلبات خاصة:*
 ${data.hotelSpecialRequests || 'لا توجد طلبات خاصة'}
@@ -2304,28 +2328,18 @@ ${data.hotelSpecialRequests || 'لا توجد طلبات خاصة'}
 
 --- راوند تريب - خدمة حجز الفنادق ---`;
             
-            // إرسال عبر واتساب
             sendWhatsAppMessage(message);
-            
-            // إعادة تعيين النموذج
             setTimeout(() => form.reset(), 2000);
         });
         
         // دالة عامة لإرسال الرسائل عبر واتساب
         function sendWhatsAppMessage(message) {
-            // ترميح الرسالة
             const encodedMessage = encodeURIComponent(message);
-            
-            // رقم واتساب الشركة
             const companyWhatsappNumber = "96565750302";
-            
-            // رابط واتساب
             const whatsappUrl = `https://wa.me/${companyWhatsappNumber}?text=${encodedMessage}`;
             
-            // فتح واتساب في نافذة جديدة
             window.open(whatsappUrl, '_blank');
             
-            // رسالة تأكيد للعميل
             alert(`✅ تم تجهيز طلبك بنجاح!
 
 سيتم الآن فتح تطبيق واتساب:
@@ -2336,11 +2350,10 @@ ${data.hotelSpecialRequests || 'لا توجد طلبات خاصة'}
 شكراً لاختيارك راوند تريب! ✈️`);
         }
         
-        // تعيين الحد الأدنى للتاريخ على اليوم الحالي لجميع حقول التاريخ
+        // تعيين الحد الأدنى للتاريخ على اليوم الحالي
         document.addEventListener('DOMContentLoaded', function() {
             const today = new Date().toISOString().split('T')[0];
             
-            // تعيين لجميع حقول التاريخ
             const dateFields = [
                 'pickupDate', 'returnDate', 'honeymoonStartDate', 
                 'toursStartDate', 'visaTravelDate', 'hotelCheckIn', 'hotelCheckOut'
@@ -2359,10 +2372,22 @@ ${data.hotelSpecialRequests || 'لا توجد طلبات خاصة'}
                 const img = new Image();
                 img.src = 'banner.jpg';
                 img.onerror = function() {
-                    // إذا فشل تحميل الصورة المحلية، استخدم صورة من الإنترنت
                     banner.style.backgroundImage = `linear-gradient(rgba(85, 104, 89, 0.85), rgba(175, 181, 152, 0.8)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')`;
                 };
             }
+            
+            // تنسيق حقول الميزانية
+            const budgetContainers = document.querySelectorAll('.budget-currency-container');
+            budgetContainers.forEach(container => {
+                container.style.display = 'flex';
+                container.style.alignItems = 'center';
+                const input = container.querySelector('input[type="number"]');
+                const select = container.querySelector('select');
+                if (input && select) {
+                    input.style.flex = '1';
+                    select.style.width = 'auto';
+                }
+            });
         });
     </script>
 </body>
