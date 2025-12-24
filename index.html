@@ -169,7 +169,7 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
-        /* البانر - إزالة التثبيت */
+        /* البانر - إصلاح مشكلة التثبيت */
         .banner {
             height: 500px;
             background: linear-gradient(rgba(85, 104, 89, 0.85), rgba(175, 181, 152, 0.8)), url('banner.jpg');
@@ -182,7 +182,6 @@
             color: white;
             padding: 0 20px;
             position: relative;
-            /* إزالة position: sticky */
         }
         
         .banner-content {
@@ -462,27 +461,15 @@
             cursor: pointer;
         }
         
-        /* محاذاة النص البديل (placeholder) لليمين */
-        input::placeholder,
-        textarea::placeholder {
-            text-align: right;
-            direction: rtl;
-        }
-        
-        input:focus, select:focus, textarea:focus {
-            border-color: var(--sage-green);
-            outline: none;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(175, 181, 152, 0.1);
-        }
-        
-        /* تحسين حقول التاريخ والوقت */
+        /* تحسين حقول التاريخ والوقت - أصبحت قابلة للنقر في أي مكان */
         .date-time-input {
             position: relative;
+            cursor: pointer;
         }
         
         .date-time-input input {
             cursor: pointer;
+            background-color: white;
         }
         
         .date-time-input:after {
@@ -495,6 +482,7 @@
             transform: translateY(-50%);
             color: var(--olive-dark);
             pointer-events: none;
+            font-size: 18px;
         }
         
         .time-input:after {
@@ -606,6 +594,78 @@
         .terms-list i {
             color: var(--olive-dark);
             margin-top: 5px;
+        }
+        
+        /* خيارات أعمار الأطفال المخفية */
+        .child-age-group {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .child-age-group .form-row {
+            margin-top: 10px;
+        }
+        
+        /* توزيع الأشخاص على الغرف */
+        .room-distribution {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .room-distribution .form-row {
+            margin-top: 10px;
+        }
+        
+        .room-occupancy {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .room-occupancy-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .room-occupancy-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .room-occupancy-item h5 {
+            color: var(--olive-dark);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        /* خيارات أعمار الأطفال في الفنادق */
+        .children-ages-container {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .age-select-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
         }
         
         /* الفوتر */
@@ -811,66 +871,6 @@
             background-color: rgba(85, 104, 89, 0.05);
         }
         
-        /* خيارات أعمار الأطفال المخفية */
-        .child-age-group {
-            display: none;
-            margin-top: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border: 1px solid #e9ecef;
-        }
-        
-        .child-age-group .form-row {
-            margin-top: 10px;
-        }
-        
-        /* خيارات أعمار الأطفال في الفنادق */
-        .children-ages-container {
-            display: none;
-            margin-top: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border: 1px solid #e9ecef;
-        }
-        
-        .age-select-group {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        /* حاوية العملة */
-        .budget-currency-container {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        
-        .budget-currency-container input[type="number"] {
-            flex: 1;
-        }
-        
-        .budget-currency-container select {
-            width: 150px;
-        }
-        
-        /* توزيع الأشخاص على الغرف */
-        .room-distribution {
-            display: none;
-            margin-top: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border: 1px solid #e9ecef;
-        }
-        
-        .room-distribution .form-row {
-            margin-top: 10px;
-        }
-        
         /* تحسين ظهور القوائم المنسدلة */
         select {
             cursor: pointer;
@@ -882,34 +882,6 @@
             background-position: left 15px center;
             background-size: 12px;
             padding-left: 40px;
-        }
-        
-        /* توزيع الغرف والأشخاص */
-        .room-occupancy {
-            display: none;
-            margin-top: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border: 1px solid #e9ecef;
-        }
-        
-        .room-occupancy-item {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #e9ecef;
-        }
-        
-        .room-occupancy-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        
-        .room-occupancy-item h5 {
-            color: var(--olive-dark);
-            margin-bottom: 10px;
-            font-size: 16px;
         }
     </style>
 </head>
@@ -1134,13 +1106,15 @@
                                 <label for="driverAge" class="required">عمر السائق</label>
                                 <select id="driverAge" name="driverAge" required>
                                     <option value="">اختر عمر السائق</option>
+                                    <!-- سيتم تعبئتها بـ JavaScript -->
                                 </select>
                             </div>
                             
                             <div class="form-group">
-                                <label for="totalPassengers" class="required">عدد الأشخاص</label>
-                                <select id="totalPassengers" name="totalPassengers" required>
-                                    <option value="">اختر عدد الأشخاص</option>
+                                <label for="totalAdults" class="required">عدد البالغين (+12 سنة)</label>
+                                <select id="totalAdults" name="totalAdults" required>
+                                    <option value="">اختر عدد البالغين</option>
+                                    <!-- سيتم تعبئتها بـ JavaScript -->
                                 </select>
                             </div>
                         </div>
@@ -1150,6 +1124,7 @@
                                 <label for="childrenCount">عدد الأطفال (إذا وجد)</label>
                                 <select id="childrenCount" name="childrenCount" onchange="toggleChildAges(this.value)">
                                     <option value="0">0 - لا يوجد أطفال</option>
+                                    <!-- سيتم تعبئتها بـ JavaScript -->
                                 </select>
                             </div>
                             
@@ -1226,16 +1201,16 @@
                     <div class="terms-section">
                         <h3><i class="fas fa-file-contract"></i> الشروط العامة لتأجير السيارات</h3>
                         <ul class="terms-list">
-                            <li><i class="fas fa-check-circle"></i> <strong>الحد الأدنى للعمر:</strong> يجب أن يكون عمر السائق 19 سنة أو أكثر قد يتطلب عمر أكبر لبعض المدن والسيارات</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>المستندات المطلوبة:</strong> الرخصة المحلية - الرخصة الدولية - جواز السفر</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>التأمين:</strong> يشمل السعر تأميناً شاملاً ضد الحوادث والسرقة</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>الوديعة:</strong> قد يتم طلب وديعــة مستردة عند استلام السيارة</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>الوقود:</strong> يتم تسليم السيارة بوقود كامل ويجب إرجاعها بنفس الحالة</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>المسافة المقطوعة:</strong> جميع السيارات عداد مفتوح</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>الممنوعات:</strong> يحظر التدخين أو قيادة السيارة تحت تأثير أي مواد مخدرة</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>التسليم والاستلام:</strong> متوفر في المطار أو العنوان المطلوب</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>الأطفال:</strong> يجب ابلاغنا بوجود الأطفال تحت 10 سنوات لضرورة توفير الكرسي</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>النظافة:</strong> يجب اعادة السيارة بحالة نظيفة</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>الحد الأدنى للعمر</strong> يجب أن يكون عمر السائق 19 سنة أو أكثر قد يتطلب عمر أكبر لبعض المدن والسيارات</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>المستندات المطلوبة</strong> الرخصة المحلية - الرخصة الدولية - جواز السفر</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>التأمين</strong> يشمل السعر تأميناً شاملاً ضد الحوادث والسرقة</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>الوديعة</strong> قد يتم طلب وديعــة مستردة عند استلام السيارة</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>الوقود</strong> يتم تسليم السيارة بوقود كامل ويجب إرجاعها بنفس الحالة</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>المسافة المقطوعة</strong> جميع السيارات عداد مفتوح</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>الممنوعات</strong> يحظر التدخين أو قيادة السيارة تحت تأثير أي مواد مخدرة</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>التسليم والاستلام</strong> متوفر في المطار أو العنوان المطلوب</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>الأطفال</strong> يجب ابلاغنا بوجود الأطفال تحت 10 سنوات لضرورة توفير الكرسي</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>النظافة</strong> يجب اعادة السيارة بحالة نظيفة</li>
                         </ul>
                     </div>
                     
@@ -1309,6 +1284,7 @@
                                 <label for="hotelRooms" class="required">عدد الغرف</label>
                                 <select id="hotelRooms" name="hotelRooms" required onchange="toggleRoomOccupancy(this.value)">
                                     <option value="">اختر عدد الغرف</option>
+                                    <!-- سيتم تعبئتها بـ JavaScript -->
                                 </select>
                             </div>
                             
@@ -1316,6 +1292,7 @@
                                 <label for="hotelChildren">عدد الأطفال</label>
                                 <select id="hotelChildren" name="hotelChildren" onchange="toggleChildrenAges(this.value)">
                                     <option value="0">0 - لا يوجد أطفال</option>
+                                    <!-- سيتم تعبئتها بـ JavaScript -->
                                 </select>
                             </div>
                         </div>
@@ -1509,7 +1486,7 @@
             }
         }
         
-        // تحسين اختيار التاريخ والوقت
+        // تحسين اختيار التاريخ والوقت - يمكن النقر في أي مكان
         document.addEventListener('DOMContentLoaded', function() {
             // جعل حقول التاريخ والوقت قابلة للنقر في أي مكان
             const dateTimeInputs = document.querySelectorAll('.date-time-input');
@@ -1527,7 +1504,7 @@
                 }
             });
             
-            // تعبئة خيارات العمر في صفحة تأجير السيارات
+            // تعبئة خيارات العمر في صفحة تأجير السيارات (19-65)
             const driverAgeSelect = document.getElementById('driverAge');
             if (driverAgeSelect) {
                 for (let i = 19; i <= 65; i++) {
@@ -1538,18 +1515,18 @@
                 }
             }
             
-            // تعبئة خيارات عدد الأشخاص
-            const totalPassengersSelect = document.getElementById('totalPassengers');
-            if (totalPassengersSelect) {
+            // تعبئة خيارات عدد البالغين (1-9)
+            const totalAdultsSelect = document.getElementById('totalAdults');
+            if (totalAdultsSelect) {
                 for (let i = 1; i <= 9; i++) {
                     const option = document.createElement('option');
                     option.value = i;
                     option.textContent = i + ' شخص';
-                    totalPassengersSelect.appendChild(option);
+                    totalAdultsSelect.appendChild(option);
                 }
             }
             
-            // تعبئة خيارات عدد الأطفال
+            // تعبئة خيارات عدد الأطفال (1-7)
             const childrenCountSelect = document.getElementById('childrenCount');
             if (childrenCountSelect) {
                 for (let i = 1; i <= 7; i++) {
@@ -1560,7 +1537,7 @@
                 }
             }
             
-            // تعبئة خيارات عدد الغرف
+            // تعبئة خيارات عدد الغرف (1-8)
             const hotelRoomsSelect = document.getElementById('hotelRooms');
             if (hotelRoomsSelect) {
                 for (let i = 1; i <= 8; i++) {
@@ -1571,7 +1548,7 @@
                 }
             }
             
-            // تعبئة خيارات عدد الأطفال في الفنادق
+            // تعبئة خيارات عدد الأطفال في الفنادق (1-8)
             const hotelChildrenSelect = document.getElementById('hotelChildren');
             if (hotelChildrenSelect) {
                 for (let i = 1; i <= 8; i++) {
@@ -1585,8 +1562,7 @@
             // تعيين الحد الأدنى للتاريخ على اليوم الحالي
             const today = new Date().toISOString().split('T')[0];
             const dateFields = [
-                'pickupDate', 'returnDate', 'honeymoonStartDate', 
-                'toursStartDate', 'visaTravelDate', 'hotelCheckIn', 'hotelCheckOut'
+                'pickupDate', 'returnDate', 'hotelCheckIn', 'hotelCheckOut'
             ];
             
             dateFields.forEach(fieldId => {
@@ -1605,19 +1581,6 @@
                     banner.style.backgroundImage = `linear-gradient(rgba(85, 104, 89, 0.85), rgba(175, 181, 152, 0.8)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')`;
                 };
             }
-            
-            // تنسيق حقول الميزانية
-            const budgetContainers = document.querySelectorAll('.budget-currency-container');
-            budgetContainers.forEach(container => {
-                container.style.display = 'flex';
-                container.style.alignItems = 'center';
-                const input = container.querySelector('input[type="number"]');
-                const select = container.querySelector('select');
-                if (input && select) {
-                    input.style.flex = '1';
-                    select.style.width = 'auto';
-                }
-            });
         });
         
         // خيارات مكان التسليم
@@ -1719,7 +1682,7 @@
             const container = document.getElementById('roomOccupancyContainer');
             const inputs = document.getElementById('roomOccupancyInputs');
             
-            if (roomCount > 0) {
+            if (roomCount > 1) {
                 container.style.display = 'block';
                 inputs.innerHTML = '';
                 
@@ -1737,6 +1700,10 @@
                                     <option value="2">2 بالغين</option>
                                     <option value="3">3 بالغين</option>
                                     <option value="4">4 بالغين</option>
+                                    <option value="5">5 بالغين</option>
+                                    <option value="6">6 بالغين</option>
+                                    <option value="7">7 بالغين</option>
+                                    <option value="8">8 بالغين</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -1807,7 +1774,7 @@
             }
         });
         
-        // نماذج الإرسال - حل مشكلة الرموز في واتساب
+        // نماذج الإرسال - إصلاح مشكلة الرموز في واتساب
         document.getElementById('carRentalForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1838,6 +1805,17 @@
             const childrenInfo = childrenCount > 0 ? `${childrenCount} طفل، أعمارهم: ${childAges.join('، ')}` : 'لا يوجد أطفال';
             const returnLocation = data.returnOption === 'same' ? 'نفس مكان الاستلام' : data.returnLocation;
             
+            // تنسيق التاريخ بالميلادي بدل الهجري
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('en-GB', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            }).replace(',', '');
+            
             const message = `*طلب تأجير سيارة - راوند تريب*
 
 *المعلومات الشخصية:*
@@ -1856,7 +1834,7 @@
 *تفاصيل السيارة:*
 • نوع السيارة المفضل: ${data.carType || 'غير محدد'}
 • عمر السائق: ${data.driverAge || 'غير محدد'} سنة
-• عدد الأشخاص: ${data.totalPassengers || 'غير محدد'}
+• عدد البالغين: ${data.totalAdults || 'غير محدد'}
 • الأطفال: ${childrenInfo}
 • شنط كبيرة: ${data.largeBags || '0'}
 • شنط صغيرة: ${data.smallBags || '0'}
@@ -1868,7 +1846,7 @@
 *ملاحظات إضافية:*
 ${data.carNotes || 'لا توجد ملاحظات'}
 
-*تم إرسال الطلب في:* ${new Date().toLocaleString('ar-SA')}
+*تم إرسال الطلب في:* ${formattedDate}
 *رقم التواصل:* ${data.carPhone || 'غير محدد'}
 
 --- راوند تريب - خدمة تأجير السيارات ---`;
@@ -1903,13 +1881,31 @@ ${data.carNotes || 'لا توجد ملاحظات'}
                 roomDetails.push(roomInfo);
             }
             
+            // جمع أعمار الأطفال العامة
+            const childrenCount = parseInt(formData.get('hotelChildren') || 0);
+            const childrenAges = [];
+            for (let i = 1; i <= childrenCount; i++) {
+                const age = formData.get(`hotelChildAge${i}`);
+                if (age) childrenAges.push(age + ' سنة');
+            }
+            
             formData.forEach((value, key) => {
                 if (key.startsWith('room') || key.startsWith('hotelChildAge')) return;
                 data[key] = value;
             });
             
-            const childrenCount = parseInt(formData.get('hotelChildren') || 0);
-            const childrenInfo = childrenCount > 0 ? `${childrenCount} طفل` : 'لا يوجد أطفال';
+            const childrenInfo = childrenCount > 0 ? `${childrenCount} طفل، أعمارهم: ${childrenAges.join('، ')}` : 'لا يوجد أطفال';
+            
+            // تنسيق التاريخ بالميلادي
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('en-GB', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            }).replace(',', '');
             
             const message = `*طلب حجز فندق - راوند تريب*
 
@@ -1926,13 +1922,11 @@ ${data.carNotes || 'لا توجد ملاحظات'}
 • الأطفال: ${childrenInfo}
 • نوع الفندق: ${data.hotelType || 'غير محدد'}
 
-*تفاصيل الغرف:*
-${roomDetails.join('\n')}
-
+${roomCount > 1 ? `*تفاصيل الغرف:*\n${roomDetails.join('\n')}\n\n` : ''}
 *طلبات خاصة:*
 ${data.hotelSpecialRequests || 'لا توجد طلبات خاصة'}
 
-*تم إرسال الطلب في:* ${new Date().toLocaleString('ar-SA')}
+*تم إرسال الطلب في:* ${formattedDate}
 *رقم التواصل:* ${data.hotelPhone || 'غير محدد'}
 
 --- راوند تريب - خدمة حجز الفنادق ---`;
