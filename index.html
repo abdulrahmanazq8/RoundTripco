@@ -136,6 +136,15 @@
             padding: 8px 15px;
             border-radius: 8px;
             backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .phone-number:hover {
+            background: rgba(255,255,255,0.2);
         }
         
         .phone-number a {
@@ -143,12 +152,20 @@
             text-decoration: none;
             direction: ltr;
             display: inline-block;
+            flex: 1;
+        }
+        
+        .flag-icon {
+            width: 24px;
+            height: 16px;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         /* البانر */
         .banner {
             height: 500px;
-            background: linear-gradient(rgba(85, 104, 89, 0.85), rgba(175, 181, 152, 0.8));
+            background: linear-gradient(rgba(85, 104, 89, 0.85), rgba(175, 181, 152, 0.8)), url('banner.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -158,16 +175,6 @@
             color: white;
             padding: 0 20px;
             position: relative;
-        }
-        
-        .banner-img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
         }
         
         .banner-content {
@@ -589,6 +596,43 @@
             width: auto;
         }
         
+        /* الشروط العامة */
+        .terms-section {
+            background: var(--light-beige);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 40px;
+            border-right: 5px solid var(--sage-green);
+        }
+        
+        .terms-section h3 {
+            color: var(--olive-dark);
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .terms-list {
+            list-style: none;
+            padding-right: 0;
+        }
+        
+        .terms-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(85, 104, 89, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .terms-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .terms-list i {
+            color: var(--olive-dark);
+            margin-top: 5px;
+        }
+        
         /* الفوتر */
         .footer {
             background: linear-gradient(135deg, var(--olive-dark) 0%, #445a4a 100%);
@@ -763,16 +807,18 @@
         </div>
         
         <div class="contact-header">
-            <a href="https://wa.me/96565750302" class="whatsapp-btn pulse" target="_blank">
+            <div class="whatsapp-btn pulse" onclick="openWhatsApp('96565750302')">
                 <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
-            </a>
-            <div class="phone-number">
-                <i class="fas fa-phone"></i> 
-                <a href="tel:+96565750302">+965 65750302</a>
             </div>
-            <div class="phone-number" style="margin-top: 5px; font-size: 18px;">
-                <i class="fas fa-phone"></i> 
-                <a href="tel:+966569425758">+966 569425758</a>
+            
+            <div class="phone-number" onclick="openWhatsApp('96565750302')">
+                <img src="https://flagcdn.com/w20/kw.png" class="flag-icon" alt="علم الكويت">
+                <a href="https://wa.me/96565750302" target="_blank">+965 65750302</a>
+            </div>
+            
+            <div class="phone-number" style="margin-top: 5px; font-size: 18px;" onclick="openWhatsApp('966569425758')">
+                <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="علم السعودية">
+                <a href="https://wa.me/966569425758" target="_blank">+966 569425758</a>
             </div>
         </div>
     </header>
@@ -781,7 +827,6 @@
     <div id="mainPage">
         <!-- البانر الرئيسي -->
         <section class="banner">
-            <!-- البانر - يتم تحميله من خلال CSS -->
             <div class="banner-content">
                 <h1>استمتع برحلتك مع راوند تريب</h1>
                 <p>نخطط لرحلاتك بدقة فائقة، نضمن لك راحة تامة وتجربة سفر استثنائية تتناسب مع تطلعاتك وميزانيتك</p>
@@ -820,6 +865,18 @@
                     <a class="service-link">احجز مع سائق <i class="fas fa-arrow-left"></i></a>
                 </div>
                 
+                <!-- شهر العسل -->
+                <div class="service-card" onclick="showHoneymoonPage()">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>رحلات شهر العسل</h3>
+                    <div class="service-description">
+                        باقات خاصة للأزواج مع إضافات رومانسية في أجمل الوجهات العالمية لتجربة لا تُنسى
+                    </div>
+                    <a class="service-link">احجز رحلة شهر العسل <i class="fas fa-arrow-left"></i></a>
+                </div>
+                
                 <!-- تنظيم الرحلات والفعاليات -->
                 <div class="service-card" onclick="showToursPage()">
                     <div class="service-icon">
@@ -827,7 +884,7 @@
                     </div>
                     <h3>تنظيم الرحلات والفعاليات</h3>
                     <div class="service-description">
-                        تنظيم رحلات شهر العسل، برامج سياحية مخصصة، وحجوزات تذاكر فعاليات وأنشطة ترفيهية
+                        تنظيم برامج سياحية مخصصة، حجوزات تذاكر معالم سياحية وفعاليات وأنشطة ترفيهية
                     </div>
                     <a class="service-link">نظم رحلتك <i class="fas fa-arrow-left"></i></a>
                 </div>
@@ -911,13 +968,25 @@
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="returnLocation" class="required">مكان التسليم</label>
-                                <input type="text" id="returnLocation" name="returnLocation" required placeholder="يمكن أن يكون نفس مكان الاستلام">
+                                <label for="pickupTime" class="required">وقت الاستلام</label>
+                                <input type="time" id="pickupTime" name="pickupTime" required>
                             </div>
                             
                             <div class="form-group">
+                                <label for="returnLocation" class="required">مكان التسليم</label>
+                                <input type="text" id="returnLocation" name="returnLocation" required placeholder="يمكن أن يكون نفس مكان الاستلام">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
                                 <label for="returnDate" class="required">تاريخ التسليم</label>
                                 <input type="date" id="returnDate" name="returnDate" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="returnTime" class="required">وقت التسليم</label>
+                                <input type="time" id="returnTime" name="returnTime" required>
                             </div>
                         </div>
                         
@@ -1020,6 +1089,23 @@
                             <i class="fab fa-whatsapp whatsapp-icon"></i> إرسال طلب تأجير السيارة
                         </button>
                     </form>
+                    
+                    <!-- الشروط العامة لتأجير السيارات -->
+                    <div class="terms-section">
+                        <h3><i class="fas fa-file-contract"></i> الشروط العامة لتأجير السيارات</h3>
+                        <ul class="terms-list">
+                            <li><i class="fas fa-check-circle"></i> <strong>الحد الأدنى للعمر:</strong> يجب أن يكون عمر السائق 21 سنة أو أكثر</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>رخصة القيادة:</strong> يجب تقديم رخصة قيادة سارية المفعول</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>المستندات المطلوبة:</strong> جواز سفر وبطاقة هوية سارية</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>التأمين:</strong> يشمل السعر تأميناً شاملاً ضد الحوادث والسرقة</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>الوديعة:</strong> قد يتم طلب وديعــة مستردة عند استلام السيارة</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>الوقود:</strong> يتم تسليم السيارة بوقود كامل ويجب إرجاعها بنفس الحالة</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>المسافة المقطوعة:</strong> بعض العقود تشمل مسافة محددة يومياً</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>الممنوعات:</strong> يحظر التدخين أو قيادة السيارة تحت تأثير الكحول</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>التسليم والاستلام:</strong> متوفر في المطار أو العنوان المطلوب</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>نظام GPS:</strong> متوفر عند الطلب برسوم إضافية</li>
+                        </ul>
+                    </div>
                     
                     <div class="form-instructions">
                         <h4><i class="fas fa-info-circle"></i> كيفية إكمال الحجز:</h4>
@@ -1210,18 +1296,149 @@
         </div>
     </div>
 
-    <!-- صفحة تنظيم الرحلات والفعاليات -->
-    <div id="toursPage" class="internal-page">
+    <!-- صفحة شهر العسل -->
+    <div id="honeymoonPage" class="internal-page">
         <div class="page-header">
-            <h1 class="page-title">تنظيم الرحلات والفعاليات</h1>
-            <p class="page-subtitle">تنظيم رحلات شهر العسل، برامج سياحية مخصصة، وحجوزات تذاكر فعاليات وأنشطة ترفيهية</p>
+            <h1 class="page-title">رحلات شهر العسل</h1>
+            <p class="page-subtitle">باقات خاصة بالأزواج مع إضافات رومانسية في أجمل الوجهات العالمية لتجربة لا تُنسى</p>
             <button class="back-btn" onclick="showMainPage()"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
         </div>
         
         <div class="page-content">
             <div class="container">
                 <div class="booking-section">
-                    <h2 class="section-title">نموذج حجز رحلات وفعاليات</h2>
+                    <h2 class="section-title">طلب رحلة شهر العسل</h2>
+                    
+                    <form id="honeymoonForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="honeymoonName" class="required">الاسم</label>
+                                <input type="text" id="honeymoonName" name="honeymoonName" required placeholder="أدخل اسمك">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="honeymoonPhone" class="required">رقم التواصل</label>
+                                <input type="tel" id="honeymoonPhone" name="honeymoonPhone" required placeholder="رقم الهاتف">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="honeymoonEmail">البريد الإلكتروني (اختياري)</label>
+                                <input type="email" id="honeymoonEmail" name="honeymoonEmail" placeholder="name@example.com">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="honeymoonDestination" class="required">الوجهة المطلوبة</label>
+                                <select id="honeymoonDestination" name="honeymoonDestination" required>
+                                    <option value="">اختر الوجهة</option>
+                                    <option value="مالديف">مالديف</option>
+                                    <option value="باريس">باريس</option>
+                                    <option value="بالي">بالي</option>
+                                    <option value="سيشل">سيشل</option>
+                                    <option value="اليونان">اليونان</option>
+                                    <option value="ايطاليا">إيطاليا</option>
+                                    <option value="تركيا">تركيا</option>
+                                    <option value="أخرى">أخرى</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="honeymoonStartDate" class="required">تاريخ السفر المتوقع</label>
+                                <input type="date" id="honeymoonStartDate" name="honeymoonStartDate" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="honeymoonDuration" class="required">مدة الرحلة (أيام)</label>
+                                <input type="number" id="honeymoonDuration" name="honeymoonDuration" min="3" required placeholder="مثال: 7">
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="honeymoonBudget">الميزانية التقريبية (دينار كويتي)</label>
+                                <select id="honeymoonBudget" name="honeymoonBudget">
+                                    <option value="">اختر الفئة السعرية</option>
+                                    <option value="اقتصادية">اقتصادية (أقل من 1000)</option>
+                                    <option value="متوسطة">متوسطة (1000 - 2500)</option>
+                                    <option value="فاخرة">فاخرة (2500 - 5000)</option>
+                                    <option value="VIP">VIP (أكثر من 5000)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="honeymoonType">نوع الباقة المطلوبة</label>
+                                <select id="honeymoonType" name="honeymoonType">
+                                    <option value="">اختر نوع الباقة</option>
+                                    <option value="اقتصادية">باقة اقتصادية</option>
+                                    <option value="رومانسية">باقة رومانسية</option>
+                                    <option value="فاخرة">باقة فاخرة</option>
+                                    <option value="مميزة">باقة شهر عسل مميزة</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>الخدمات المطلوبة (يمكن اختيار أكثر من واحد)</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="serviceHotel" name="honeymoonService" value="فندق رومانسي">
+                                    <label for="serviceHotel">فندق رومانسي</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="serviceFlights" name="honeymoonService" value="تذاكر طيران">
+                                    <label for="serviceFlights">تذاكر طيران</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="serviceTours" name="honeymoonService" value="جولات سياحية">
+                                    <label for="serviceTours">جولات سياحية</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="serviceSurprise" name="honeymoonService" value="مفاجآت رومانسية">
+                                    <label for="serviceSurprise">مفاجآت رومانسية</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="honeymoonSpecialRequests">طلبات خاصة أو إضافات رومانسية</label>
+                            <textarea id="honeymoonSpecialRequests" name="honeymoonSpecialRequests" rows="4" placeholder="اذكر أي طلبات خاصة مثل: إطلالة على البحر، موسيقى رومانسية، إفطار في الغرفة..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fab fa-whatsapp whatsapp-icon"></i> إرسال طلب رحلة شهر العسل
+                        </button>
+                    </form>
+                    
+                    <div class="form-instructions">
+                        <h4><i class="fas fa-info-circle"></i> كيفية إكمال الحجز:</h4>
+                        <ol>
+                            <li>املأ جميع البيانات المطلوبة في النموذج أعلاه</li>
+                            <li>اضغط على زر "إرسال طلب رحلة شهر العسل"</li>
+                            <li>سيتم فتح تطبيق واتساب على جهازك تلقائياً</li>
+                            <li>ستجد الرسالة جاهزة مع كل بياناتك، فقط اضغط "إرسال"</li>
+                            <li>سنتصل بك خلال 24 ساعة لتأكيد الحجز وتفاصيل الدفع</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- صفحة تنظيم الرحلات والفعاليات -->
+    <div id="toursPage" class="internal-page">
+        <div class="page-header">
+            <h1 class="page-title">تنظيم الرحلات والفعاليات</h1>
+            <p class="page-subtitle">تنظيم برامج سياحية مخصصة، حجوزات تذاكر معالم سياحية وفعاليات وأنشطة ترفيهية</p>
+            <button class="back-btn" onclick="showMainPage()"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
+        </div>
+        
+        <div class="page-content">
+            <div class="container">
+                <div class="booking-section">
+                    <h2 class="section-title">طلب تنظيم رحلة/فعالية</h2>
                     
                     <form id="toursForm">
                         <div class="form-row">
@@ -1243,14 +1460,13 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="toursType" class="required">نوع الرحلة/الفعالية</label>
+                                <label for="toursType" class="required">نوع الخدمة المطلوبة</label>
                                 <select id="toursType" name="toursType" required>
-                                    <option value="">اختر نوع الرحلة</option>
-                                    <option value="شهر العسل">رحلة شهر العسل</option>
+                                    <option value="">اختر نوع الخدمة</option>
                                     <option value="برنامج سياحي">برنامج سياحي مخصص</option>
-                                    <option value="فعاليات">حجز فعاليات وأنشطة</option>
-                                    <option value="تذاكر معالم">تذاكر معالم سياحية</option>
-                                    <option value="عائلية">رحلة عائلية</option>
+                                    <option value="معالم سياحية">تذاكر معالم سياحية</option>
+                                    <option value="فعاليات">حجوزات فعاليات وأنشطة</option>
+                                    <option value="رحلات جماعية">رحلات جماعية منظمة</option>
                                     <option value="أخرى">أخرى</option>
                                 </select>
                             </div>
@@ -1263,8 +1479,8 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="toursPeople" class="required">عدد المسافرين</label>
-                                <input type="number" id="toursPeople" name="toursPeople" min="1" required placeholder="مثال: 2">
+                                <label for="toursPeople" class="required">عدد الأشخاص</label>
+                                <input type="number" id="toursPeople" name="toursPeople" min="1" required placeholder="مثال: 4">
                             </div>
                         </div>
                         
@@ -1276,19 +1492,19 @@
                             
                             <div class="form-group">
                                 <label for="toursDuration">مدة الرحلة (أيام)</label>
-                                <input type="number" id="toursDuration" name="toursDuration" min="1" placeholder="مثال: 7">
+                                <input type="number" id="toursDuration" name="toursDuration" min="1" placeholder="مثال: 5">
                             </div>
                         </div>
                         
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="toursBudget">الميزانية التقريبية (دينار كويتي)</label>
+                                <label for="toursBudget">الميزانية التقريبية للشخص (دينار كويتي)</label>
                                 <select id="toursBudget" name="toursBudget">
                                     <option value="">اختر الفئة السعرية</option>
-                                    <option value="اقتصادية">اقتصادية (أقل من 500)</option>
-                                    <option value="متوسطة">متوسطة (500 - 1500)</option>
-                                    <option value="فاخرة">فاخرة (1500 - 3000)</option>
-                                    <option value="VIP">VIP (أكثر من 3000)</option>
+                                    <option value="اقتصادية">اقتصادية (أقل من 300)</option>
+                                    <option value="متوسطة">متوسطة (300 - 800)</option>
+                                    <option value="فاخرة">فاخرة (800 - 1500)</option>
+                                    <option value="VIP">VIP (أكثر من 1500)</option>
                                 </select>
                             </div>
                             
@@ -1304,8 +1520,8 @@
                                         <label for="activityTickets">تذاكر فعاليات</label>
                                     </div>
                                     <div class="checkbox-item">
-                                        <input type="checkbox" id="activityTours" name="tourActivity" value="جولات سياحية">
-                                        <label for="activityTours">جولات سياحية</label>
+                                        <input type="checkbox" id="activityMonuments" name="tourActivity" value="معالم سياحية">
+                                        <label for="activityMonuments">معالم سياحية</label>
                                     </div>
                                     <div class="checkbox-item">
                                         <input type="checkbox" id="activityTransport" name="tourActivity" value="مواصلات">
@@ -1316,8 +1532,8 @@
                         </div>
                         
                         <div class="form-group">
-                            <label for="toursSpecialRequests">طلبات خاصة أو متطلبات إضافية</label>
-                            <textarea id="toursSpecialRequests" name="toursSpecialRequests" rows="4" placeholder="اذكر أي طلبات خاصة مثل: شهر عسل رومانسي، فعاليات عائلية، أنشطة ترفيهية..."></textarea>
+                            <label for="toursSpecialRequests">تفاصيل إضافية أو طلبات خاصة</label>
+                            <textarea id="toursSpecialRequests" name="toursSpecialRequests" rows="4" placeholder="اذكر أي تفاصيل إضافية مثل: المعالم المفضلة، نوع الفعاليات، متطلبات خاصة..."></textarea>
                         </div>
                         
                         <button type="submit" class="submit-btn">
@@ -1559,20 +1775,20 @@
                     <li><a href="#" onclick="showMainPage(); return false;" style="color: white; text-decoration: none;">الرئيسية</a></li>
                     <li><a href="#" onclick="showCarRentalPage(); return false;" style="color: white; text-decoration: none;">تأجير السيارات</a></li>
                     <li><a href="#" onclick="showDriverPage(); return false;" style="color: white; text-decoration: none;">سائق خاص</a></li>
+                    <li><a href="#" onclick="showHoneymoonPage(); return false;" style="color: white; text-decoration: none;">شهر العسل</a></li>
                     <li><a href="#" onclick="showToursPage(); return false;" style="color: white; text-decoration: none;">تنظيم الرحلات</a></li>
-                    <li><a href="#" onclick="showVisaPage(); return false;" style="color: white; text-decoration: none;">التأشيرات</a></li>
                 </ul>
             </div>
             
             <div class="footer-section footer-contact">
                 <h3>تواصل معنا</h3>
-                <div>
-                    <i class="fas fa-phone"></i>
-                    <span><a href="tel:+96565750302" style="color: white; text-decoration: none;">+965 65750302</a></span>
+                <div class="phone-number" onclick="openWhatsApp('96565750302')" style="background: transparent; padding: 0; margin-bottom: 15px;">
+                    <img src="https://flagcdn.com/w20/kw.png" class="flag-icon" alt="علم الكويت">
+                    <a href="https://wa.me/96565750302" target="_blank" style="color: white; text-decoration: none;">+965 65750302</a>
                 </div>
-                <div>
-                    <i class="fas fa-phone"></i>
-                    <span><a href="tel:+966569425758" style="color: white; text-decoration: none;">+966 569425758</a></span>
+                <div class="phone-number" onclick="openWhatsApp('966569425758')" style="background: transparent; padding: 0; margin-bottom: 15px;">
+                    <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="علم السعودية">
+                    <a href="https://wa.me/966569425758" target="_blank" style="color: white; text-decoration: none;">+966 569425758</a>
                 </div>
                 <div>
                     <i class="fab fa-whatsapp"></i>
@@ -1601,6 +1817,7 @@
             document.getElementById('mainPage').style.display = 'block';
             document.getElementById('carRentalPage').style.display = 'none';
             document.getElementById('driverPage').style.display = 'none';
+            document.getElementById('honeymoonPage').style.display = 'none';
             document.getElementById('toursPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'none';
             document.getElementById('hotelPage').style.display = 'none';
@@ -1611,6 +1828,7 @@
             document.getElementById('mainPage').style.display = 'none';
             document.getElementById('carRentalPage').style.display = 'block';
             document.getElementById('driverPage').style.display = 'none';
+            document.getElementById('honeymoonPage').style.display = 'none';
             document.getElementById('toursPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'none';
             document.getElementById('hotelPage').style.display = 'none';
@@ -1621,6 +1839,18 @@
             document.getElementById('mainPage').style.display = 'none';
             document.getElementById('driverPage').style.display = 'block';
             document.getElementById('carRentalPage').style.display = 'none';
+            document.getElementById('honeymoonPage').style.display = 'none';
+            document.getElementById('toursPage').style.display = 'none';
+            document.getElementById('visaPage').style.display = 'none';
+            document.getElementById('hotelPage').style.display = 'none';
+            window.scrollTo(0, 0);
+        }
+        
+        function showHoneymoonPage() {
+            document.getElementById('mainPage').style.display = 'none';
+            document.getElementById('honeymoonPage').style.display = 'block';
+            document.getElementById('carRentalPage').style.display = 'none';
+            document.getElementById('driverPage').style.display = 'none';
             document.getElementById('toursPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'none';
             document.getElementById('hotelPage').style.display = 'none';
@@ -1632,6 +1862,7 @@
             document.getElementById('toursPage').style.display = 'block';
             document.getElementById('carRentalPage').style.display = 'none';
             document.getElementById('driverPage').style.display = 'none';
+            document.getElementById('honeymoonPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'none';
             document.getElementById('hotelPage').style.display = 'none';
             window.scrollTo(0, 0);
@@ -1642,6 +1873,7 @@
             document.getElementById('visaPage').style.display = 'block';
             document.getElementById('carRentalPage').style.display = 'none';
             document.getElementById('driverPage').style.display = 'none';
+            document.getElementById('honeymoonPage').style.display = 'none';
             document.getElementById('toursPage').style.display = 'none';
             document.getElementById('hotelPage').style.display = 'none';
             window.scrollTo(0, 0);
@@ -1652,9 +1884,18 @@
             document.getElementById('hotelPage').style.display = 'block';
             document.getElementById('carRentalPage').style.display = 'none';
             document.getElementById('driverPage').style.display = 'none';
+            document.getElementById('honeymoonPage').style.display = 'none';
             document.getElementById('toursPage').style.display = 'none';
             document.getElementById('visaPage').style.display = 'none';
             window.scrollTo(0, 0);
+        }
+        
+        // فتح واتساب
+        function openWhatsApp(phoneNumber) {
+            const message = "مرحباً، أريد الاستفسار عن خدمات راوند تريب";
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            window.open(whatsappUrl, '_blank');
         }
         
         // التحقق من حد الركاب في خدمة السائق
@@ -1684,7 +1925,7 @@
                 }
             });
             
-            // تنسيق التواريخ
+            // تنسيق التواريخ والأوقات
             let pickupDateFormatted = 'غير محدد';
             if (data.pickupDate) {
                 const dateObj = new Date(data.pickupDate);
@@ -1712,8 +1953,10 @@
 • الدولة المراد الزيارة: ${data.carCountry}
 • مكان الاستلام: ${data.pickupLocation}
 • تاريخ الاستلام: ${pickupDateFormatted}
+• وقت الاستلام: ${data.pickupTime || 'غير محدد'}
 • مكان التسليم: ${data.returnLocation}
 • تاريخ التسليم: ${returnDateFormatted}
+• وقت التسليم: ${data.returnTime || 'غير محدد'}
 
 🔸 *تفاصيل السيارة:*
 • نوع السيارة المفضل: ${data.carType}
@@ -1798,6 +2041,66 @@ ${data.driverPassengers === 'more' ? '⚠️ *ملاحظة:* سيتم تخصيص
             }, 2000);
         });
         
+        // نموذج شهر العسل
+        document.getElementById('honeymoonForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // جمع البيانات من النموذج
+            const form = e.target;
+            const formData = new FormData(form);
+            const data = {};
+            const services = [];
+            
+            formData.forEach((value, key) => {
+                if (key === 'honeymoonService') {
+                    services.push(value);
+                } else {
+                    data[key] = value;
+                }
+            });
+            
+            // تنسيق التاريخ
+            let travelDateFormatted = 'غير محدد';
+            if (data.honeymoonStartDate) {
+                const dateObj = new Date(data.honeymoonStartDate);
+                travelDateFormatted = dateObj.toLocaleDateString('ar-KW');
+            }
+            
+            // بناء الرسالة
+            const servicesStr = services.length > 0 ? services.join('، ') : 'غير محدد';
+            
+            const message = `💖 *طلب رحلة شهر العسل - راوند تريب* 💖
+
+🔸 *المعلومات الشخصية:*
+• الاسم: ${data.honeymoonName}
+• رقم التواصل: ${data.honeymoonPhone}
+• البريد: ${data.honeymoonEmail || 'غير محدد'}
+
+🔸 *تفاصيل الرحلة:*
+• الوجهة: ${data.honeymoonDestination}
+• تاريخ السفر: ${travelDateFormatted}
+• مدة الرحلة: ${data.honeymoonDuration} يوم
+• الميزانية: ${data.honeymoonBudget || 'غير محدد'}
+• نوع الباقة: ${data.honeymoonType || 'غير محدد'}
+
+🔸 *الخدمات المطلوبة:*
+${servicesStr}
+
+🔸 *طلبات خاصة:*
+${data.honeymoonSpecialRequests || 'لا توجد طلبات خاصة'}
+
+📅 *تم إرسال الطلب في:* ${new Date().toLocaleString('ar-KW')}
+📞 *رقم التواصل:* ${data.honeymoonPhone}
+
+--- راوند تريب - رحلات شهر العسل ---`;
+            
+            // إرسال عبر واتساب
+            sendWhatsAppMessage(message);
+            
+            // إعادة تعيين النموذج
+            setTimeout(() => form.reset(), 2000);
+        });
+        
         // نموذج تنظيم الرحلات والفعاليات
         document.getElementById('toursForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1834,18 +2137,18 @@ ${data.driverPassengers === 'more' ? '⚠️ *ملاحظة:* سيتم تخصيص
 • البريد: ${data.toursEmail || 'غير محدد'}
 
 🔸 *تفاصيل الرحلة:*
-• نوع الرحلة/الفعالية: ${data.toursType}
+• نوع الخدمة: ${data.toursType}
 • الوجهة: ${data.toursDestination}
-• عدد المسافرين: ${data.toursPeople}
+• عدد الأشخاص: ${data.toursPeople}
 • تاريخ السفر: ${travelDateFormatted}
 • مدة الرحلة: ${data.toursDuration || 'غير محدد'} يوم
-• الميزانية: ${data.toursBudget || 'غير محدد'}
+• الميزانية للشخص: ${data.toursBudget || 'غير محدد'}
 
 🔸 *الأنشطة المطلوبة:*
 ${activitiesStr}
 
-🔸 *طلبات خاصة:*
-${data.toursSpecialRequests || 'لا توجد طلبات خاصة'}
+🔸 *تفاصيل إضافية:*
+${data.toursSpecialRequests || 'لا توجد تفاصيل إضافية'}
 
 📅 *تم إرسال الطلب في:* ${new Date().toLocaleString('ar-KW')}
 📞 *رقم التواصل:* ${data.toursPhone}
@@ -1992,8 +2295,8 @@ ${data.hotelSpecialRequests || 'لا توجد طلبات خاصة'}
             
             // تعيين لجميع حقول التاريخ
             const dateFields = [
-                'pickupDate', 'returnDate', 'toursStartDate', 
-                'visaTravelDate', 'hotelCheckIn', 'hotelCheckOut'
+                'pickupDate', 'returnDate', 'honeymoonStartDate', 
+                'toursStartDate', 'visaTravelDate', 'hotelCheckIn', 'hotelCheckOut'
             ];
             
             dateFields.forEach(fieldId => {
@@ -2003,15 +2306,11 @@ ${data.hotelSpecialRequests || 'لا توجد طلبات خاصة'}
                 }
             });
             
-            // إضافة صورة البانر من خلال CSS
+            // تحميل صورة البانر
             const banner = document.querySelector('.banner');
             if (banner) {
-                // محاولة تحميل الصورة المحلية أولاً
                 const img = new Image();
                 img.src = 'banner.jpg';
-                img.onload = function() {
-                    banner.style.backgroundImage = `linear-gradient(rgba(85, 104, 89, 0.85), rgba(175, 181, 152, 0.8)), url('banner.jpg')`;
-                };
                 img.onerror = function() {
                     // إذا فشل تحميل الصورة المحلية، استخدم صورة من الإنترنت
                     banner.style.backgroundImage = `linear-gradient(rgba(85, 104, 89, 0.85), rgba(175, 181, 152, 0.8)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')`;
