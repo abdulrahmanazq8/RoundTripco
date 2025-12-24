@@ -883,6 +883,34 @@
             background-size: 12px;
             padding-left: 40px;
         }
+        
+        /* توزيع الغرف والأشخاص */
+        .room-occupancy {
+            display: none;
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .room-occupancy-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .room-occupancy-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .room-occupancy-item h5 {
+            color: var(--olive-dark);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -1106,9 +1134,6 @@
                                 <label for="driverAge" class="required">عمر السائق</label>
                                 <select id="driverAge" name="driverAge" required>
                                     <option value="">اختر عمر السائق</option>
-                                    <?php for($i=19; $i<=65; $i++): ?>
-                                    <option value="<?php echo $i; ?>"><?php echo $i; ?> سنة</option>
-                                    <?php endfor; ?>
                                 </select>
                             </div>
                             
@@ -1116,9 +1141,6 @@
                                 <label for="totalPassengers" class="required">عدد الأشخاص</label>
                                 <select id="totalPassengers" name="totalPassengers" required>
                                     <option value="">اختر عدد الأشخاص</option>
-                                    <?php for($i=1; $i<=9; $i++): ?>
-                                    <option value="<?php echo $i; ?>"><?php echo $i; ?> شخص</option>
-                                    <?php endfor; ?>
                                 </select>
                             </div>
                         </div>
@@ -1128,9 +1150,6 @@
                                 <label for="childrenCount">عدد الأطفال (إذا وجد)</label>
                                 <select id="childrenCount" name="childrenCount" onchange="toggleChildAges(this.value)">
                                     <option value="0">0 - لا يوجد أطفال</option>
-                                    <?php for($i=1; $i<=7; $i++): ?>
-                                    <option value="<?php echo $i; ?>"><?php echo $i; ?> طفل</option>
-                                    <?php endfor; ?>
                                 </select>
                             </div>
                             
@@ -1207,7 +1226,7 @@
                     <div class="terms-section">
                         <h3><i class="fas fa-file-contract"></i> الشروط العامة لتأجير السيارات</h3>
                         <ul class="terms-list">
-                            <li><i class="fas fa-check-circle"></i> <strong>الحد الأدنى للعمر:</strong> يجب أن يكون عمر السائق 19 سنة أو أكثر (قد يتطلب عمر أكبر لبعض المدن والسيارات)</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>الحد الأدنى للعمر:</strong> يجب أن يكون عمر السائق 19 سنة أو أكثر قد يتطلب عمر أكبر لبعض المدن والسيارات</li>
                             <li><i class="fas fa-check-circle"></i> <strong>المستندات المطلوبة:</strong> الرخصة المحلية - الرخصة الدولية - جواز السفر</li>
                             <li><i class="fas fa-check-circle"></i> <strong>التأمين:</strong> يشمل السعر تأميناً شاملاً ضد الحوادث والسرقة</li>
                             <li><i class="fas fa-check-circle"></i> <strong>الوديعة:</strong> قد يتم طلب وديعــة مستردة عند استلام السيارة</li>
@@ -1215,7 +1234,7 @@
                             <li><i class="fas fa-check-circle"></i> <strong>المسافة المقطوعة:</strong> جميع السيارات عداد مفتوح</li>
                             <li><i class="fas fa-check-circle"></i> <strong>الممنوعات:</strong> يحظر التدخين أو قيادة السيارة تحت تأثير أي مواد مخدرة</li>
                             <li><i class="fas fa-check-circle"></i> <strong>التسليم والاستلام:</strong> متوفر في المطار أو العنوان المطلوب</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>الأطفال:</strong> يجب ابلاغنا بوجود الأطفال تحت 8 سنوات لضرورة توفير الكرسي</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>الأطفال:</strong> يجب ابلاغنا بوجود الأطفال تحت 10 سنوات لضرورة توفير الكرسي</li>
                             <li><i class="fas fa-check-circle"></i> <strong>النظافة:</strong> يجب اعادة السيارة بحالة نظيفة</li>
                         </ul>
                     </div>
@@ -1288,59 +1307,41 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="hotelRooms" class="required">عدد الغرف</label>
-                                <select id="hotelRooms" name="hotelRooms" required onchange="toggleRoomDistribution(this.value)">
+                                <select id="hotelRooms" name="hotelRooms" required onchange="toggleRoomOccupancy(this.value)">
                                     <option value="">اختر عدد الغرف</option>
-                                    <?php for($i=1; $i<=6; $i++): ?>
-                                    <option value="<?php echo $i; ?>"><?php echo $i; ?> غرفة</option>
-                                    <?php endfor; ?>
                                 </select>
                             </div>
                             
-                            <div class="form-group">
-                                <label for="hotelAdults" class="required">عدد البالغين</label>
-                                <select id="hotelAdults" name="hotelAdults" required>
-                                    <option value="">اختر عدد البالغين</option>
-                                    <?php for($i=1; $i<=8; $i++): ?>
-                                    <option value="<?php echo $i; ?>"><?php echo $i; ?> بالغ</option>
-                                    <?php endfor; ?>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
                             <div class="form-group">
                                 <label for="hotelChildren">عدد الأطفال</label>
                                 <select id="hotelChildren" name="hotelChildren" onchange="toggleChildrenAges(this.value)">
                                     <option value="0">0 - لا يوجد أطفال</option>
-                                    <?php for($i=1; $i<=8; $i++): ?>
-                                    <option value="<?php echo $i; ?>"><?php echo $i; ?> طفل</option>
-                                    <?php endfor; ?>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="hotelType">نوع الفندق المفضل</label>
-                                <select id="hotelType" name="hotelType">
-                                    <option value="">اختر نوع الفندق</option>
-                                    <option value="5 نجوم">5 نجوم</option>
-                                    <option value="4 نجوم">4 نجوم</option>
-                                    <option value="3 نجوم">3 نجوم</option>
-                                    <option value="منتجع">منتجع</option>
-                                    <option value="شقة فندقية">شقة فندقية</option>
                                 </select>
                             </div>
                         </div>
                         
                         <!-- توزيع الأشخاص على الغرف -->
-                        <div id="roomDistributionContainer" class="room-distribution">
+                        <div id="roomOccupancyContainer" class="room-occupancy">
                             <label>توزيع الأشخاص على الغرف</label>
-                            <div id="roomDistributionInputs"></div>
+                            <div id="roomOccupancyInputs"></div>
                         </div>
                         
                         <!-- أعمار الأطفال -->
                         <div id="childrenAgesContainer" class="children-ages-container">
                             <label>أعمار الأطفال</label>
                             <div id="childrenAgeInputs"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hotelType">نوع الفندق المفضل</label>
+                            <select id="hotelType" name="hotelType">
+                                <option value="">اختر نوع الفندق</option>
+                                <option value="5 نجوم">5 نجوم</option>
+                                <option value="4 نجوم">4 نجوم</option>
+                                <option value="3 نجوم">3 نجوم</option>
+                                <option value="منتجع">منتجع</option>
+                                <option value="شقة فندقية">شقة فندقية</option>
+                            </select>
                         </div>
                         
                         <div class="form-group">
@@ -1525,6 +1526,98 @@
                     });
                 }
             });
+            
+            // تعبئة خيارات العمر في صفحة تأجير السيارات
+            const driverAgeSelect = document.getElementById('driverAge');
+            if (driverAgeSelect) {
+                for (let i = 19; i <= 65; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = i + ' سنة';
+                    driverAgeSelect.appendChild(option);
+                }
+            }
+            
+            // تعبئة خيارات عدد الأشخاص
+            const totalPassengersSelect = document.getElementById('totalPassengers');
+            if (totalPassengersSelect) {
+                for (let i = 1; i <= 9; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = i + ' شخص';
+                    totalPassengersSelect.appendChild(option);
+                }
+            }
+            
+            // تعبئة خيارات عدد الأطفال
+            const childrenCountSelect = document.getElementById('childrenCount');
+            if (childrenCountSelect) {
+                for (let i = 1; i <= 7; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = i + ' طفل';
+                    childrenCountSelect.appendChild(option);
+                }
+            }
+            
+            // تعبئة خيارات عدد الغرف
+            const hotelRoomsSelect = document.getElementById('hotelRooms');
+            if (hotelRoomsSelect) {
+                for (let i = 1; i <= 8; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = i + ' غرفة';
+                    hotelRoomsSelect.appendChild(option);
+                }
+            }
+            
+            // تعبئة خيارات عدد الأطفال في الفنادق
+            const hotelChildrenSelect = document.getElementById('hotelChildren');
+            if (hotelChildrenSelect) {
+                for (let i = 1; i <= 8; i++) {
+                    const option = document.createElement('option');
+                    option.value = i;
+                    option.textContent = i + ' طفل';
+                    hotelChildrenSelect.appendChild(option);
+                }
+            }
+            
+            // تعيين الحد الأدنى للتاريخ على اليوم الحالي
+            const today = new Date().toISOString().split('T')[0];
+            const dateFields = [
+                'pickupDate', 'returnDate', 'honeymoonStartDate', 
+                'toursStartDate', 'visaTravelDate', 'hotelCheckIn', 'hotelCheckOut'
+            ];
+            
+            dateFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field) {
+                    field.min = today;
+                }
+            });
+            
+            // تحميل صورة البانر
+            const banner = document.querySelector('.banner');
+            if (banner) {
+                const img = new Image();
+                img.src = 'banner.jpg';
+                img.onerror = function() {
+                    banner.style.backgroundImage = `linear-gradient(rgba(85, 104, 89, 0.85), rgba(175, 181, 152, 0.8)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')`;
+                };
+            }
+            
+            // تنسيق حقول الميزانية
+            const budgetContainers = document.querySelectorAll('.budget-currency-container');
+            budgetContainers.forEach(container => {
+                container.style.display = 'flex';
+                container.style.alignItems = 'center';
+                const input = container.querySelector('input[type="number"]');
+                const select = container.querySelector('select');
+                if (input && select) {
+                    input.style.flex = '1';
+                    select.style.width = 'auto';
+                }
+            });
         });
         
         // خيارات مكان التسليم
@@ -1547,7 +1640,7 @@
             }
         }
         
-        // تفعيل خيارات أعمار الأطفال عند تحديد عددهم
+        // تفعيل خيارات أعمار الأطفال عند تحديد عددهم (صفحة تأجير السيارات)
         function toggleChildAges(count) {
             const childAgeGroup = document.getElementById('childAgeGroup');
             const childAgeInputs = document.getElementById('childAgeInputs');
@@ -1563,7 +1656,7 @@
                         <label for="childAge${i}">عمر الطفل ${i}</label>
                         <select id="childAge${i}" name="childAge${i}" required>
                             <option value="">اختر العمر</option>
-                            <option value="أقل من سنتين">أقل من سنتين</option>
+                            <option value="1">1 سنة</option>
                             <option value="2">2 سنوات</option>
                             <option value="3">3 سنوات</option>
                             <option value="4">4 سنوات</option>
@@ -1621,29 +1714,85 @@
             }
         }
         
-        // توزيع الأشخاص على الغرف
-        function toggleRoomDistribution(roomCount) {
-            const container = document.getElementById('roomDistributionContainer');
-            const inputs = document.getElementById('roomDistributionInputs');
+        // توزيع الأشخاص على الغرف في الفنادق
+        function toggleRoomOccupancy(roomCount) {
+            const container = document.getElementById('roomOccupancyContainer');
+            const inputs = document.getElementById('roomOccupancyInputs');
             
-            if (roomCount > 1) {
+            if (roomCount > 0) {
                 container.style.display = 'block';
                 inputs.innerHTML = '';
                 
                 for (let i = 1; i <= roomCount; i++) {
-                    const roomDist = document.createElement('div');
-                    roomDist.className = 'form-group';
-                    roomDist.innerHTML = `
-                        <label for="room${i}Adults">الغرفة ${i} - عدد البالغين</label>
-                        <select id="room${i}Adults" name="room${i}Adults" required>
-                            <option value="">اختر عدد البالغين</option>
-                            <option value="1">1 بالغ</option>
-                            <option value="2">2 بالغين</option>
-                            <option value="3">3 بالغين</option>
-                            <option value="4">4 بالغين</option>
+                    const roomItem = document.createElement('div');
+                    roomItem.className = 'room-occupancy-item';
+                    roomItem.innerHTML = `
+                        <h5>الغرفة ${i}</h5>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="room${i}Adults">عدد البالغين</label>
+                                <select id="room${i}Adults" name="room${i}Adults" required>
+                                    <option value="">اختر عدد البالغين</option>
+                                    <option value="1">1 بالغ</option>
+                                    <option value="2">2 بالغين</option>
+                                    <option value="3">3 بالغين</option>
+                                    <option value="4">4 بالغين</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="room${i}Children">عدد الأطفال</label>
+                                <select id="room${i}Children" name="room${i}Children" onchange="toggleRoomChildAges(${i}, this.value)">
+                                    <option value="0">0 - لا يوجد أطفال</option>
+                                    <option value="1">1 طفل</option>
+                                    <option value="2">2 أطفال</option>
+                                    <option value="3">3 أطفال</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="room${i}ChildrenAges" class="children-ages-container" style="display: none; margin-top: 10px;">
+                            <label>أعمار الأطفال في الغرفة ${i}</label>
+                            <div id="room${i}ChildAgeInputs"></div>
+                        </div>
+                    `;
+                    inputs.appendChild(roomItem);
+                }
+            } else {
+                container.style.display = 'none';
+                inputs.innerHTML = '';
+            }
+        }
+        
+        // تفعيل خيارات أعمار الأطفال لكل غرفة
+        function toggleRoomChildAges(roomNumber, count) {
+            const container = document.getElementById(`room${roomNumber}ChildrenAges`);
+            const inputs = document.getElementById(`room${roomNumber}ChildAgeInputs`);
+            
+            if (count > 0) {
+                container.style.display = 'block';
+                inputs.innerHTML = '';
+                
+                for (let i = 1; i <= count; i++) {
+                    const ageSelect = document.createElement('div');
+                    ageSelect.className = 'age-select-group';
+                    ageSelect.innerHTML = `
+                        <label for="room${roomNumber}ChildAge${i}">عمر الطفل ${i}</label>
+                        <select id="room${roomNumber}ChildAge${i}" name="room${roomNumber}ChildAge${i}" required>
+                            <option value="">اختر العمر</option>
+                            <option value="1">1 سنة</option>
+                            <option value="2">2 سنوات</option>
+                            <option value="3">3 سنوات</option>
+                            <option value="4">4 سنوات</option>
+                            <option value="5">5 سنوات</option>
+                            <option value="6">6 سنوات</option>
+                            <option value="7">7 سنوات</option>
+                            <option value="8">8 سنوات</option>
+                            <option value="9">9 سنوات</option>
+                            <option value="10">10 سنوات</option>
+                            <option value="11">11 سنة</option>
+                            <option value="12">12 سنة</option>
                         </select>
                     `;
-                    inputs.appendChild(roomDist);
+                    inputs.appendChild(ageSelect);
                 }
             } else {
                 container.style.display = 'none';
@@ -1658,47 +1807,7 @@
             }
         });
         
-        // تعيين الحد الأدنى للتاريخ على اليوم الحالي
-        document.addEventListener('DOMContentLoaded', function() {
-            const today = new Date().toISOString().split('T')[0];
-            
-            const dateFields = [
-                'pickupDate', 'returnDate', 'honeymoonStartDate', 
-                'toursStartDate', 'visaTravelDate', 'hotelCheckIn', 'hotelCheckOut'
-            ];
-            
-            dateFields.forEach(fieldId => {
-                const field = document.getElementById(fieldId);
-                if (field) {
-                    field.min = today;
-                }
-            });
-            
-            // تحميل صورة البانر
-            const banner = document.querySelector('.banner');
-            if (banner) {
-                const img = new Image();
-                img.src = 'banner.jpg';
-                img.onerror = function() {
-                    banner.style.backgroundImage = `linear-gradient(rgba(85, 104, 89, 0.85), rgba(175, 181, 152, 0.8)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')`;
-                };
-            }
-            
-            // تنسيق حقول الميزانية
-            const budgetContainers = document.querySelectorAll('.budget-currency-container');
-            budgetContainers.forEach(container => {
-                container.style.display = 'flex';
-                container.style.alignItems = 'center';
-                const input = container.querySelector('input[type="number"]');
-                const select = container.querySelector('select');
-                if (input && select) {
-                    input.style.flex = '1';
-                    select.style.width = 'auto';
-                }
-            });
-        });
-        
-        // نماذج الإرسال - حل مشكلة الرموز في الواتساب
+        // نماذج الإرسال - حل مشكلة الرموز في واتساب
         document.getElementById('carRentalForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -1712,7 +1821,7 @@
             const childrenCount = parseInt(formData.get('childrenCount') || 0);
             for (let i = 1; i <= childrenCount; i++) {
                 const age = formData.get(`childAge${i}`);
-                if (age) childAges.push(age);
+                if (age) childAges.push(age + ' سنوات');
             }
             
             formData.forEach((value, key) => {
@@ -1724,12 +1833,11 @@
                 }
             });
             
-            // بناء الرسالة بدون رموز تعبيرية (حل مشكلة علامات الاستفهام)
+            // بناء الرسالة بدون رموز تعبيرية
             const paymentMethodsStr = paymentMethods.length > 0 ? paymentMethods.join('، ') : 'غير محدد';
             const childrenInfo = childrenCount > 0 ? `${childrenCount} طفل، أعمارهم: ${childAges.join('، ')}` : 'لا يوجد أطفال';
             const returnLocation = data.returnOption === 'same' ? 'نفس مكان الاستلام' : data.returnLocation;
             
-            // إزالة الرموز التعبيرية واستخدام رموز نصية بديلة
             const message = `*طلب تأجير سيارة - راوند تريب*
 
 *المعلومات الشخصية:*
@@ -1776,36 +1884,33 @@ ${data.carNotes || 'لا توجد ملاحظات'}
             const form = e.target;
             const formData = new FormData(form);
             const data = {};
-            const childAges = [];
-            const roomDistribution = [];
+            const roomDetails = [];
             
-            // جمع بيانات أعمار الأطفال
-            const childrenCount = parseInt(formData.get('hotelChildren') || 0);
-            for (let i = 1; i <= childrenCount; i++) {
-                const age = formData.get(`hotelChildAge${i}`);
-                if (age) childAges.push(age + ' سنة');
-            }
-            
-            // جمع بيانات توزيع الغرف
+            // جمع بيانات الغرف
             const roomCount = parseInt(formData.get('hotelRooms') || 1);
-            if (roomCount > 1) {
-                for (let i = 1; i <= roomCount; i++) {
-                    const adults = formData.get(`room${i}Adults`);
-                    if (adults) {
-                        roomDistribution.push(`الغرفة ${i}: ${adults} بالغ`);
-                    }
+            for (let i = 1; i <= roomCount; i++) {
+                const adults = formData.get(`room${i}Adults`) || 'غير محدد';
+                const children = formData.get(`room${i}Children`) || '0';
+                const roomChildrenAges = [];
+                
+                // جمع أعمار الأطفال في هذه الغرفة
+                for (let j = 1; j <= children; j++) {
+                    const age = formData.get(`room${i}ChildAge${j}`);
+                    if (age) roomChildrenAges.push(age + ' سنة');
                 }
+                
+                const roomInfo = `الغرفة ${i}: ${adults} بالغ${children > 0 ? `، ${children} طفل${roomChildrenAges.length > 0 ? ' (أعمارهم: ' + roomChildrenAges.join('، ') + ')' : ''}` : ''}`;
+                roomDetails.push(roomInfo);
             }
             
             formData.forEach((value, key) => {
-                if (key.startsWith('hotelChildAge') || key.startsWith('room')) return;
+                if (key.startsWith('room') || key.startsWith('hotelChildAge')) return;
                 data[key] = value;
             });
             
-            const childrenInfo = childrenCount > 0 ? `${childrenCount} طفل، أعمارهم: ${childAges.join('، ')}` : 'لا يوجد أطفال';
-            const roomDistInfo = roomDistribution.length > 0 ? roomDistribution.join('، ') : 'غير محدد';
+            const childrenCount = parseInt(formData.get('hotelChildren') || 0);
+            const childrenInfo = childrenCount > 0 ? `${childrenCount} طفل` : 'لا يوجد أطفال';
             
-            // رسالة بدون رموز تعبيرية
             const message = `*طلب حجز فندق - راوند تريب*
 
 *المعلومات الشخصية:*
@@ -1818,10 +1923,11 @@ ${data.carNotes || 'لا توجد ملاحظات'}
 • تاريخ الوصول: ${data.hotelCheckIn || 'غير محدد'}
 • تاريخ المغادرة: ${data.hotelCheckOut || 'غير محدد'}
 • عدد الغرف: ${data.hotelRooms || 'غير محدد'}
-• عدد البالغين: ${data.hotelAdults || 'غير محدد'}
 • الأطفال: ${childrenInfo}
 • نوع الفندق: ${data.hotelType || 'غير محدد'}
-${roomCount > 1 ? `• توزيع الغرف: ${roomDistInfo}\n` : ''}
+
+*تفاصيل الغرف:*
+${roomDetails.join('\n')}
 
 *طلبات خاصة:*
 ${data.hotelSpecialRequests || 'لا توجد طلبات خاصة'}
