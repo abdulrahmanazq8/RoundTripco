@@ -125,20 +125,25 @@
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
         }
         
-        .phone-number {
-            font-size: 22px;
-            color: white;
+        .phone-numbers-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
             margin-top: 10px;
+        }
+        
+        .phone-number {
+            font-size: 20px;
+            color: white;
             direction: ltr;
-            display: block;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-weight: bold;
             background: rgba(255,255,255,0.1);
             padding: 8px 15px;
             border-radius: 8px;
             backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            gap: 10px;
             cursor: pointer;
             transition: all 0.3s;
         }
@@ -153,6 +158,7 @@
             direction: ltr;
             display: inline-block;
             flex: 1;
+            font-size: 20px;
         }
         
         .flag-icon {
@@ -657,11 +663,33 @@
             border-bottom: 2px solid rgba(255,255,255,0.1);
         }
         
-        .footer-contact div {
-            margin-bottom: 15px;
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .footer-contact-item {
             display: flex;
             align-items: center;
             gap: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .footer-phone-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .footer-phone-item:hover {
+            background: rgba(255,255,255,0.1);
         }
         
         .social-icons {
@@ -744,6 +772,14 @@
             .services {
                 grid-template-columns: 1fr;
             }
+            
+            .phone-numbers-container {
+                align-items: center;
+            }
+            
+            .phone-number {
+                font-size: 18px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -776,7 +812,12 @@
             }
             
             .phone-number {
-                font-size: 18px;
+                font-size: 16px;
+                padding: 6px 12px;
+            }
+            
+            .phone-number a {
+                font-size: 16px;
             }
         }
         
@@ -811,14 +852,16 @@
                 <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
             </div>
             
-            <div class="phone-number" onclick="openWhatsApp('96565750302')">
-                <img src="https://flagcdn.com/w20/kw.png" class="flag-icon" alt="علم الكويت">
-                <a href="https://wa.me/96565750302" target="_blank">+965 65750302</a>
-            </div>
-            
-            <div class="phone-number" style="margin-top: 5px; font-size: 18px;" onclick="openWhatsApp('966569425758')">
-                <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="علم السعودية">
-                <a href="https://wa.me/966569425758" target="_blank">+966 569425758</a>
+            <div class="phone-numbers-container">
+                <div class="phone-number" onclick="openWhatsApp('96565750302')">
+                    <img src="https://flagcdn.com/w20/kw.png" class="flag-icon" alt="علم الكويت">
+                    <a href="https://wa.me/96565750302" target="_blank">+965 65750302</a>
+                </div>
+                
+                <div class="phone-number" onclick="openWhatsApp('966569425758')">
+                    <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="علم السعودية">
+                    <a href="https://wa.me/966569425758" target="_blank">+966 569425758</a>
+                </div>
             </div>
         </div>
     </header>
@@ -1101,7 +1144,7 @@
                             <li><i class="fas fa-check-circle"></i> <strong>الوديعة:</strong> قد يتم طلب وديعــة مستردة عند استلام السيارة</li>
                             <li><i class="fas fa-check-circle"></i> <strong>الوقود:</strong> يتم تسليم السيارة بوقود كامل ويجب إرجاعها بنفس الحالة</li>
                             <li><i class="fas fa-check-circle"></i> <strong>المسافة المقطوعة:</strong> بعض العقود تشمل مسافة محددة يومياً</li>
-                            <li><i class="fas fa-check-circle"></i> <strong>الممنوعات:</strong> يحظر التدخين أو قيادة السيارة تحت تأثير الكحول</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>الممنوعات:</strong> يحظر التدخين أو قيادة السيارة تحت تأثير أي مواد مخدرة</li>
                             <li><i class="fas fa-check-circle"></i> <strong>التسليم والاستلام:</strong> متوفر في المطار أو العنوان المطلوب</li>
                             <li><i class="fas fa-check-circle"></i> <strong>نظام GPS:</strong> متوفر عند الطلب برسوم إضافية</li>
                         </ul>
@@ -1300,7 +1343,7 @@
     <div id="honeymoonPage" class="internal-page">
         <div class="page-header">
             <h1 class="page-title">رحلات شهر العسل</h1>
-            <p class="page-subtitle">باقات خاصة بالأزواج مع إضافات رومانسية في أجمل الوجهات العالمية لتجربة لا تُنسى</p>
+            <p class="page-subtitle">باقات خاصة للأزواج مع إضافات رومانسية في أجمل الوجهات العالمية لتجربة لا تُنسى</p>
             <button class="back-btn" onclick="showMainPage()"><i class="fas fa-arrow-right"></i> العودة للرئيسية</button>
         </div>
         
@@ -1782,23 +1825,27 @@
             
             <div class="footer-section footer-contact">
                 <h3>تواصل معنا</h3>
-                <div class="phone-number" onclick="openWhatsApp('96565750302')" style="background: transparent; padding: 0; margin-bottom: 15px;">
+                
+                <div class="footer-phone-item" onclick="openWhatsApp('96565750302')">
                     <img src="https://flagcdn.com/w20/kw.png" class="flag-icon" alt="علم الكويت">
-                    <a href="https://wa.me/96565750302" target="_blank" style="color: white; text-decoration: none;">+965 65750302</a>
+                    <div>
+                        <div><a href="https://wa.me/96565750302" target="_blank" style="color: white; text-decoration: none; font-size: 18px;">+965 65750302</a></div>
+                    </div>
                 </div>
-                <div class="phone-number" onclick="openWhatsApp('966569425758')" style="background: transparent; padding: 0; margin-bottom: 15px;">
+                
+                <div class="footer-phone-item" onclick="openWhatsApp('966569425758')">
                     <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="علم السعودية">
-                    <a href="https://wa.me/966569425758" target="_blank" style="color: white; text-decoration: none;">+966 569425758</a>
+                    <div>
+                        <div><a href="https://wa.me/966569425758" target="_blank" style="color: white; text-decoration: none; font-size: 18px;">+966 569425758</a></div>
+                    </div>
                 </div>
-                <div>
-                    <i class="fab fa-whatsapp"></i>
-                    <span><a href="https://wa.me/96565750302" style="color: white; text-decoration: none;" target="_blank">واتساب: 65750302</a></span>
-                </div>
-                <div>
+                
+                <div class="footer-contact-item">
                     <i class="fas fa-envelope"></i>
                     <span><a href="mailto:sales@roundtripco.net" style="color: white; text-decoration: none;">sales@roundtripco.net</a></span>
                 </div>
-                <div>
+                
+                <div class="footer-contact-item">
                     <i class="fas fa-clock"></i>
                     <span>السبت - الخميس: 9ص - 11م</span>
                 </div>
