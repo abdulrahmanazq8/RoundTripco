@@ -125,9 +125,48 @@
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
         }
         
-        /* إخفاء أرقام الهاتف من الهيدر */
+        /* إعادة عرض أرقام الهاتف في الهيدر */
         .phone-numbers-container {
-            display: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .phone-number {
+            font-size: 20px;
+            color: white;
+            direction: ltr;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .phone-number:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .phone-number a {
+            color: white;
+            text-decoration: none;
+            direction: ltr;
+            display: inline-block;
+            flex: 1;
+            font-size: 20px;
+        }
+        
+        .flag-icon {
+            width: 24px;
+            height: 16px;
+            border-radius: 3px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
         
         /* البانر */
@@ -418,6 +457,14 @@
             transition: all 0.3s;
             background: #f8fafc;
             font-family: 'Cairo', sans-serif;
+            text-align: right;
+        }
+        
+        /* محاذاة النص البديل (placeholder) لليمين */
+        input::placeholder,
+        textarea::placeholder {
+            text-align: right;
+            direction: rtl;
         }
         
         input:focus, select:focus, textarea:focus {
@@ -638,22 +685,6 @@
             margin-bottom: 10px;
         }
         
-        .footer-phone-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 10px;
-            padding: 8px 12px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 8px;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        
-        .footer-phone-item:hover {
-            background: rgba(255,255,255,0.1);
-        }
-        
         .social-icons {
             display: flex;
             gap: 15px;
@@ -738,6 +769,10 @@
             .phone-numbers-container {
                 align-items: center;
             }
+            
+            .phone-number {
+                font-size: 18px;
+            }
         }
         
         @media (max-width: 576px) {
@@ -767,6 +802,15 @@
                 height: 80px;
                 width: 80px;
                 line-height: 80px;
+            }
+            
+            .phone-number {
+                font-size: 16px;
+                padding: 6px 12px;
+            }
+            
+            .phone-number a {
+                font-size: 16px;
             }
         }
         
@@ -837,6 +881,21 @@
             gap: 10px;
             margin-top: 10px;
         }
+        
+        /* حاوية العملة */
+        .budget-currency-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .budget-currency-container input[type="number"] {
+            flex: 1;
+        }
+        
+        .budget-currency-container select {
+            width: 150px;
+        }
     </style>
 </head>
 <body>
@@ -856,6 +915,18 @@
         <div class="contact-header">
             <div class="whatsapp-btn pulse" onclick="openWhatsApp('96565750302')">
                 <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
+            </div>
+            
+            <div class="phone-numbers-container">
+                <div class="phone-number" onclick="openWhatsApp('96565750302')">
+                    <img src="https://flagcdn.com/w20/kw.png" class="flag-icon" alt="علم الكويت">
+                    <a href="https://wa.me/96565750302" target="_blank">+965 65750302</a>
+                </div>
+                
+                <div class="phone-number" onclick="openWhatsApp('966569425758')">
+                    <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="علم السعودية">
+                    <a href="https://wa.me/966569425758" target="_blank">+966 569425758</a>
+                </div>
             </div>
         </div>
     </header>
@@ -975,7 +1046,7 @@
                             
                             <div class="form-group">
                                 <label for="carPhone" class="required" style="text-align: right;">رقم الهاتف</label>
-                                <input type="tel" id="carPhone" name="carPhone" required placeholder="رقم الهاتف">
+                                <input type="tel" id="carPhone" name="carPhone" required placeholder="ادخل رقم الهاتف">
                             </div>
                         </div>
                         
@@ -1203,7 +1274,7 @@
                             
                             <div class="form-group">
                                 <label for="driverPhone" class="required" style="text-align: right;">رقم الهاتف</label>
-                                <input type="tel" id="driverPhone" name="driverPhone" required placeholder="رقم الهاتف">
+                                <input type="tel" id="driverPhone" name="driverPhone" required placeholder="ادخل رقم الهاتف">
                             </div>
                         </div>
                         
@@ -1252,7 +1323,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label for="driverTripTypes" class="required">نوع الرحلات المطلوبة (يمكن اختيار أكثر من واحد)</label>
+                                <label for="driverTripTypes" class="required">نوع الخدمات المطلوبة (يمكن اختيار أكثر من واحد)</label>
                                 <div class="checkbox-group">
                                     <div class="checkbox-item">
                                         <input type="checkbox" id="tripAirport" name="tripType" value="استقبال وتوديع من المطار">
@@ -1265,6 +1336,14 @@
                                     <div class="checkbox-item">
                                         <input type="checkbox" id="tripTransport" name="tripType" value="توصيلات داخلية">
                                         <label for="tripTransport">توصيلات داخلية</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="tripLuggage" name="tripType" value="المساعدة في حمل الشنط">
+                                        <label for="tripLuggage">المساعدة في حمل الشنط</label>
+                                    </div>
+                                    <div class="checkbox-item">
+                                        <input type="checkbox" id="tripVIP" name="tripType" value="خدمة VIP">
+                                        <label for="tripVIP">خدمة VIP</label>
                                     </div>
                                 </div>
                             </div>
@@ -1342,7 +1421,7 @@
                             
                             <div class="form-group">
                                 <label for="honeymoonPhone" class="required" style="text-align: right;">رقم الهاتف</label>
-                                <input type="tel" id="honeymoonPhone" name="honeymoonPhone" required placeholder="رقم الهاتف">
+                                <input type="tel" id="honeymoonPhone" name="honeymoonPhone" required placeholder="ادخل رقم الهاتف">
                             </div>
                         </div>
                         
@@ -1375,9 +1454,12 @@
                                 <label for="honeymoonBudget">الميزانية التقريبية</label>
                                 <div class="budget-currency-container">
                                     <input type="number" id="honeymoonBudget" name="honeymoonBudget" placeholder="المبلغ">
-                                    <select id="honeymoonCurrency" name="honeymoonCurrency" style="width: 120px; margin-right: 10px;">
+                                    <select id="honeymoonCurrency" name="honeymoonCurrency">
                                         <option value="دينار كويتي">دينار كويتي</option>
                                         <option value="ريال سعودي">ريال سعودي</option>
+                                        <option value="ريال قطري">ريال قطري</option>
+                                        <option value="ريال عماني">ريال عماني</option>
+                                        <option value="دينار بحريني">دينار بحريني</option>
                                         <option value="درهم إماراتي">درهم إماراتي</option>
                                         <option value="دولار أمريكي">دولار أمريكي</option>
                                         <option value="يورو">يورو</option>
@@ -1455,7 +1537,7 @@
                             
                             <div class="form-group">
                                 <label for="toursPhone" class="required" style="text-align: right;">رقم الهاتف</label>
-                                <input type="tel" id="toursPhone" name="toursPhone" required placeholder="رقم الهاتف">
+                                <input type="tel" id="toursPhone" name="toursPhone" required placeholder="ادخل رقم الهاتف">
                             </div>
                         </div>
                         
@@ -1507,9 +1589,12 @@
                                 <label for="toursBudget">الميزانية التقريبية للشخص</label>
                                 <div class="budget-currency-container">
                                     <input type="number" id="toursBudget" name="toursBudget" placeholder="المبلغ">
-                                    <select id="toursCurrency" name="toursCurrency" style="width: 120px; margin-right: 10px;">
+                                    <select id="toursCurrency" name="toursCurrency">
                                         <option value="دينار كويتي">دينار كويتي</option>
                                         <option value="ريال سعودي">ريال سعودي</option>
+                                        <option value="ريال قطري">ريال قطري</option>
+                                        <option value="ريال عماني">ريال عماني</option>
+                                        <option value="دينار بحريني">دينار بحريني</option>
                                         <option value="درهم إماراتي">درهم إماراتي</option>
                                         <option value="دولار أمريكي">دولار أمريكي</option>
                                         <option value="يورو">يورو</option>
@@ -1587,7 +1672,7 @@
                             
                             <div class="form-group">
                                 <label for="visaPhone" class="required" style="text-align: right;">رقم الهاتف</label>
-                                <input type="tel" id="visaPhone" name="visaPhone" required placeholder="رقم الهاتف">
+                                <input type="tel" id="visaPhone" name="visaPhone" required placeholder="ادخل رقم الهاتف">
                             </div>
                         </div>
                         
@@ -1681,7 +1766,7 @@
                             
                             <div class="form-group">
                                 <label for="hotelPhone" class="required" style="text-align: right;">رقم الهاتف</label>
-                                <input type="tel" id="hotelPhone" name="hotelPhone" required placeholder="رقم الهاتف">
+                                <input type="tel" id="hotelPhone" name="hotelPhone" required placeholder="ادخل رقم الهاتف">
                             </div>
                         </div>
                         
@@ -1775,7 +1860,7 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>راوند تريب</h3>
-                <p>نحن شركة متخصصة في تنظيم الرحلات السياحية نقدم خدمات حجوزات فنادق وتأشيرات وتأجير سيارات وباقات سياحية مخصصة. نضمن لعملائنا تجربة سفر استثنائية بأسعار تنافسية وخدمة مميزة.</p>
+                <p>خبراء في تنظيم الرحلات السياحية بشكل كامل ، نقدم خدمات حجوزات فنادق وتأشيرات وتأجير سيارات وباقات سياحية مفصلة. نضمن لعملائنا تجربة سفر استثنائية بأسعار تنافسية وخدمة مميزة.</p>
                 <div class="social-icons">
                     <a href="https://www.instagram.com/roundtripco" target="_blank"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.tiktok.com/@roundtripco" target="_blank"><i class="fab fa-tiktok"></i></a>
@@ -1796,20 +1881,6 @@
             
             <div class="footer-section footer-contact">
                 <h3>تواصل معنا</h3>
-                
-                <div class="footer-phone-item" onclick="openWhatsApp('96565750302')">
-                    <img src="https://flagcdn.com/w20/kw.png" class="flag-icon" alt="علم الكويت">
-                    <div>
-                        <div><a href="https://wa.me/96565750302" target="_blank" style="color: white; text-decoration: none; font-size: 18px;">+965 65750302</a></div>
-                    </div>
-                </div>
-                
-                <div class="footer-phone-item" onclick="openWhatsApp('966569425758')">
-                    <img src="https://flagcdn.com/w20/sa.png" class="flag-icon" alt="علم السعودية">
-                    <div>
-                        <div><a href="https://wa.me/966569425758" target="_blank" style="color: white; text-decoration: none; font-size: 18px;">+966 569425758</a></div>
-                    </div>
-                </div>
                 
                 <div class="footer-contact-item">
                     <i class="fas fa-envelope"></i>
@@ -2130,7 +2201,7 @@ ${data.carNotes || 'لا توجد ملاحظات'}
 • مكان الانطلاق: ${data.fromLocation}
 • مكان الوصول: ${data.toLocation}
 • عدد الأشخاص: ${data.driverPassengers} (بما فيهم الأطفال)
-• نوع الرحلات المطلوبة: ${tripTypesStr}
+• نوع الخدمات المطلوبة: ${tripTypesStr}
 • نوع السيارة: ${data.driverCarType}
 • عدد الأيام: ${data.driverServiceDays}
 
