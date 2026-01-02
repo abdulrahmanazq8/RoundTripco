@@ -37,6 +37,8 @@
             display: flex;
             flex-direction: column;
             font-family: 'Cairo', sans-serif;
+            padding-top: 0;
+            transition: padding-top 0.3s ease;
         }
         
         .english-font {
@@ -55,6 +57,7 @@
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            transition: all 0.4s ease;
         }
         
         .logo-container {
@@ -809,7 +812,7 @@
             margin: 0 auto;
         }
         
-        /* التجاوب */
+        /* التجاوب - التعديلات للهيدر في الموبايل */
         @media (max-width: 992px) {
             .header {
                 flex-direction: column;
@@ -870,9 +873,58 @@
             }
         }
         
-        @media (max-width: 576px) {
+        /* تعديلات إضافية للموبايل - إخفاء الهيدر عند التمرير */
+        @media (max-width: 768px) {
+            /* تحسين الهيدر في الموبايل */
+            .header {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                transition: transform 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+                padding: 8px 4%;
+                min-height: 70px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+                z-index: 1000;
+                transform: translateY(0);
+            }
+            
+            /* إضافة مساحة للجسم لتعويض الهيدر الثابت */
+            body {
+                padding-top: 70px;
+            }
+            
+            /* تصغير عناصر الهيدر في الموبايل */
+            .logo {
+                height: 45px;
+            }
+            
+            .company-name-ar {
+                font-size: 20px;
+                margin-bottom: 2px;
+            }
+            
+            .company-name-en {
+                font-size: 13px;
+            }
+            
+            .company-tagline {
+                font-size: 11px;
+            }
+            
+            /* إخفاء أرقام الهواتف في الهيدر لتوفير المساحة */
+            .phone-numbers-container {
+                display: none;
+            }
+            
+            /* تصغير زر الواتساب */
+            .whatsapp-btn {
+                padding: 8px 15px;
+                font-size: 13px;
+            }
+            
             .banner {
                 height: 350px;
+                margin-top: 0;
             }
             
             .banner h1 {
@@ -901,6 +953,50 @@
             
             .form-group {
                 margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header {
+                padding: 6px 3%;
+                min-height: 60px;
+            }
+            
+            body {
+                padding-top: 60px;
+            }
+            
+            .logo {
+                height: 40px;
+            }
+            
+            .company-name-ar {
+                font-size: 18px;
+            }
+            
+            .company-name-en {
+                font-size: 12px;
+            }
+            
+            .whatsapp-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            
+            .banner {
+                height: 320px;
+            }
+            
+            .banner h1 {
+                font-size: 22px;
+            }
+            
+            .banner p {
+                font-size: 14px;
+            }
+            
+            .banner-content {
+                padding: 20px;
             }
         }
         
@@ -952,6 +1048,12 @@
             background-color: #fee;
             border-radius: 5px;
             border: 1px solid #fcc;
+        }
+        
+        /* كلاس لإخفاء الهيدر */
+        .header-hidden {
+            transform: translateY(-100%) !important;
+            box-shadow: none !important;
         }
     </style>
 </head>
@@ -2339,18 +2441,21 @@
         }
         
         // تحديث مكان التسليم عند تغيير مكان الاستلام
-        document.getElementById('pickupLocation').addEventListener('input', function() {
-            if (document.getElementById('returnOption').value === 'same') {
-                document.getElementById('returnLocation').value = this.value;
-            }
-        });
+        const pickupLocationInput = document.getElementById('pickupLocation');
+        if (pickupLocationInput) {
+            pickupLocationInput.addEventListener('input', function() {
+                if (document.getElementById('returnOption').value === 'same') {
+                    document.getElementById('returnLocation').value = this.value;
+                }
+            });
+        }
         
         // التحقق من حد الركاب في خدمة السائق
         function checkDriverPassengerLimit(select) {
             const warning = document.getElementById('driverPassengerWarning');
-            if (select.value === 'more') {
+            if (select && select.value === 'more') {
                 warning.style.display = 'block';
-            } else {
+            } else if (warning) {
                 warning.style.display = 'none';
             }
         }
@@ -2362,14 +2467,95 @@
             const totalPassengers = totalAdults + childrenCount;
             const errorElement = document.getElementById('passengerLimitError');
             
-            if (totalPassengers > 9) {
-                errorElement.style.display = 'block';
-                errorElement.textContent = `❌ الخطأ: عدد الركاب ${totalPassengers} يتجاوز الحد الأقصى (9 ركاب). إذا كنت بحاجة إلى أكثر من 9 ركاب، يرجى الاتصال بنا مباشرة لتأجير سيارتين.`;
-                return false;
-            } else {
-                errorElement.style.display = 'none';
-                return true;
+            if (errorElement) {
+                if (totalPassengers > 9) {
+                    errorElement.style.display = 'block';
+                    errorElement.textContent = `❌ الخطأ: عدد الركاب ${totalPassengers} يتجاوز الحد الأقصى (9 ركاب). إذا كنت بحاجة إلى أكثر من 9 ركاب، يرجى الاتصال بنا مباشرة لتأجير سيارتين.`;
+                    return false;
+                } else {
+                    errorElement.style.display = 'none';
+                    return true;
+                }
             }
+            return true;
+        }
+        
+        // متغيرات للتحكم في سلوك الهيدر عند التمرير
+        let lastScrollTop = 0;
+        let header = document.querySelector('.header');
+        let scrollTimeout;
+        const mobileBreakpoint = 768; // نقطة التحول للموبايل
+        
+        // دالة لإخفاء/إظهار الهيدر عند التمرير
+        function handleScroll() {
+            // التحقق إذا كنا في إصدار الموبايل
+            if (window.innerWidth <= mobileBreakpoint) {
+                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // إخفاء الهيدر عند التمرير لأسفل
+                if (scrollTop > lastScrollTop && scrollTop > 100) {
+                    // إخفاء الهيدر
+                    header.classList.add('header-hidden');
+                } else {
+                    // إظهار الهيدر
+                    header.classList.remove('header-hidden');
+                }
+                
+                // إضافة ظل للهيدر عند التمرير
+                if (scrollTop > 50) {
+                    header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+                } else {
+                    header.style.boxShadow = 'none';
+                }
+                
+                lastScrollTop = scrollTop;
+                
+                // إلغاء المؤقت السابق وبدء مؤقت جديد
+                clearTimeout(scrollTimeout);
+                
+                // بعد التمرير، إذا لم يستمر المستخدم في التمرير، أظهر الهيدر بعد 3 ثواني
+                scrollTimeout = setTimeout(function() {
+                    header.classList.remove('header-hidden');
+                }, 3000);
+            } else {
+                // في إصدار الكمبيوتر، تأكد من أن الهيدر مرئي دائمًا
+                header.classList.remove('header-hidden');
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.15)';
+            }
+        }
+        
+        // دالة لإضافة مساحة للجسم عند تحميل الصفحة
+        function adjustBodyPadding() {
+            if (window.innerWidth <= mobileBreakpoint) {
+                const headerHeight = header.offsetHeight;
+                document.body.style.paddingTop = headerHeight + 'px';
+            } else {
+                document.body.style.paddingTop = '0';
+            }
+        }
+        
+        // استدعاء الدوال عند التحميل وتغيير حجم النافذة
+        window.addEventListener('load', function() {
+            adjustBodyPadding();
+            handleScroll(); // للتأكد من أن الهيدر في وضعيته الصحيحة
+        });
+        
+        window.addEventListener('resize', function() {
+            adjustBodyPadding();
+            lastScrollTop = 0; // إعادة تعيين متغير التمرير عند تغيير حجم النافذة
+        });
+        
+        // إضافة مستمع لحدث التمرير
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        
+        // إضافة مستمع للضغط على الهيدر لإظهاره (في حالة الموبايل)
+        if (header) {
+            header.addEventListener('click', function() {
+                if (window.innerWidth <= mobileBreakpoint) {
+                    header.classList.remove('header-hidden');
+                    clearTimeout(scrollTimeout);
+                }
+            });
         }
         
         // نماذج الإرسال - إصلاح مشكلة الرموز في واتساب
